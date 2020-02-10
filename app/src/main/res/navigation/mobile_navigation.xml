@@ -3,41 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_category">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.thursdaystore.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_category"
+        android:name="com.example.thursdaystore.ui.drawer.category.CategoryFragment"
+        android:label="@string/menu_category"
+        tools:layout="@layout/fragment_category" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.thursdaystore.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_favorites"
+        android:name="com.example.thursdaystore.ui.drawer.favorites.FavoritesFragment"
+        android:label="@string/menu_favorites"
+        tools:layout="@layout/fragment_favorites" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.thursdaystore.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_basket"
+        android:name="com.example.thursdaystore.ui.drawer.basket.BasketFragment"
+        android:label="@string/menu_basket"
+        tools:layout="@layout/fragment_basket" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.thursdaystore.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_purchases"
+        android:name="com.example.thursdaystore.ui.drawer.purchases.PurchasesFragment"
+        android:label="@string/menu_purchases"
+        tools:layout="@layout/fragment_purchases" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.thursdaystore.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_personal"
+        android:name="com.example.thursdaystore.ui.drawer.personal.PersonalFragment"
+        android:label="@string/menu_personal"
+        tools:layout="@layout/fragment_personal" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.thursdaystore.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_company"
+        android:name="com.example.thursdaystore.ui.drawer.company.AboutCompanyFragment"
+        android:label="@string/menu_company"
+        tools:layout="@layout/fragment_company" />
+
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="com.example.thursdaystore.ui.drawer.feedback.FeedbackFragment"
+        android:label="@string/menu_feedback"
+        tools:layout="@layout/fragment_feedback" />
+
 </navigation>
