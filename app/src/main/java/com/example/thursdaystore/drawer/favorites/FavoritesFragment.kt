@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.favorites
+package com.example.thursdaystore.drawer.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater

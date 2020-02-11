@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.personal
+package com.example.thursdaystore.drawer.personal
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

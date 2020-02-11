@@ -7,44 +7,61 @@
 
     <fragment
         android:id="@+id/nav_category"
-        android:name="com.example.thursdaystore.ui.drawer.category.CategoryFragment"
+        android:name="com.example.thursdaystore.drawer.category.CategoryFragment"
         android:label="@string/menu_category"
         tools:layout="@layout/fragment_category" />
 
     <fragment
         android:id="@+id/nav_favorites"
-        android:name="com.example.thursdaystore.ui.drawer.favorites.FavoritesFragment"
+        android:name="com.example.thursdaystore.drawer.favorites.FavoritesFragment"
         android:label="@string/menu_favorites"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/nav_basket"
-        android:name="com.example.thursdaystore.ui.drawer.basket.BasketFragment"
+        android:name="com.example.thursdaystore.drawer.basket.BasketFragment"
         android:label="@string/menu_basket"
         tools:layout="@layout/fragment_basket" />
 
     <fragment
         android:id="@+id/nav_purchases"
-        android:name="com.example.thursdaystore.ui.drawer.purchases.PurchasesFragment"
+        android:name="com.example.thursdaystore.drawer.purchases.PurchasesFragment"
         android:label="@string/menu_purchases"
         tools:layout="@layout/fragment_purchases" />
 
     <fragment
         android:id="@+id/nav_personal"
-        android:name="com.example.thursdaystore.ui.drawer.personal.PersonalFragment"
+        android:name="com.example.thursdaystore.drawer.personal.PersonalFragment"
         android:label="@string/menu_personal"
         tools:layout="@layout/fragment_personal" />
 
     <fragment
         android:id="@+id/nav_company"
-        android:name="com.example.thursdaystore.ui.drawer.company.AboutCompanyFragment"
+        android:name="com.example.thursdaystore.drawer.company.AboutCompanyFragment"
         android:label="@string/menu_company"
         tools:layout="@layout/fragment_company" />
 
     <fragment
         android:id="@+id/nav_feedback"
-        android:name="com.example.thursdaystore.ui.drawer.feedback.FeedbackFragment"
+        android:name="com.example.thursdaystore.drawer.feedback.FeedbackFragment"
         android:label="@string/menu_feedback"
         tools:layout="@layout/fragment_feedback" />
+
+    <fragment
+        android:id="@+id/subCategoryFragment"
+        android:name="com.example.thursdaystore.fragments.SubCategoryFragment"
+        android:label="@string/fragment_subcategory"
+        tools:layout="@layout/fragment_sub_category" />
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.thursdaystore.fragments.ProductsFragment"
+        android:label="@string/fragment_products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/productTreeFragment"
+        android:name="com.example.thursdaystore.fragments.product_tree.ProductTreeFragment"
+        android:label="@string/fragment_product"
+        tools:layout="@layout/fragment_product_tree" />
 
 </navigation>

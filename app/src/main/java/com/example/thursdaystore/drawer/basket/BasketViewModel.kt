@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.basket
+package com.example.thursdaystore.drawer.basket
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

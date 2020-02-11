@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.favorites
+package com.example.thursdaystore.drawer.favorites
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

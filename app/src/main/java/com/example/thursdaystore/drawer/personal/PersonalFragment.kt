@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.personal
+package com.example.thursdaystore.drawer.personal
 
 import android.os.Bundle
 import android.view.LayoutInflater

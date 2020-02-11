@@ -15,4 +15,8 @@
     <string name="menu_company">Company</string>
     <string name="menu_feedback">Feedback</string>
 
+    <string name="fragment_subcategory">Subcategory</string>
+    <string name="fragment_products">Products</string>
+    <string name="fragment_product">About Product</string>
+
 </resources>

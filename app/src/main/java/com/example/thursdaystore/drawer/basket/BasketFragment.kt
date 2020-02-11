@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.basket
+package com.example.thursdaystore.drawer.basket
 
 import android.os.Bundle
 import android.view.LayoutInflater

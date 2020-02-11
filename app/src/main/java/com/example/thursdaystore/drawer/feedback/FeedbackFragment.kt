@@ -1,4 +1,4 @@
-package com.example.thursdaystore.ui.drawer.feedback
+package com.example.thursdaystore.drawer.feedback
 
 
 import android.os.Bundle
