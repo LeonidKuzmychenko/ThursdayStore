@@ -21,7 +21,7 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder =
         ReviewViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_product,
+                R.layout.item_review,
                 parent,
                 false
             )

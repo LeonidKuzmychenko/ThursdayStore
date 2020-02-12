@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thursdaystore.R
-import com.example.thursdaystore.drawer.category.CategoryAdapter
 import kotlinx.android.synthetic.main.fragment_sub_category.*
 
 class SubCategoryFragment : Fragment() {

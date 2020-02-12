@@ -6,17 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.R
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
-
+class CategoryAdapter(private val list: MutableList<Int>) :
+    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    lateinit var list:MutableList<Int>
-
-    constructor(list: MutableList<Int>) : super() {
-        this.list = list
-    }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
         CategoryViewHolder(
