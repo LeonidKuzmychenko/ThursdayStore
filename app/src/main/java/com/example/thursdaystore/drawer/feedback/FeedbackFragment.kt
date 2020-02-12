@@ -1,6 +1,5 @@
 package com.example.thursdaystore.drawer.feedback
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.thursdaystore.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class FeedbackFragment : Fragment() {
 
     private lateinit var feedbackViewModel: FeedbackViewModel

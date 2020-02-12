@@ -1,8 +1,8 @@
-package com.example.thursdaystore.drawer.category
+package com.example.thursdaystore.fragments.products
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CategoryViewModel : ViewModel() {
+class ProductsViewModel : ViewModel(){
     val listLiveData: MutableLiveData<MutableList<Int>> = MutableLiveData()
 }

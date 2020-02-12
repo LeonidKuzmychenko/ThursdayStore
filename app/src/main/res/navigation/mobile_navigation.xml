@@ -49,13 +49,13 @@
 
     <fragment
         android:id="@+id/subCategoryFragment"
-        android:name="com.example.thursdaystore.fragments.SubCategoryFragment"
+        android:name="com.example.thursdaystore.fragments.sub_category.SubCategoryFragment"
         android:label="@string/fragment_subcategory"
         tools:layout="@layout/fragment_sub_category" />
 
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.example.thursdaystore.fragments.ProductsFragment"
+        android:name="com.example.thursdaystore.fragments.products.ProductsFragment"
         android:label="@string/fragment_products"
         tools:layout="@layout/fragment_products" />
     <fragment
