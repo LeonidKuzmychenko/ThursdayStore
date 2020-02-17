@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +19,11 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let { init(it) } ?: run {
+            Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+        }
+
         products_next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.productTreeFragment))
         productsRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
@@ -32,4 +38,7 @@ class ProductsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_products, container, false)
     }
 
+    private fun init(bundle: Bundle) {
+        products_next.text = ProductsFragmentArgs.fromBundle(bundle).subCategoryId.toString()
+    }
 }

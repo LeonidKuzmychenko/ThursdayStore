@@ -24,6 +24,11 @@ class SubCategoryFragment : Fragment() {
         }
 
         sub_category_next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.productsFragment))
+        sub_category_next.setOnClickListener{
+            val actionSubCategoryFragmentToProductsFragment = SubCategoryFragmentDirections.actionSubCategoryFragmentToProductsFragment()
+            actionSubCategoryFragmentToProductsFragment.subCategoryId = 101L
+            Navigation.findNavController(view).navigate(actionSubCategoryFragmentToProductsFragment)
+        }
         subCategoryRecyclerView.layoutManager = LinearLayoutManager(context)
 
         subCategoryViewModel.listLiveData.observe(
