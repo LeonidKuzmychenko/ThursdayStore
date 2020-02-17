@@ -23,8 +23,13 @@ class ProductsFragment : Fragment() {
         arguments?.let { init(it) } ?: run {
             Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
         }
+        
+        products_next.setOnClickListener{
+            val actionProductsFragmentToProductTreeFragment = ProductsFragmentDirections.actionProductsFragmentToProductTreeFragment()
+            actionProductsFragmentToProductTreeFragment.productId = 102L
+            Navigation.findNavController(view).navigate(actionProductsFragmentToProductTreeFragment)
+        }
 
-        products_next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.productTreeFragment))
         productsRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
         productsViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
