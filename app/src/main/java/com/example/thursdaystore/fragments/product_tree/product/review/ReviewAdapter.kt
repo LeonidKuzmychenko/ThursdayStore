@@ -6,17 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.R
 
-class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
-
+class ReviewAdapter(private val list: MutableList<Int>) :
+    RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     class ReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    lateinit var list:MutableList<Int>
-
-    constructor(list: MutableList<Int>) : super() {
-        this.list = list
-    }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder =
         ReviewViewHolder(
@@ -30,5 +23,4 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {}
-
 }

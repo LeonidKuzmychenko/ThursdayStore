@@ -11,15 +11,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.thursdaystore.drawer.category.CategoryFragment
-import com.example.thursdaystore.fragments.products.ProductsFragment
-import com.example.thursdaystore.fragments.sub_category.SubCategoryFragment
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), CategoryFragment.OpenSubcategory,
-    SubCategoryFragment.OpenProducts,
-    ProductsFragment.OpenProductTree {
-
+class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
@@ -57,15 +51,4 @@ class MainActivity : AppCompatActivity(), CategoryFragment.OpenSubcategory,
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun openSubcategory() {
-        navController.navigate(R.id.subCategoryFragment)
-    }
-
-    override fun openProducts() {
-        navController.navigate(R.id.productsFragment)
-    }
-
-    override fun openProductTree() {
-        navController.navigate(R.id.productTreeFragment)
-    }
 }

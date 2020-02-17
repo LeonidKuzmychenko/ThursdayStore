@@ -9,7 +9,11 @@
         android:id="@+id/nav_category"
         android:name="com.example.thursdaystore.drawer.category.CategoryFragment"
         android:label="@string/menu_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_nav_category_to_subCategoryFragment"
+            app:destination="@id/subCategoryFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_favorites"
@@ -51,17 +55,39 @@
         android:id="@+id/subCategoryFragment"
         android:name="com.example.thursdaystore.fragments.sub_category.SubCategoryFragment"
         android:label="@string/fragment_subcategory"
-        tools:layout="@layout/fragment_sub_category" />
+        tools:layout="@layout/fragment_sub_category">
+        <argument
+            android:name="categoryId"
+            android:defaultValue="-1L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_subCategoryFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.example.thursdaystore.fragments.products.ProductsFragment"
         android:label="@string/fragment_products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_productsFragment_to_productTreeFragment"
+            app:destination="@id/productTreeFragment" />
+        <argument
+            android:name="subCategoryId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
     <fragment
         android:id="@+id/productTreeFragment"
         android:name="com.example.thursdaystore.fragments.product_tree.ProductTreeFragment"
         android:label="@string/fragment_product"
-        tools:layout="@layout/fragment_product_tree" />
+        tools:layout="@layout/fragment_product_tree" >
+        <argument
+            android:name="productId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 
 </navigation>
