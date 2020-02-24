@@ -18,12 +18,6 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        category_next.setOnClickListener{
-            val actionNavCategoryToSubCategoryFragment = CategoryFragmentDirections.actionNavCategoryToSubCategoryFragment()
-            actionNavCategoryToSubCategoryFragment.categoryId = 100L
-            Navigation.findNavController(view).navigate(actionNavCategoryToSubCategoryFragment)
-        }
-
         categoryRecyclerView.layoutManager = LinearLayoutManager(context)
 
         categoryViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
