@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thursdaystore.R
 import kotlinx.android.synthetic.main.fragment_sub_category.*
@@ -23,12 +23,6 @@ class SubCategoryFragment : Fragment() {
             Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
         }
 
-        sub_category_next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.productsFragment))
-        sub_category_next.setOnClickListener{
-            val actionSubCategoryFragmentToProductsFragment = SubCategoryFragmentDirections.actionSubCategoryFragmentToProductsFragment()
-            actionSubCategoryFragmentToProductsFragment.subCategoryId = 101L
-            Navigation.findNavController(view).navigate(actionSubCategoryFragmentToProductsFragment)
-        }
         subCategoryRecyclerView.layoutManager = LinearLayoutManager(context)
 
         subCategoryViewModel.listLiveData.observe(
@@ -37,6 +31,7 @@ class SubCategoryFragment : Fragment() {
 
         subCategoryViewModel.listLiveData.value =
             mutableListOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
     }
 
     override fun onCreateView(
@@ -49,6 +44,9 @@ class SubCategoryFragment : Fragment() {
     }
 
     private fun init(bundle: Bundle) {
-        sub_category_next.text = SubCategoryFragmentArgs.fromBundle(bundle).categoryId.toString()
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = "${it.title}: ${SubCategoryFragmentArgs.fromBundle(bundle).categoryId}"
+        }
     }
+
 }
