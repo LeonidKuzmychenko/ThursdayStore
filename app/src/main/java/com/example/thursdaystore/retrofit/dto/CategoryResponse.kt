@@ -2,11 +2,11 @@ package com.example.thursdaystore.retrofit.dto
 
 import com.squareup.moshi.Json
 
-data class GetLanguagesResponse(
+class CategoryResponse(
     @Json(name = "id")
     private val id: Long,
-    @Json(name = "key")
-    private val key: String,
     @Json(name = "name")
-    private val name: String
+    private val name: String,
+    @Json(name = "image")
+    private val image: Any
 )

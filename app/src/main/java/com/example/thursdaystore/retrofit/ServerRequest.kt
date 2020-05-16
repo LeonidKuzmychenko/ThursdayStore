@@ -1,14 +1,19 @@
 package com.example.thursdaystore.retrofit;
 
-import com.example.thursdaystore.retrofit.dto.GetLanguagesResponse
+import com.example.thursdaystore.retrofit.dto.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.ProductResponse
+import com.example.thursdaystore.retrofit.dto.LanguagesResponse
+import com.example.thursdaystore.retrofit.dto.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ServerRequest {
-    /*-------------------------------------------languages--------------------------------------------*/
+    /*-------------------------------------------languages----------------------------------------*/
     @GET("/languages")
-    fun getLanguages(): Single<Response<List<GetLanguagesResponse>>>
+    fun getLanguages(): Single<Response<List<LanguagesResponse>>>
 
 //    @POST("/languages")
 //    fun languagesPOST(): Single<Response<String>>
@@ -19,9 +24,9 @@ interface ServerRequest {
 //    @DELETE("/languages")
 //    fun languagesDELETE(): Single<Response<String>>
 
-    /*-------------------------------------------categories-------------------------------------------*/
+    /*-------------------------------------------categories---------------------------------------*/
     @GET("/categories")
-    fun getCategories(): Single<Response<String>>
+    fun getCategories(@Query("lang") lang:String): Single<Response<List<CategoryResponse>>>
 
 //    @POST("/categories")
 //    fun categoriesPOST(): Single<Response<String>>
@@ -32,9 +37,9 @@ interface ServerRequest {
 //    @DELETE("/categories")
 //    fun categoriesDELETE(): Single<Response<String>>
 
-    /*------------------------------------------subcategories-----------------------------------------*/
+    /*------------------------------------------subcategories-------------------------------------*/
     @GET("/subcategories")
-    fun getSubcategories(): Single<Response<String>>
+    fun getSubcategories(@Query("catId") id:Long): Single<Response<List<SubcategoryResponse>>>
 
 //    @POST("/subcategories")
 //    fun subcategoriesPOST(): Single<Response<String>>
@@ -45,11 +50,11 @@ interface ServerRequest {
 //    @DELETE("/subcategories")
 //    fun subcategoriesDELETE(): Single<Response<String>>
 
-    /*----------------------------------------------admin---------------------------------------------*/
+    /*----------------------------------------------admin-----------------------------------------*/
 //    @POST("/admin/initial")
 //    fun admin(): Single<Response<String>>
 
-    /*---------------------------------------------locale---------------------------------------------*/
+    /*---------------------------------------------locale-----------------------------------------*/
     @GET("/locale")
     fun getLocale(): Single<Response<String>>
 
@@ -62,7 +67,7 @@ interface ServerRequest {
 //    @DELETE("/locale")
 //    fun localeDELETE(): Single<Response<String>>
 
-    /*---------------------------------------------colors---------------------------------------------*/
+    /*---------------------------------------------colors-----------------------------------------*/
     @GET("/colors")
     fun getColors(): Single<Response<String>>
 
@@ -75,9 +80,9 @@ interface ServerRequest {
 //    @DELETE("/colors")
 //    fun colorsDELETE(): Single<Response<String>>
 
-    /*--------------------------------------------products--------------------------------------------*/
+    /*--------------------------------------------products----------------------------------------*/
     @GET("/products")
-    fun getProducts(): Single<Response<String>>
+    fun getProducts(): Single<Response<List<ProductResponse>>>
 
 //    @POST("/products")
 //    fun productsPOST(): Single<Response<String>>
@@ -88,7 +93,7 @@ interface ServerRequest {
 //    @DELETE("/products")
 //    fun productsDELETE(): Single<Response<String>>
 
-    /*-------------------------------------------properties-------------------------------------------*/
+    /*-------------------------------------------properties---------------------------------------*/
     @GET("/properties")
     fun getProperties(): Single<Response<String>>
 
@@ -101,7 +106,7 @@ interface ServerRequest {
 //    @DELETE("/properties")
 //    fun propertiesDELETE(): Single<Response<String>>
 
-    /*-------------------------------------------parameters-------------------------------------------*/
+    /*-------------------------------------------parameters---------------------------------------*/
     @GET("/parameters")
     fun getParameters(): Single<Response<String>>
 
@@ -113,4 +118,9 @@ interface ServerRequest {
 //
 //    @DELETE("/parameters")
 //    fun parametersDELETE(): Single<Response<String>>
+
+    /*-------------------------------------------filter----------+--------------------------------*/
+    @GET("/filter")
+    fun getFilter(): Single<Response<List<FilterResponse>>>
+
 }
