@@ -5,7 +5,7 @@ import io.reactivex.functions.Consumer
 
 class GetFiltersActionError: Consumer<Throwable>{
 
-    val TAG = this.javaClass.canonicalName
+    val TAG = this.javaClass.simpleName
 
     override fun accept(t: Throwable?) {
         Log.d(TAG, "getFilter error", t)

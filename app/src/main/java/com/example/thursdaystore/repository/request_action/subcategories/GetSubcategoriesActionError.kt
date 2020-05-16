@@ -5,7 +5,7 @@ import io.reactivex.functions.Consumer
 
 class GetSubcategoriesActionError: Consumer<Throwable>{
 
-    val TAG = this.javaClass.canonicalName
+    val TAG = this.javaClass.simpleName
 
     override fun accept(t: Throwable?) {
         Log.d(TAG, "getSubcategories error", t)

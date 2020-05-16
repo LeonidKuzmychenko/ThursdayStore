@@ -7,7 +7,7 @@ import retrofit2.Response
 
 class GetProductsActionSuccess: Consumer<Response<List<ProductResponse>>>{
 
-    val TAG = this.javaClass.canonicalName
+    val TAG = this.javaClass.simpleName
 
     override fun accept(t: Response<List<ProductResponse>>) {
         Log.d(TAG, "getProducts Response = $t")

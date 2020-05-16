@@ -6,12 +6,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 class RetrofitCreator {
+
     companion object{
-        fun get(url:String): Retrofit =
+        fun get(url: String): Retrofit =
             Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
+
+
 }

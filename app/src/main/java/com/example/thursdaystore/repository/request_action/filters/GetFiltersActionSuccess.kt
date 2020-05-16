@@ -7,7 +7,7 @@ import retrofit2.Response
 
 class GetFiltersActionSuccess: Consumer<Response<List<FilterResponse>>>{
 
-    val TAG = this.javaClass.canonicalName
+    val TAG = this.javaClass.simpleName
 
     override fun accept(t: Response<List<FilterResponse>>) {
         Log.d(TAG, "getFilter Response = $t")

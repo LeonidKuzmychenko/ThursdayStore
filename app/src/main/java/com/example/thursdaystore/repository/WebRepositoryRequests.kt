@@ -16,21 +16,19 @@ enum class WebRepositoryRequests {
 
     INSTANCE;
 
-    private val server: ServerRequest = RetrofitApi.server()
-
     fun getLanguages(): Single<Response<List<LanguagesResponse>>> =
-        server.getLanguages()
+        RetrofitApi.server().getLanguages()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
 
     fun getCategories(lang: String): Single<Response<List<CategoryResponse>>> =
-        server.getCategories(lang)
+        RetrofitApi.server().getCategories(lang)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
     fun getSubcategories(id: Long): Single<Response<List<SubcategoryResponse>>> =
-        server.getSubcategories(id)
+        RetrofitApi.server().getSubcategories(id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
@@ -43,7 +41,7 @@ enum class WebRepositoryRequests {
     }
 
     fun getProducts(id: Long): Single<Response<List<ProductResponse>>> =
-        server.getProducts(id)
+        RetrofitApi.server().getProducts(id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
@@ -56,7 +54,7 @@ enum class WebRepositoryRequests {
     }
 
     fun getFilter(id: Long, lang: String): Single<Response<List<FilterResponse>>> =
-        server.getFilter(id, lang)
+        RetrofitApi.server().getFilter(id, lang)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 

@@ -14,16 +14,14 @@ enum class WebRepositoryActions {
 
     INSTANCE;
 
-    private val requests: WebRepositoryRequests = WebRepositoryRequests.INSTANCE
-
     @SuppressLint("CheckResult")
     fun getLanguages(){
-        requests.getLanguages().subscribe()
+        WebRepositoryRequests.INSTANCE.getLanguages().subscribe()
     }
 
     @SuppressLint("CheckResult")
     fun getCategories(lang: String){
-        requests.getCategories(lang).subscribe(
+        WebRepositoryRequests.INSTANCE.getCategories(lang).subscribe(
             GetCategoriesActionSuccess(),
             GetCategoriesActionError()
         )
@@ -31,7 +29,7 @@ enum class WebRepositoryActions {
 
     @SuppressLint("CheckResult")
     fun getSubcategories(id: Long){
-        requests.getSubcategories(id).subscribe(
+        WebRepositoryRequests.INSTANCE.getSubcategories(id).subscribe(
             GetSubcategoriesActionSuccess(),
             GetSubcategoriesActionError()
         )
@@ -39,17 +37,17 @@ enum class WebRepositoryActions {
 
     @SuppressLint("CheckResult")
     fun getLocale(){
-        requests.getLocale().subscribe()
+        WebRepositoryRequests.INSTANCE.getLocale().subscribe()
     }
 
     @SuppressLint("CheckResult")
     fun getColors(){
-        requests.getColors().subscribe()
+        WebRepositoryRequests.INSTANCE.getColors().subscribe()
     }
 
     @SuppressLint("CheckResult")
     fun getProducts(id: Long){
-        requests.getProducts(id).subscribe(
+        WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
             GetProductsActionSuccess(),
             GetProductsActionError()
         )
@@ -57,17 +55,17 @@ enum class WebRepositoryActions {
 
     @SuppressLint("CheckResult")
     fun getProperties(){
-        requests.getProperties().subscribe()
+        WebRepositoryRequests.INSTANCE.getProperties().subscribe()
     }
 
     @SuppressLint("CheckResult")
     fun getParameters(){
-        requests.getParameters().subscribe()
+        WebRepositoryRequests.INSTANCE.getParameters().subscribe()
     }
 
     @SuppressLint("CheckResult")
     fun getFilter(id: Long, lang: String){
-        requests.getFilter(id,lang).subscribe(
+        WebRepositoryRequests.INSTANCE.getFilter(id,lang).subscribe(
             GetFiltersActionSuccess(),
             GetFiltersActionError()
         )
