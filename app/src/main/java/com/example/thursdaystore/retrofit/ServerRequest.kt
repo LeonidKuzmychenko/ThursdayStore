@@ -26,7 +26,7 @@ interface ServerRequest {
 
     /*-------------------------------------------categories---------------------------------------*/
     @GET("/categories")
-    fun getCategories(@Query("lang") lang:String): Single<Response<List<CategoryResponse>>>
+    fun getCategories(@Query("lang") lang: String): Single<Response<List<CategoryResponse>>>
 
 //    @POST("/categories")
 //    fun categoriesPOST(): Single<Response<String>>
@@ -39,7 +39,7 @@ interface ServerRequest {
 
     /*------------------------------------------subcategories-------------------------------------*/
     @GET("/subcategories")
-    fun getSubcategories(@Query("catId") id:Long): Single<Response<List<SubcategoryResponse>>>
+    fun getSubcategories(@Query("catId") id: Long): Single<Response<List<SubcategoryResponse>>>
 
 //    @POST("/subcategories")
 //    fun subcategoriesPOST(): Single<Response<String>>
@@ -82,7 +82,7 @@ interface ServerRequest {
 
     /*--------------------------------------------products----------------------------------------*/
     @GET("/products")
-    fun getProducts(): Single<Response<List<ProductResponse>>>
+    fun getProducts(@Query("catId") id: Long): Single<Response<List<ProductResponse>>>
 
 //    @POST("/products")
 //    fun productsPOST(): Single<Response<String>>
@@ -121,6 +121,9 @@ interface ServerRequest {
 
     /*-------------------------------------------filter----------+--------------------------------*/
     @GET("/filter")
-    fun getFilter(): Single<Response<List<FilterResponse>>>
+    fun getFilter(
+        @Query("catId") id: Long,
+        @Query("lang") lang: String
+    ): Single<Response<List<FilterResponse>>>
 
 }
