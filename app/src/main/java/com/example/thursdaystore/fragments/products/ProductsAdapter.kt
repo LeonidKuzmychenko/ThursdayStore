@@ -29,11 +29,7 @@ class ProductsAdapter(private val list: MutableList<Int>) :
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         holder.text.text = position.toString()
-        holder.container.setOnClickListener {
-            val actionProductsFragmentToProductTreeFragment = ProductsFragmentDirections.actionProductsFragmentToProductTreeFragment()
-            actionProductsFragmentToProductTreeFragment.productId = position.toLong()
-            Navigation.findNavController(holder.itemView).navigate(actionProductsFragmentToProductTreeFragment)
-        }
+        holder.container.setOnClickListener(ProductsItemListener(position.toLong(), holder.itemView))
     }
 
 }

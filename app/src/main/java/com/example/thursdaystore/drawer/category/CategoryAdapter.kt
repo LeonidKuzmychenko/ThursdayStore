@@ -30,12 +30,7 @@ class CategoryAdapter(private val list: MutableList<Int>) :
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.text.text = position.toString()
-        holder.container.setOnClickListener {
-            val actionNavCategoryToSubCategoryFragment = CategoryFragmentDirections.actionNavCategoryToSubCategoryFragment()
-            actionNavCategoryToSubCategoryFragment.categoryId = position.toLong()
-            Navigation.findNavController(holder.itemView).navigate(actionNavCategoryToSubCategoryFragment)
-        }
-
+        holder.container.setOnClickListener(CategoryItemListener(position.toLong(), holder.itemView))
     }
 
 }
