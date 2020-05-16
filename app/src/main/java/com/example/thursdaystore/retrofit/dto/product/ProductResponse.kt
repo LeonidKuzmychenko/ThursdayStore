@@ -1,8 +1,8 @@
-package com.example.thursdaystore.retrofit.dto
+package com.example.thursdaystore.retrofit.dto.product
 
 import com.squareup.moshi.Json
 
-class ProductResponse(
+data class ProductResponse(
     @Json(name = "id")
     private val id: Long,
     @Json(name = "name")

@@ -2,7 +2,7 @@ package com.example.thursdaystore.retrofit.dto.filter
 
 import com.squareup.moshi.Json
 
-class FilterResponse(
+data class FilterResponse(
     @Json(name = "propertyId")
     private val propertyId: Long,
     @Json(name = "propertyName")

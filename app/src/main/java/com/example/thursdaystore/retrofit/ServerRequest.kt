@@ -1,9 +1,9 @@
 package com.example.thursdaystore.retrofit;
 
-import com.example.thursdaystore.retrofit.dto.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.ProductResponse
-import com.example.thursdaystore.retrofit.dto.LanguagesResponse
-import com.example.thursdaystore.retrofit.dto.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.product.ProductResponse
+import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
+import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import io.reactivex.Single
 import retrofit2.Response

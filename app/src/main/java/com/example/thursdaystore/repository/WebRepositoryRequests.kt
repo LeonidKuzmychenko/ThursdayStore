@@ -2,17 +2,17 @@ package com.example.thursdaystore.repository
 
 import com.example.thursdaystore.retrofit.RetrofitApi
 import com.example.thursdaystore.retrofit.ServerRequest
-import com.example.thursdaystore.retrofit.dto.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.LanguagesResponse
-import com.example.thursdaystore.retrofit.dto.ProductResponse
-import com.example.thursdaystore.retrofit.dto.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
+import com.example.thursdaystore.retrofit.dto.product.ProductResponse
+import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
-enum class WebRepository {
+enum class WebRepositoryRequests {
 
     INSTANCE;
 

@@ -1,4 +1,4 @@
-package com.example.thursdaystore.retrofit.dto
+package com.example.thursdaystore.retrofit.dto.languages
 
 import com.squareup.moshi.Json
 
