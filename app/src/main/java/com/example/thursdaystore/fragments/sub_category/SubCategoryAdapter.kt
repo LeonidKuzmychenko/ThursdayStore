@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thursdaystore.R
+import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 
-class SubCategoryAdapter(private val list: MutableList<Int>) :
+class SubCategoryAdapter(private val list: List<SubcategoryResponse>) :
     RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -30,8 +31,9 @@ class SubCategoryAdapter(private val list: MutableList<Int>) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.text.text = position.toString()
-        holder.container.setOnClickListener(SubCategoryItemListener(position.toLong(), holder.itemView))
+        val element = list[position]
+        holder.text.text = element.name
+        holder.container.setOnClickListener(SubCategoryItemListener(element.name, element.id, holder.itemView))
         Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
     }
 

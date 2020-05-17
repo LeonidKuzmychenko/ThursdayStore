@@ -11,11 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thursdaystore.R
+import com.example.thursdaystore.repository.WebRepositoryActions
 import kotlinx.android.synthetic.main.fragment_sub_category.*
+import kotlin.properties.Delegates
 
 class SubCategoryFragment : Fragment() {
 
     private lateinit var subCategoryViewModel: SubCategoryViewModel
+    private var id by Delegates.notNull<Long>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,8 +32,8 @@ class SubCategoryFragment : Fragment() {
             viewLifecycleOwner,
             Observer { subCategoryRecyclerView.adapter = SubCategoryAdapter(it) })
 
-        subCategoryViewModel.listLiveData.value =
-            mutableListOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+        WebRepositoryActions.INSTANCE.getSubcategories(id, subCategoryViewModel.listLiveData)
+//        subCategoryViewModel.listLiveData.value = mutableListOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
     }
 
@@ -47,6 +50,8 @@ class SubCategoryFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.let {
             it.title = "${it.title}: ${SubCategoryFragmentArgs.fromBundle(bundle).title}"
         }
+
+        id = SubCategoryFragmentArgs.fromBundle(bundle).categoryId
     }
 
 }

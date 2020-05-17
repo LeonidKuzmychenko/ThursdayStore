@@ -35,7 +35,7 @@ class CategoryAdapter(private val list: List<CategoryResponse>) :
 
         val element = list[position]
         holder.text.text = element.name
-        holder.container.setOnClickListener(CategoryItemListener(element.name, holder.itemView))
+        holder.container.setOnClickListener(CategoryItemListener(element.name, element.id, holder.itemView))
         Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
     }
 

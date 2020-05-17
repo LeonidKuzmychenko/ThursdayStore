@@ -27,9 +27,9 @@ class StartActivity : AppCompatActivity() {
 //            delay(3000)
 
 
-            Log.d(TAG,"getSubcategories")
-            WebRepositoryActions.INSTANCE.getSubcategories(1)
-            delay(3000)
+//            Log.d(TAG,"getSubcategories")
+//            WebRepositoryActions.INSTANCE.getSubcategories(1)
+//            delay(3000)
 
 
             Log.d(TAG,"getProducts")

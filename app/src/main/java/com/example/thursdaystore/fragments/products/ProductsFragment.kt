@@ -38,7 +38,7 @@ class ProductsFragment : Fragment() {
 
     private fun init(bundle: Bundle) {
         (activity as AppCompatActivity).supportActionBar?.let {
-            it.title = "${it.title}: ${ProductsFragmentArgs.fromBundle(bundle).subCategoryId}"
+            it.title = "${it.title}: ${ProductsFragmentArgs.fromBundle(bundle).title}"
         }
     }
 }

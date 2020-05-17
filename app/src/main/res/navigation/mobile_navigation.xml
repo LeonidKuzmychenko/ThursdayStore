@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_subCategoryFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -73,9 +76,11 @@
             android:id="@+id/action_productsFragment_to_productTreeFragment"
             app:destination="@id/productTreeFragment" />
         <argument
-            android:name="subCategoryId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="subcategoryId"
+            app:argType="long" />
     </fragment>
 
     <fragment
