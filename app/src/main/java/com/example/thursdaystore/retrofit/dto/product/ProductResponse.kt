@@ -4,13 +4,13 @@ import com.squareup.moshi.Json
 
 data class ProductResponse(
     @Json(name = "id")
-    private val id: Long,
+    val id: Long,
     @Json(name = "name")
-    private val name: String,
+    val name: String,
     @Json(name = "description")
-    private val description: String,
+    val description: String,
     @Json(name = "images")
-    private val images: List<String>,
+    val images: List<String>,
     @Json(name = "price")
-    private val price: Long
+    val price: Long
 )

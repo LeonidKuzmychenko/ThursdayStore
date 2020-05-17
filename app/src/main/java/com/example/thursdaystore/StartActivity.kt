@@ -31,11 +31,11 @@ class StartActivity : AppCompatActivity() {
 //            WebRepositoryActions.INSTANCE.getSubcategories(1)
 //            delay(3000)
 
-            Language.getLanguage()
+//            Language.getLanguage()
 
-            Log.d(TAG,"getProducts")
-            WebRepositoryActions.INSTANCE.getProducts(1)
-            delay(3000)
+//            Log.d(TAG,"getProducts")
+//            WebRepositoryActions.INSTANCE.getProducts(1)
+//            delay(3000)
 
 
             Log.d(TAG,"getFilter")

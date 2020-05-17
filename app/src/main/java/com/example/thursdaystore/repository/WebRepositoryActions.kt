@@ -11,6 +11,7 @@ import com.example.thursdaystore.repository.request_action.products.GetProductsA
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 
 enum class WebRepositoryActions {
@@ -49,9 +50,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getProducts(id: Long){
+    fun getProducts(id: Long, liveData: MutableLiveData<List<ProductResponse>>){
         WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
-            GetProductsActionSuccess(),
+            GetProductsActionSuccess(liveData),
             GetProductsActionError()
         )
     }

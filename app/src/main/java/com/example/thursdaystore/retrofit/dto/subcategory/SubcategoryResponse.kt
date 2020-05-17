@@ -6,7 +6,7 @@ data class SubcategoryResponse(
     @Json(name = "id")
     val id: Long,
     @Json(name = "name")
-    val name: String,
+    val name: String?,
     @Json(name = "image")
     val image: Any
 )

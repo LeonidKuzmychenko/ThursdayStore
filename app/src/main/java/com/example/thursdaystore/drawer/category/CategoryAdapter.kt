@@ -1,5 +1,6 @@
 package com.example.thursdaystore.drawer.category
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,8 +35,11 @@ class CategoryAdapter(private val list: List<CategoryResponse>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
 
         val element = list[position]
-        holder.text.text = element.name
-        holder.container.setOnClickListener(CategoryItemListener(element.name, element.id, holder.itemView))
+        Log.d("TEST_VALUE", "name = ${element.name}")
+        Log.d("TEST_VALUE", "id = ${element.id}")
+        Log.d("TEST_VALUE", "image = ${element.image}")
+        holder.text.text = element.name ?: "null"
+        holder.container.setOnClickListener(CategoryItemListener(element.name ?: "null", element.id, holder.itemView))
         Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
     }
 

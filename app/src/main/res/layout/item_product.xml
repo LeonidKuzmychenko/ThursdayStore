@@ -10,10 +10,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/products_item_image"
+            android:id="@+id/productItemImage"
             android:layout_width="130dp"
             android:layout_height="130dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,15 +22,29 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/productsItemText"
+            android:id="@+id/productItemTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productItemImage"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/productItemPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/products_item_image" />
+            app:layout_constraintTop_toBottomOf="@+id/productItemTitle"
+            android:textStyle="bold"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

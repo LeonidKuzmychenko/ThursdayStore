@@ -33,7 +33,6 @@ class SubCategoryFragment : Fragment() {
             Observer { subCategoryRecyclerView.adapter = SubCategoryAdapter(it) })
 
         WebRepositoryActions.INSTANCE.getSubcategories(id, subCategoryViewModel.listLiveData)
-//        subCategoryViewModel.listLiveData.value = mutableListOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
     }
 
