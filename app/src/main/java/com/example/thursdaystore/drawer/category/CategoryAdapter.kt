@@ -3,18 +3,21 @@ package com.example.thursdaystore.drawer.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.thursdaystore.R
+import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 
 
-class CategoryAdapter(private val list: MutableList<Int>) :
+class CategoryAdapter(private val list: List<CategoryResponse>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text: TextView = itemView.findViewById(R.id.categoryItemText)
         val container: View = itemView.findViewById(R.id.categoryItemContainer)
+        val image: ImageView = itemView.findViewById(R.id.categoryItemImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
@@ -29,8 +32,11 @@ class CategoryAdapter(private val list: MutableList<Int>) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.text.text = position.toString()
-        holder.container.setOnClickListener(CategoryItemListener(position.toLong(), holder.itemView))
+
+        val element = list[position]
+        holder.text.text = element.name
+        holder.container.setOnClickListener(CategoryItemListener(element.name, holder.itemView))
+        Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
     }
 
 }

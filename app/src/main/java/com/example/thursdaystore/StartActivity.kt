@@ -1,9 +1,7 @@
 package com.example.thursdaystore
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.thursdaystore.repository.WebRepositoryActions
@@ -24,9 +22,9 @@ class StartActivity : AppCompatActivity() {
         GlobalScope.launch {
 //            delay(3000)
 
-            Log.d(TAG,"getCategories")
-            WebRepositoryActions.INSTANCE.getCategories("eng")
-            delay(3000)
+//            Log.d(TAG,"getCategories")
+//            WebRepositoryActions.INSTANCE.getCategories("eng")
+//            delay(3000)
 
 
             Log.d(TAG,"getSubcategories")

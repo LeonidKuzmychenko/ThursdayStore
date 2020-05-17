@@ -1,6 +1,7 @@
 package com.example.thursdaystore.repository
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
 import com.example.thursdaystore.repository.request_action.filters.GetFiltersActionError
@@ -9,6 +10,7 @@ import com.example.thursdaystore.repository.request_action.products.GetProductsA
 import com.example.thursdaystore.repository.request_action.products.GetProductsActionSuccess
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
+import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 
 enum class WebRepositoryActions {
 
@@ -20,9 +22,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getCategories(lang: String){
+    fun getCategories(lang: String, liveData: MutableLiveData<List<CategoryResponse>>){
         WebRepositoryRequests.INSTANCE.getCategories(lang).subscribe(
-            GetCategoriesActionSuccess(),
+            GetCategoriesActionSuccess(liveData),
             GetCategoriesActionError()
         )
     }

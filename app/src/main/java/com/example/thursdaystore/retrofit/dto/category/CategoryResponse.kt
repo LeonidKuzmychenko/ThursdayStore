@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class CategoryResponse(
     @Json(name = "id")
-    private val id: Long,
+    val id: Long,
     @Json(name = "name")
-    private val name: String,
+    val name: String,
     @Json(name = "image")
-    private val image: Any
+    val image: Any
 )

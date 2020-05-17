@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thursdaystore.R
+import com.example.thursdaystore.repository.WebRepositoryActions
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
@@ -22,8 +23,8 @@ class CategoryFragment : Fragment() {
         categoryViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
             categoryRecyclerView.adapter = CategoryAdapter(it)
         })
-        categoryViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 
+        WebRepositoryActions.INSTANCE.getCategories("eng", categoryViewModel.listLiveData)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

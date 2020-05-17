@@ -3,9 +3,10 @@ package com.example.thursdaystore.fragments.sub_category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.thursdaystore.R
 
 class SubCategoryAdapter(private val list: MutableList<Int>) :
@@ -14,6 +15,7 @@ class SubCategoryAdapter(private val list: MutableList<Int>) :
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val text: TextView = itemView.findViewById(R.id.categoryItemText)
         val container: View = itemView.findViewById(R.id.categoryItemContainer)
+        val image: ImageView = itemView.findViewById(R.id.categoryItemImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
@@ -30,6 +32,7 @@ class SubCategoryAdapter(private val list: MutableList<Int>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.text.text = position.toString()
         holder.container.setOnClickListener(SubCategoryItemListener(position.toLong(), holder.itemView))
+        Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
     }
 
 }
