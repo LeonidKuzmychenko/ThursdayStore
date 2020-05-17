@@ -24,7 +24,7 @@ class CategoryFragment : Fragment() {
             categoryRecyclerView.adapter = CategoryAdapter(it)
         })
 
-        WebRepositoryActions.INSTANCE.getCategories("eng", categoryViewModel.listLiveData)
+        WebRepositoryActions.INSTANCE.getCategories(categoryViewModel.listLiveData)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

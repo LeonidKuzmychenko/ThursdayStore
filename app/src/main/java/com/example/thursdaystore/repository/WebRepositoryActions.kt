@@ -23,8 +23,8 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getCategories(lang: String, liveData: MutableLiveData<List<CategoryResponse>>){
-        WebRepositoryRequests.INSTANCE.getCategories(lang).subscribe(
+    fun getCategories(liveData: MutableLiveData<List<CategoryResponse>>){
+        WebRepositoryRequests.INSTANCE.getCategories().subscribe(
             GetCategoriesActionSuccess(liveData),
             GetCategoriesActionError()
         )
@@ -67,8 +67,8 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getFilter(id: Long, lang: String){
-        WebRepositoryRequests.INSTANCE.getFilter(id,lang).subscribe(
+    fun getFilter(id: Long){
+        WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
             GetFiltersActionSuccess(),
             GetFiltersActionError()
         )

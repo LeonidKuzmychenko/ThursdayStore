@@ -31,6 +31,7 @@ class StartActivity : AppCompatActivity() {
 //            WebRepositoryActions.INSTANCE.getSubcategories(1)
 //            delay(3000)
 
+            Language.getLanguage()
 
             Log.d(TAG,"getProducts")
             WebRepositoryActions.INSTANCE.getProducts(1)
@@ -38,7 +39,7 @@ class StartActivity : AppCompatActivity() {
 
 
             Log.d(TAG,"getFilter")
-            WebRepositoryActions.INSTANCE.getFilter(1, "eng")
+            WebRepositoryActions.INSTANCE.getFilter(1)
             delay(3000)
 
 

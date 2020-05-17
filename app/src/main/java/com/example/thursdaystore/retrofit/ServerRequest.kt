@@ -1,10 +1,10 @@
 package com.example.thursdaystore.retrofit;
 
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.product.ProductResponse
-import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
-import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
+import com.example.thursdaystore.retrofit.dto.product.ProductResponse
+import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
@@ -39,7 +39,7 @@ interface ServerRequest {
 
     /*------------------------------------------subcategories-------------------------------------*/
     @GET("/subcategories")
-    fun getSubcategories(@Query("catId") id: Long): Single<Response<List<SubcategoryResponse>>>
+    fun getSubcategories(@Query("catId") id: Long, @Query("lang") lang: String): Single<Response<List<SubcategoryResponse>>>
 
 //    @POST("/subcategories")
 //    fun subcategoriesPOST(): Single<Response<String>>

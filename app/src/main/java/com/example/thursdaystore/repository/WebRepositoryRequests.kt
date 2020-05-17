@@ -1,12 +1,12 @@
 package com.example.thursdaystore.repository
 
+import com.example.thursdaystore.Language
 import com.example.thursdaystore.retrofit.RetrofitApi
-import com.example.thursdaystore.retrofit.ServerRequest
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
-import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,14 +21,13 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-
-    fun getCategories(lang: String): Single<Response<List<CategoryResponse>>> =
-        RetrofitApi.server().getCategories(lang)
+    fun getCategories(): Single<Response<List<CategoryResponse>>> =
+        RetrofitApi.server().getCategories(Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
     fun getSubcategories(id: Long): Single<Response<List<SubcategoryResponse>>> =
-        RetrofitApi.server().getSubcategories(id)
+        RetrofitApi.server().getSubcategories(id, Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
@@ -53,9 +52,8 @@ enum class WebRepositoryRequests {
         TODO("Not yet implemented")
     }
 
-    fun getFilter(id: Long, lang: String): Single<Response<List<FilterResponse>>> =
-        RetrofitApi.server().getFilter(id, lang)
+    fun getFilter(id: Long): Single<Response<List<FilterResponse>>> =
+        RetrofitApi.server().getFilter(id, Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-
 }
