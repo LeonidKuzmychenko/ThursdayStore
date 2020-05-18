@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class FilterResponse(
     @Json(name = "propertyId")
-    private val propertyId: Long,
+    val propertyId: Long,
     @Json(name = "propertyName")
-    private val propertyName: String,
+    val propertyName: String,
     @Json(name = "parameters")
-    private val filterParameters: List<FilterParameter>
+    val filterParameters: List<FilterParameter>
 )

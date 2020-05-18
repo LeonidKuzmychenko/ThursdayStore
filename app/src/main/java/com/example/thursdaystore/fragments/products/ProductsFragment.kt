@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.thursdaystore.R
 import com.example.thursdaystore.repository.WebRepositoryActions
 import kotlinx.android.synthetic.main.fragment_products.*
@@ -24,7 +23,7 @@ class ProductsFragment : Fragment() {
             val title = ProductsFragmentArgs.fromBundle(bundle).title
 
             (activity as AppCompatActivity).supportActionBar?.let { it.title = "${it.title}: $title" }
-            productsRecyclerView.layoutManager = GridLayoutManager(context, 2)
+
             productsViewModel.listLiveData.observe(viewLifecycleOwner, ProductsLiveDataObserver(productsRecyclerView))
             productFilter.setOnClickListener(FilterButtonClickListener(title,id))
 

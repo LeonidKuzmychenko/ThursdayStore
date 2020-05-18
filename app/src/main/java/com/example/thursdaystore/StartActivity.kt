@@ -2,11 +2,8 @@ package com.example.thursdaystore
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.thursdaystore.repository.WebRepositoryActions
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -38,9 +35,9 @@ class StartActivity : AppCompatActivity() {
 //            delay(3000)
 
 
-            Log.d(TAG,"getFilter")
-            WebRepositoryActions.INSTANCE.getFilter(1)
-            delay(3000)
+//            Log.d(TAG,"getFilter")
+//            WebRepositoryActions.INSTANCE.getFilter(1)
+//            delay(3000)
 
 
             startActivity(Intent(this@StartActivity, MainActivity::class.java))

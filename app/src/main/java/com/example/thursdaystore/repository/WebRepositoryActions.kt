@@ -13,6 +13,7 @@ import com.example.thursdaystore.repository.request_action.properties.GetPropert
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
+import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 
@@ -21,12 +22,12 @@ enum class WebRepositoryActions {
     INSTANCE;
 
     @SuppressLint("CheckResult")
-    fun getLanguages(){
+    fun getLanguages() {
         WebRepositoryRequests.INSTANCE.getLanguages().subscribe()
     }
 
     @SuppressLint("CheckResult")
-    fun getCategories(liveData: MutableLiveData<List<CategoryResponse>>){
+    fun getCategories(liveData: MutableLiveData<List<CategoryResponse>>) {
         WebRepositoryRequests.INSTANCE.getCategories().subscribe(
             GetCategoriesActionSuccess(liveData),
             GetCategoriesActionError()
@@ -34,7 +35,7 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getSubcategories(id: Long, liveData: MutableLiveData<List<SubcategoryResponse>>){
+    fun getSubcategories(id: Long, liveData: MutableLiveData<List<SubcategoryResponse>>) {
         WebRepositoryRequests.INSTANCE.getSubcategories(id).subscribe(
             GetSubcategoriesActionSuccess(liveData),
             GetSubcategoriesActionError()
@@ -42,17 +43,17 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getLocale(){
+    fun getLocale() {
         WebRepositoryRequests.INSTANCE.getLocale().subscribe()
     }
 
     @SuppressLint("CheckResult")
-    fun getColors(){
+    fun getColors() {
         WebRepositoryRequests.INSTANCE.getColors().subscribe()
     }
 
     @SuppressLint("CheckResult")
-    fun getProducts(id: Long, liveData: MutableLiveData<List<ProductResponse>>){
+    fun getProducts(id: Long, liveData: MutableLiveData<List<ProductResponse>>) {
         WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
             GetProductsActionSuccess(liveData),
             GetProductsActionError()
@@ -60,7 +61,7 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getProperties(){
+    fun getProperties() {
         WebRepositoryRequests.INSTANCE.getProperties().subscribe(
             GetPropertiesActionSuccess(),
             GetPropertiesActionError()
@@ -68,14 +69,14 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getParameters(){
+    fun getParameters() {
         WebRepositoryRequests.INSTANCE.getParameters().subscribe()
     }
 
     @SuppressLint("CheckResult")
-    fun getFilter(id: Long){
+    fun getFilter(id: Long, liveData: MutableLiveData<List<FilterResponse>>) {
         WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
-            GetFiltersActionSuccess(),
+            GetFiltersActionSuccess(liveData),
             GetFiltersActionError()
         )
     }

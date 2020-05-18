@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class FilterParameter(
     @Json(name = "parameterId")
-    private val parameterId: Long,
+    val parameterId: Long,
     @Json(name = "parameterName")
-    private val parameterName: String
+    val parameterName: String
 )

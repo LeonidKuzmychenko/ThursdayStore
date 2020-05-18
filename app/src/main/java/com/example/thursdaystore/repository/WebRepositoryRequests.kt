@@ -6,6 +6,7 @@ import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
+import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
