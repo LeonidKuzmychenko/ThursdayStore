@@ -8,6 +8,8 @@ import com.example.thursdaystore.repository.request_action.filters.GetFiltersAct
 import com.example.thursdaystore.repository.request_action.filters.GetFiltersActionSuccess
 import com.example.thursdaystore.repository.request_action.products.GetProductsActionError
 import com.example.thursdaystore.repository.request_action.products.GetProductsActionSuccess
+import com.example.thursdaystore.repository.request_action.properties.GetPropertiesActionError
+import com.example.thursdaystore.repository.request_action.properties.GetPropertiesActionSuccess
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
@@ -59,7 +61,10 @@ enum class WebRepositoryActions {
 
     @SuppressLint("CheckResult")
     fun getProperties(){
-        WebRepositoryRequests.INSTANCE.getProperties().subscribe()
+        WebRepositoryRequests.INSTANCE.getProperties().subscribe(
+            GetPropertiesActionSuccess(),
+            GetPropertiesActionError()
+        )
     }
 
     @SuppressLint("CheckResult")

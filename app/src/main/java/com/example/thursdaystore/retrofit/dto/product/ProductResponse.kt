@@ -6,7 +6,7 @@ data class ProductResponse(
     @Json(name = "id")
     val id: Long,
     @Json(name = "name")
-    val name: String,
+    val name: String?,
     @Json(name = "description")
     val description: String,
     @Json(name = "images")

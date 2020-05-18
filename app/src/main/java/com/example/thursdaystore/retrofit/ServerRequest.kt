@@ -8,6 +8,7 @@ import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ServerRequest {
@@ -95,7 +96,7 @@ interface ServerRequest {
 
     /*-------------------------------------------properties---------------------------------------*/
     @GET("/properties")
-    fun getProperties(): Single<Response<String>>
+    fun getProperties(@Query("lang") lang: String): Single<Response<List<PropertiesResponse>>>
 
 //    @POST("/properties")
 //    fun propertiesPOST(): Single<Response<String>>
@@ -125,5 +126,8 @@ interface ServerRequest {
         @Query("catId") id: Long,
         @Query("lang") lang: String
     ): Single<Response<List<FilterResponse>>>
+
+    @POST("/filter")
+    fun applyFilter(): Single<Response<List<FilterResponse>>>
 
 }

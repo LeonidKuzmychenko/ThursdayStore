@@ -1,45 +1,53 @@
 package com.example.thursdaystore.fragments.filter
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.thursdaystore.R
 import com.example.thursdaystore.fragments.products.ProductsFragmentArgs
-import kotlinx.android.synthetic.main.filter_fragment.*
-import kotlin.properties.Delegates
+
 
 class FilterFragment : Fragment() {
 
     private lateinit var viewModel: FilterViewModel
-    private var id by Delegates.notNull<Long>()
-    private lateinit var title: String
+    private lateinit var action: FilterFragmentDirections.ActionFilterFragmentToProductsFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.filter_fragment, container, false)
+        setHasOptionsMenu(true)
+        return inflater.inflate(R.layout.fragment_filter, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        arguments?.let { init(it) } ?: run {
+        arguments?.let {
+            val id = ProductsFragmentArgs.fromBundle(it).subcategoryId
+            val title = ProductsFragmentArgs.fromBundle(it).title
+
+            action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id)
+
+            viewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
+        } ?: run {
             Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
         }
-
-        filterBtOk.setOnClickListener {
-            val actionFilterFragmentToProductsFragment = FilterFragmentDirections.actionFilterFragmentToProductsFragment("$title filtered", id)
-            Navigation.findNavController(it).navigate(actionFilterFragmentToProductsFragment)
-        }
-
-        viewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
     }
 
-    private fun init(bundle: Bundle) {
-        id = ProductsFragmentArgs.fromBundle(bundle).subcategoryId
-        title = ProductsFragmentArgs.fromBundle(bundle).title
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.fragment_filter_toolbar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.filter_ok){
+            this.view?.let {
+                Navigation.findNavController(it).navigate(action)
+            } ?: run {
+                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

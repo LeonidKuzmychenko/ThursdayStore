@@ -44,9 +44,11 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun getProperties(): Single<Response<String>> {
-        TODO("Not yet implemented")
-    }
+    fun getProperties(): Single<Response<List<PropertiesResponse>>> =
+        RetrofitApi.server().getProperties(Language.getLanguage())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
 
     fun getParameters(): Single<Response<String>> {
         TODO("Not yet implemented")
