@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
-import com.example.thursdaystore.repository.request_action.filters.GetFiltersActionError
-import com.example.thursdaystore.repository.request_action.filters.GetFiltersActionSuccess
+import com.example.thursdaystore.repository.request_action.filters.apply.ApplyFilterActionError
+import com.example.thursdaystore.repository.request_action.filters.apply.ApplyFilterActionSuccess
+import com.example.thursdaystore.repository.request_action.filters.get.GetFiltersActionError
+import com.example.thursdaystore.repository.request_action.filters.get.GetFiltersActionSuccess
 import com.example.thursdaystore.repository.request_action.products.GetProductsActionError
 import com.example.thursdaystore.repository.request_action.products.GetProductsActionSuccess
 import com.example.thursdaystore.repository.request_action.properties.GetPropertiesActionError
@@ -14,6 +16,7 @@ import com.example.thursdaystore.repository.request_action.subcategories.GetSubc
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 
@@ -76,8 +79,18 @@ enum class WebRepositoryActions {
     @SuppressLint("CheckResult")
     fun getFilter(id: Long, liveData: MutableLiveData<List<FilterResponse>>) {
         WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
-            GetFiltersActionSuccess(liveData),
+            GetFiltersActionSuccess(
+                liveData
+            ),
             GetFiltersActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun applyFilter(filter: ApplyFilterRequest, liveData: MutableLiveData<List<ProductResponse>>) {
+        WebRepositoryRequests.INSTANCE.applyFilter(filter).subscribe(
+            ApplyFilterActionSuccess(liveData),
+            ApplyFilterActionError()
         )
     }
 }

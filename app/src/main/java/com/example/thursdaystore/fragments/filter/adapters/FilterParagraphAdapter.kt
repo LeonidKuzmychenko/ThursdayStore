@@ -1,4 +1,4 @@
-package com.example.thursdaystore.fragments.filter
+package com.example.thursdaystore.fragments.filter.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.R
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
-
 
 class FilterParagraphAdapter(private val list: List<FilterResponse>) :
     RecyclerView.Adapter<FilterParagraphAdapter.FilterParagraphViewHolder>() {
@@ -33,7 +32,10 @@ class FilterParagraphAdapter(private val list: List<FilterResponse>) :
     override fun onBindViewHolder(holder: FilterParagraphViewHolder, position: Int) {
         val element = list[position]
         holder.title.text = element.propertyName
-        holder.recyclerView.adapter = FilterSubParagraphAdapter(element.filterParameters)
+        holder.recyclerView.adapter =
+            FilterSubParagraphAdapter(
+                element.filterParameters
+            )
 
         holder.image.setOnClickListener {
             val rc = holder.recyclerView

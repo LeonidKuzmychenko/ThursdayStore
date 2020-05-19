@@ -4,6 +4,7 @@ import com.example.thursdaystore.Language
 import com.example.thursdaystore.retrofit.RetrofitApi
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
@@ -57,6 +58,11 @@ enum class WebRepositoryRequests {
 
     fun getFilter(id: Long): Single<Response<List<FilterResponse>>> =
         RetrofitApi.server().getFilter(id, Language.getLanguage())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun applyFilter(filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>> =
+        RetrofitApi.server().applyFilter(filter)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 }

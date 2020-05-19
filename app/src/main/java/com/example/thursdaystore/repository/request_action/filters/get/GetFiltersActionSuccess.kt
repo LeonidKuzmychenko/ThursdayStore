@@ -1,4 +1,4 @@
-package com.example.thursdaystore.repository.request_action.filters
+package com.example.thursdaystore.repository.request_action.filters.get
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

@@ -61,11 +61,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_subCategoryFragment_to_productsFragment"
-            app:destination="@id/productsFragment" >
-            <argument
-                android:name="isFilter"
-                android:defaultValue="false" />
-        </action>
+            app:destination="@id/productsFragment"/>
         <argument
             android:name="categoryId"
             app:argType="long" />
@@ -87,11 +83,13 @@
             app:argType="long" />
         <action
             android:id="@+id/action_productsFragment_to_filterFragment"
-            app:destination="@id/filterFragment" />
+            app:destination="@id/filterFragment"
+            app:popUpTo="@id/filterFragment"
+            app:popUpToInclusive="true" />
         <argument
-            android:name="isFilter"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:name="filterRequest"
+            app:argType="com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest"
+            app:nullable="true"/>
     </fragment>
 
     <fragment
@@ -118,13 +116,12 @@
         <action
             android:id="@+id/action_filterFragment_to_productsFragment"
             app:destination="@id/productsFragment"
-            app:popUpTo="@+id/productsFragment"
-            app:popUpToInclusive="true">
-            <argument
-                android:name="isFilter"
-                android:defaultValue="true" />
-        </action>
-
+            app:popUpTo="@id/productsFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="filterRequest"
+            app:argType="com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

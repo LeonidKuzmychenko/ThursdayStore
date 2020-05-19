@@ -1,4 +1,4 @@
-package com.example.thursdaystore.fragments.filter
+package com.example.thursdaystore.fragments.filter.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,10 @@ class FilterSubParagraphAdapter(private val list: List<FilterParameter>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterSubParagraphViewHolder =
-        FilterSubParagraphViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_filter_subparagraph, parent, false))
+        FilterSubParagraphViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_filter_subparagraph, parent, false)
+        )
 
     override fun getItemCount(): Int = list.size
 

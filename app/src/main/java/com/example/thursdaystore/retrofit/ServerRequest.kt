@@ -2,12 +2,14 @@ package com.example.thursdaystore.retrofit;
 
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import io.reactivex.Single
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -125,7 +127,7 @@ interface ServerRequest {
     @GET("/filter")
     fun getFilter(@Query("catId") id: Long, @Query("lang") lang: String): Single<Response<List<FilterResponse>>>
 
-    @POST("/filter")
-    fun applyFilter(): Single<Response<List<FilterResponse>>>
+    @POST("products/filter")
+    fun applyFilter(@Body filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>>
 
 }

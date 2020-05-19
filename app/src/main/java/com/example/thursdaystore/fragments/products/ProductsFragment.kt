@@ -5,42 +5,66 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.thursdaystore.R
 import com.example.thursdaystore.repository.WebRepositoryActions
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_products.*
+
 
 class ProductsFragment : Fragment() {
 
     private lateinit var productsViewModel: ProductsViewModel
+    private var filter: ApplyFilterRequest? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let { bundle ->
-            val id = ProductsFragmentArgs.fromBundle(bundle).subcategoryId
-            val title = ProductsFragmentArgs.fromBundle(bundle).title
+        val id: Long
+        val title: String
+        arguments.let {
+            id = ProductsFragmentArgs.fromBundle(it!!).subcategoryId
+            title = ProductsFragmentArgs.fromBundle(it).title
+            filter = ProductsFragmentArgs.fromBundle(it).filterRequest
+        }
 
-            (activity as AppCompatActivity).supportActionBar?.let { it.title = "${it.title}: $title" }
+        Log.d("FILTER_TEST", "Filter = ${filter.toString()}")
 
-            productsViewModel.listLiveData.observe(viewLifecycleOwner, ProductsLiveDataObserver(productsRecyclerView))
-            productFilter.setOnClickListener(FilterButtonClickListener(title,id))
+        (activity as AppCompatActivity).supportActionBar?.let { it.title = "${it.title}: $title" }
 
-            if (ProductsFragmentArgs.fromBundle(bundle).isFilter) {
-                Log.d("FILTER_TEST", "Filter value = true")
-                WebRepositoryActions.INSTANCE.getProducts(id, productsViewModel.listLiveData)//TODO
-            } else {
-                Log.d("FILTER_TEST", "Filter value = false")
+        productsViewModel.listLiveData.observe(
+            viewLifecycleOwner,
+            ProductsLiveDataObserver(productsRecyclerView)
+        )
+        productFilter.setOnClickListener(FilterButtonClickListener(title, id, null))
+
+        if (filter != null) {
+            Log.d("FILTER_TEST", "Show with filter")
+            Log.d("FILTER_TEST", "Body = ${Moshi.Builder().build().adapter(ApplyFilterRequest::class.java).toJson(filter)}")
+
+            if (filter!!.filters.filter { it.parameters.isNotEmpty() }.isEmpty()){
+                Log.d("FILTER_TEST", "Filter is empty")
                 WebRepositoryActions.INSTANCE.getProducts(id, productsViewModel.listLiveData)
             }
-
-        } ?: run {
-            Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+            else{
+                Log.d("FILTER_TEST", "Filter is not empty")
+                WebRepositoryActions.INSTANCE.applyFilter(filter!!, productsViewModel.listLiveData)
+            }
         }
+        else {
+            Log.d("FILTER_TEST", "Show without filter")
+            WebRepositoryActions.INSTANCE.getProducts(id, productsViewModel.listLiveData)
+        }
+
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         productsViewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_products, container, false)
     }
