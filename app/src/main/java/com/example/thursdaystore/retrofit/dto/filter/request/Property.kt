@@ -8,5 +8,5 @@ data class Property(
     val propertyId: Long,
 
     @Json(name = "parameters")
-    val parameters: List<Long> = listOf()
+    val parameters: MutableList<Long> = mutableListOf()
 ) : Serializable

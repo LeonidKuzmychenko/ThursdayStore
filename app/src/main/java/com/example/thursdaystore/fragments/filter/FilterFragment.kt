@@ -21,7 +21,6 @@ class FilterFragment : Fragment() {
 
     private lateinit var viewModel: FilterViewModel
     private lateinit var action: FilterFragmentDirections.ActionFilterFragmentToProductsFragment
-    private lateinit var filterValue: ApplyFilterRequest
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,16 +47,20 @@ class FilterFragment : Fragment() {
 
         viewModel.liveDataFilter.observe(viewLifecycleOwner, Observer {
             action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id, it)
+            Log.d("FILTER_TEST", "Action changed")
         })
 
         if (filter == null)
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-            FilterRequestObserverWithInit(filterRecyclerView, viewModel.liveDataFilter, id)
+            FilterRequestObserverWithInit(filterRecyclerView, viewModel, id)
         )
-        else
-            viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-            FilterRequestObserver(filterRecyclerView)
-        )
+        else {
+            viewModel.liveDataFilter.value = filter
+            viewModel.liveDataFilterUi.observe(
+                viewLifecycleOwner,
+                FilterRequestObserver(filterRecyclerView, viewModel)
+            )
+        }
 
         WebRepositoryActions.INSTANCE.getFilter(id, viewModel.liveDataFilterUi)
     }

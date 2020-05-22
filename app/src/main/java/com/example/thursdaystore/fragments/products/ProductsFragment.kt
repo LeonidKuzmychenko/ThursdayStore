@@ -38,7 +38,7 @@ class ProductsFragment : Fragment() {
             viewLifecycleOwner,
             ProductsLiveDataObserver(productsRecyclerView)
         )
-        productFilter.setOnClickListener(FilterButtonClickListener(title, id, null))
+        productFilter.setOnClickListener(FilterButtonClickListener(title, id, filter))
 
         if (filter != null) {
             Log.d("FILTER_TEST", "Show with filter")

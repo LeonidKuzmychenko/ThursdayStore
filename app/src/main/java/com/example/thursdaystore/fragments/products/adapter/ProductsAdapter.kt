@@ -44,6 +44,7 @@ class ProductsAdapter(private val list: List<ProductResponse>) :
                 holder.itemView
             )
         )
+
     }
 
 }
