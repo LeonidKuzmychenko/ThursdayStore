@@ -40,7 +40,11 @@ class CategoryAdapter(private val list: List<CategoryResponse>) :
         Log.d("TEST_VALUE", "image = ${element.image}")
         holder.text.text = element.name ?: "null"
         holder.container.setOnClickListener(CategoryItemListener(element.name ?: "null", element.id, holder.itemView))
-        Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
+        Glide.with(holder.itemView)
+            .load(element.image)
+            .error(R.drawable.category_back_2)
+            .centerCrop()
+            .into(holder.image)
     }
 
 }

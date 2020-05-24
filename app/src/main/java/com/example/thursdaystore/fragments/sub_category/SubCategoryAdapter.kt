@@ -34,7 +34,9 @@ class SubCategoryAdapter(private val list: List<SubcategoryResponse>) :
         val element = list[position]
         holder.text.text = element.name ?: "null"
         holder.container.setOnClickListener(SubCategoryItemListener(element.name ?: "null", element.id, holder.itemView, null))
-        Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
+        Glide.with(holder.itemView)
+            .load(element.image)
+            .error(R.drawable.category_back_2)
+            .into(holder.image)
     }
-
 }

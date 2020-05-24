@@ -35,7 +35,12 @@ class ProductsAdapter(private val list: List<ProductResponse>) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val element = list[position]
-        Glide.with(holder.itemView).load(R.drawable.category_back_2).into(holder.image)
+
+        Glide.with(holder.itemView)
+            .load(if (element.images.isEmpty()) null else element.images[0])
+            .error(R.drawable.category_back_2)
+            .into(holder.image)
+
         holder.title.text = element.name ?: "null"
         holder.price.text = element.price.toString() + " \u20B4"
         holder.container.setOnClickListener(
