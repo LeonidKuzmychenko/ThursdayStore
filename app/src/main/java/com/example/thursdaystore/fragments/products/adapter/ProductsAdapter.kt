@@ -19,6 +19,7 @@ class ProductsAdapter(private val list: List<ProductResponse>) :
         val image: ImageView = itemView.findViewById(R.id.productItemImage)
         val title: TextView = itemView.findViewById(R.id.productItemTitle)
         val price: TextView = itemView.findViewById(R.id.productItemPrice)
+        val star: ImageView = itemView.findViewById(R.id.productItemImageStar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder =
@@ -41,6 +42,9 @@ class ProductsAdapter(private val list: List<ProductResponse>) :
             .error(R.drawable.category_back_2)
             .into(holder.image)
 
+//        holder.star.setOnClickListener {
+//            Glide.with(it).load(R.drawable.star).into(holder.star)
+//        }
         holder.title.text = element.name ?: "null"
         holder.price.text = element.price.toString() + " \u20B4"
         holder.container.setOnClickListener(
