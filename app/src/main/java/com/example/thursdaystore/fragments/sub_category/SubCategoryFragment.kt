@@ -47,7 +47,7 @@ class SubCategoryFragment : Fragment() {
 
     private fun init(bundle: Bundle) {
         (activity as AppCompatActivity).supportActionBar?.let {
-            it.title = "${it.title}: ${SubCategoryFragmentArgs.fromBundle(bundle).title}"
+            it.title = SubCategoryFragmentArgs.fromBundle(bundle).title
         }
 
         id = SubCategoryFragmentArgs.fromBundle(bundle).categoryId

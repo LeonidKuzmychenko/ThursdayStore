@@ -28,10 +28,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemImage"
-            android:textStyle="bold"/>
+            app:layout_constraintTop_toBottomOf="@+id/productItemImage" />
 
         <TextView
             android:id="@+id/productItemPrice"
@@ -40,11 +40,31 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productItemTitle" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/star_outline" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemTitle"
-            android:textStyle="bold"/>
+            app:srcCompat="@drawable/cart_outline" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

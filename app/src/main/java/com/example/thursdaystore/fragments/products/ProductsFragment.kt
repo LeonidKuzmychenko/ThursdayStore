@@ -32,13 +32,13 @@ class ProductsFragment : Fragment() {
 
         Log.d("FILTER_TEST", "Filter = ${filter.toString()}")
 
-        (activity as AppCompatActivity).supportActionBar?.let { it.title = "${it.title}: $title" }
+        (activity as AppCompatActivity).supportActionBar?.let { it.title = title }
 
         productsViewModel.listLiveData.observe(
             viewLifecycleOwner,
             ProductsLiveDataObserver(productsRecyclerView)
         )
-        productFilter.setOnClickListener(FilterButtonClickListener(title, id, filter))
+        productsFilter.setOnClickListener(FilterButtonClickListener(title, id, filter))
 
         if (filter != null) {
             Log.d("FILTER_TEST", "Show with filter")
