@@ -1,6 +1,5 @@
 package com.example.thursdaystore.repository
 
-import com.example.thursdaystore.Language
 import com.example.thursdaystore.retrofit.RetrofitApi
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
@@ -9,6 +8,7 @@ import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
+import com.example.thursdaystore.utils.Language
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

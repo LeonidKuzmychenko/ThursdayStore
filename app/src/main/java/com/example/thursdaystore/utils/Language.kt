@@ -1,4 +1,4 @@
-package com.example.thursdaystore
+package com.example.thursdaystore.utils
 
 import android.util.Log
 import java.util.*

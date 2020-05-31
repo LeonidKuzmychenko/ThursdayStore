@@ -13,7 +13,7 @@ enum class PermissionManager {
 
     val REQUEST_PERMISSION_MANAGER = 1
 
-    fun check(permissions:List<String>, activity: Activity){
+    fun check(permissions:List<String>, activity: Activity): Boolean{
         val permissionsNew:MutableList<String> = mutableListOf()
 
         permissions.forEach {
@@ -22,9 +22,10 @@ enum class PermissionManager {
             if (state) permissionsNew.add(it)
         }
 
-        if (permissionsNew.isNotEmpty()){
+        return if (permissionsNew.isNotEmpty()){
             ActivityCompat.requestPermissions(activity, permissionsNew.toTypedArray(), REQUEST_PERMISSION_MANAGER)
-        }
+            false
+        } else true
     }
 
 }

@@ -1,11 +1,11 @@
 package com.example.thursdaystore.fragments.filter.observers
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.thursdaystore.Language
 import com.example.thursdaystore.fragments.filter.FilterViewModel
 import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
 import com.example.thursdaystore.retrofit.dto.filter.request.Property
+import com.example.thursdaystore.utils.Language
 
 class FilterRequestObserverWithInit(rc: RecyclerView, private val viewModel: FilterViewModel, private val id: Long): FilterRequestObserver(rc, viewModel) {
 
