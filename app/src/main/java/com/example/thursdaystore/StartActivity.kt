@@ -19,11 +19,6 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-
-        GlobalScope.launch {
-            Thread.sleep(1000)
-        }
-
         start()
     }
 
@@ -57,7 +52,7 @@ class StartActivity : AppCompatActivity() {
         SharedPreferencesManager.INSTANCE.init(this)
 
         GlobalScope.launch {
-            Thread.sleep(2000)
+            Thread.sleep(5500)
             startActivity(Intent(this@StartActivity, MainActivity::class.java))
             finish()
         }
