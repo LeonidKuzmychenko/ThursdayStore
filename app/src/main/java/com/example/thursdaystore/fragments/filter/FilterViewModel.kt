@@ -2,11 +2,11 @@ package com.example.thursdaystore.fragments.filter
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 
 class FilterViewModel : ViewModel(){
-    val liveDataFilterUi: MutableLiveData<List<FilterResponse>> = MutableLiveData()
+    val liveDataFilterUi: MutableLiveData<FilterItem> = MutableLiveData()
     val liveDataFilter: MutableLiveData<ApplyFilterRequest> = MutableLiveData()
 
 //    fun getFilterProperties(): List<Property> {

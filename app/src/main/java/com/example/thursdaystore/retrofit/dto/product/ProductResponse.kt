@@ -12,5 +12,5 @@ data class ProductResponse(
     @Json(name = "images")
     val images: List<String>,
     @Json(name = "price")
-    val price: Long
+    val price: String
 )

@@ -8,6 +8,8 @@ data class ApplyFilterRequest(
     val catId: Long,
     @Json(name = "lang")
     val lang: String,
+    @Json(name = "prices")
+    val prices:Prices,
     @Json(name = "filters")
     val filters: List<Property> = listOf()
 ) : Serializable

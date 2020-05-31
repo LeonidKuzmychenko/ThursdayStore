@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.R
 import com.example.thursdaystore.fragments.filter.FilterViewModel
-import com.example.thursdaystore.retrofit.dto.filter.FilterParameter
+import com.example.thursdaystore.retrofit.dto.filter.response.FilterParameter
 
 
 class FilterSubParagraphAdapter(

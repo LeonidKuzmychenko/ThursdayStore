@@ -1,8 +1,8 @@
-package com.example.thursdaystore.retrofit.dto.filter
+package com.example.thursdaystore.retrofit.dto.filter.response
 
 import com.squareup.moshi.Json
 
-data class FilterResponse(
+data class FilterProperties(
     @Json(name = "propertyId")
     val propertyId: Long,
     @Json(name = "propertyName")

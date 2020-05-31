@@ -9,10 +9,10 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.R
 import com.example.thursdaystore.fragments.filter.FilterViewModel
-import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.filter.response.FilterProperties
 
 class FilterParagraphAdapter(
-    private val list: List<FilterResponse>,
+    private val list: List<FilterProperties>,
     private val viewModel: FilterViewModel
 ) :
     RecyclerView.Adapter<FilterParagraphAdapter.FilterParagraphViewHolder>() {

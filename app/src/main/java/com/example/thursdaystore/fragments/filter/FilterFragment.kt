@@ -43,6 +43,8 @@ class FilterFragment : Fragment() {
             filter = ProductsFragmentArgs.fromBundle(bundle).filterRequest
         }
 
+        filterRecyclerView.isNestedScrollingEnabled = false
+
         Log.d("FILTER_TEST", "$filter")
 
         viewModel.liveDataFilter.observe(viewLifecycleOwner, Observer {
@@ -52,7 +54,12 @@ class FilterFragment : Fragment() {
 
         if (filter == null)
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-            FilterRequestObserverWithInit(filterRecyclerView, viewModel, id)
+            FilterRequestObserverWithInit(
+                filterRecyclerView,
+                filterPriceSeekBar,
+                filterPriceMax,
+                viewModel,
+                id)
         )
         else {
             viewModel.liveDataFilter.value = filter

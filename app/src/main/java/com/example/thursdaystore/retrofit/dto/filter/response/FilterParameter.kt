@@ -1,4 +1,4 @@
-package com.example.thursdaystore.retrofit.dto.filter
+package com.example.thursdaystore.retrofit.dto.filter.response
 
 import com.squareup.moshi.Json
 

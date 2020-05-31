@@ -4,11 +4,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.fragments.filter.FilterViewModel
 import com.example.thursdaystore.fragments.filter.adapters.FilterParagraphAdapter
-import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
+import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 
-open class FilterRequestObserver(private val rc: RecyclerView, private val viewModel: FilterViewModel):Observer<List<FilterResponse>> {
+open class FilterRequestObserver(private val rc: RecyclerView, private val viewModel: FilterViewModel):Observer<FilterItem> {
 
-    override fun onChanged(it: List<FilterResponse>) {
-        rc.adapter = FilterParagraphAdapter(it,viewModel)
+    override fun onChanged(it: FilterItem) {
+        rc.adapter = FilterParagraphAdapter(it.properties,viewModel)
     }
 }

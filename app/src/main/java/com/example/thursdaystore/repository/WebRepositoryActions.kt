@@ -15,8 +15,8 @@ import com.example.thursdaystore.repository.request_action.properties.GetPropert
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.filter.FilterResponse
 import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 
@@ -77,7 +77,7 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getFilter(id: Long, liveData: MutableLiveData<List<FilterResponse>>) {
+    fun getFilter(id: Long, liveData: MutableLiveData<FilterItem>) {
         WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
             GetFiltersActionSuccess(
                 liveData
