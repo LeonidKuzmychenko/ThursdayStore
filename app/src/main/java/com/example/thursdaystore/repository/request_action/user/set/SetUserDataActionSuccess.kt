@@ -13,6 +13,9 @@ class SetUserDataActionSuccess(): Consumer<Response<UserData>>{
     override fun accept(t: Response<UserData>) {
         Log.d(TAG, "getUserData Response = $t")
         Log.d(TAG, "getUserData Content = ${t.body()}")
+        Log.d(TAG, "getUserData Error = ${t.errorBody()}")
+        Log.d(TAG, "getUserData Raw = ${t.raw().body()!!.string()}")
+
 
         val user = t.body()
         SharedPreferencesManager.INSTANCE.setPersonName(user!!.name ?: "unknown")

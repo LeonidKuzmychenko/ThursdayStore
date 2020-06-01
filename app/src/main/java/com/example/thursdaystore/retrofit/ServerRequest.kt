@@ -1,7 +1,7 @@
 package com.example.thursdaystore.retrofit;
 
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
@@ -126,7 +126,7 @@ interface ServerRequest {
     fun getFilter(@Query("catId") id: Long, @Query("lang") lang: String): Single<Response<FilterItem>>
 
     @POST("products/filter")
-    fun applyFilter(@Body filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>>
+    fun applyFilter(@Body filterItem: ApplyFilterItemRequest): Single<Response<List<ProductResponse>>>
 
 
     @GET("/user")

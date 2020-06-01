@@ -1,4 +1,4 @@
-package com.example.thursdaystore.fragments.products
+package com.example.thursdaystore.fragments.products.observers
 
 import android.util.Log
 import androidx.lifecycle.Observer

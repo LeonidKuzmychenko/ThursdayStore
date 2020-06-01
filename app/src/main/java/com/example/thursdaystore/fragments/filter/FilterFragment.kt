@@ -13,7 +13,7 @@ import com.example.thursdaystore.fragments.filter.observers.FilterRequestObserve
 import com.example.thursdaystore.fragments.filter.observers.FilterRequestObserverWithInit
 import com.example.thursdaystore.fragments.products.ProductsFragmentArgs
 import com.example.thursdaystore.repository.WebRepositoryActions
-import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import kotlinx.android.synthetic.main.fragment_filter.*
 
 
@@ -32,22 +32,22 @@ class FilterFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val id: Long
         val title: String
-        val filter: ApplyFilterRequest?
+        val filterItem: ApplyFilterItemRequest?
         arguments.let { bundle ->
             id = ProductsFragmentArgs.fromBundle(bundle!!).subcategoryId
             title = ProductsFragmentArgs.fromBundle(bundle).title
-            filter = ProductsFragmentArgs.fromBundle(bundle).filterRequest
+            filterItem = ProductsFragmentArgs.fromBundle(bundle).filterRequest
         }
 
         filterRecyclerView.isNestedScrollingEnabled = false //скрол рейсайклера вместе с ценой
 
-        Log.d("FILTER_TEST", "Полученный фильтр с окна продуктов = $filter")
+        Log.d("FILTER_TEST", "Полученный фильтр с окна продуктов = $filterItem")
 
-        viewModel.liveDataFilter.observe(viewLifecycleOwner, Observer {//когда меняется этот фильтр, меняется экшн на запуск окна продуктов
+        viewModel.liveDataFilterItem.observe(viewLifecycleOwner, Observer {//когда меняется этот фильтр, меняется экшн на запуск окна продуктов
             action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id, it)
         })
 
-        if (filter == null)
+        if (filterItem == null)
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
             FilterRequestObserverWithInit(
                 filterRecyclerView,
@@ -57,7 +57,7 @@ class FilterFragment : Fragment() {
                 id)
         )
         else {
-            viewModel.liveDataFilter.value = filter
+            viewModel.liveDataFilterItem.value = filterItem
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
                 FilterRequestObserver(
                     filterRecyclerView,

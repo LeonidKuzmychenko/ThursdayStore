@@ -2,7 +2,7 @@ package com.example.thursdaystore.repository
 
 import com.example.thursdaystore.retrofit.RetrofitApi
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
@@ -63,8 +63,8 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun applyFilter(filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>> =
-        RetrofitApi.server().applyFilter(filter)
+    fun applyFilter(filterItem: ApplyFilterItemRequest): Single<Response<List<ProductResponse>>> =
+        RetrofitApi.server().applyFilter(filterItem)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 

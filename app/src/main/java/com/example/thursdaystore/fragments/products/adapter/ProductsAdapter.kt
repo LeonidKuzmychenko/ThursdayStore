@@ -46,7 +46,7 @@ class ProductsAdapter(private val list: List<ProductResponse>) :
 //            Glide.with(it).load(R.drawable.star).into(holder.star)
 //        }
         holder.title.text = element.name ?: "null"
-        holder.price.text = element.price.toString() + " \u20B4"
+        holder.price.text = element.price
         holder.container.setOnClickListener(
             ProductsItemListener(
                 position.toLong(),

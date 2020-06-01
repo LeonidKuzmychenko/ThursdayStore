@@ -39,11 +39,11 @@ class FilterSubParagraphAdapter(
         val element = list[position]
 
         val index = getIndexOfProperty(propertyId)
-        val state = viewModel.liveDataFilter.value!!.filters[index].parameters.contains(element.parameterId)
+        val state = viewModel.liveDataFilterItem.value!!.filters[index].parameters.contains(element.parameterId)
         holder.checkBox.isChecked = state
 
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
-            val newValue = viewModel.liveDataFilter.value
+            val newValue = viewModel.liveDataFilterItem.value
             val parameters = newValue!!.filters[index].parameters
             val contains = parameters.contains(element.parameterId)
 
@@ -52,13 +52,13 @@ class FilterSubParagraphAdapter(
             } else if (!isChecked && contains) {
                 parameters.remove(element.parameterId)
             }
-            viewModel.liveDataFilter.value = newValue
+            viewModel.liveDataFilterItem.value = newValue
         }
         holder.title.text = element.parameterName
     }
 
     private fun getIndexOfProperty(propertyId: Long): Int {
-        val properties = viewModel.liveDataFilter.value!!.filters
+        val properties = viewModel.liveDataFilterItem.value!!.filters
         val property = properties.filter { it.propertyId == propertyId }[0]
         return properties.indexOf(property)
     }

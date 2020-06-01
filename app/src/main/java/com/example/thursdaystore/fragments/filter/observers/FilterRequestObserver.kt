@@ -15,7 +15,8 @@ open class FilterRequestObserver(private val rc: RecyclerView,
                                  private val viewModel: FilterViewModel):Observer<FilterItem> {
 
     override fun onChanged(it: FilterItem) {
-        seekBar.max = 100000
+//        seekBar.max = it.filterPrices.max
+        seekBar.max = 120
         seekBar.setOnSeekBarChangeListener(PriceSeekBarChangeListener(priceMax, viewModel))
         rc.adapter = FilterParagraphAdapter(it.properties,viewModel)
     }

@@ -4,9 +4,9 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thursdaystore.fragments.filter.FilterViewModel
-import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
-import com.example.thursdaystore.retrofit.dto.filter.request.Prices
-import com.example.thursdaystore.retrofit.dto.filter.request.Property
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.FilterPricesRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.FilterPropertyRequest
 import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.utils.Language
 
@@ -21,14 +21,14 @@ class FilterRequestObserverWithInit(
     override fun onChanged(it: FilterItem) {
         super.onChanged(it)
 
-        val listOfProperty: MutableList<Property> = mutableListOf()
+        val listOfFilterPropertyRequest: MutableList<FilterPropertyRequest> = mutableListOf()
 
         it.properties.forEach {
-            listOfProperty.add(Property(it.propertyId, mutableListOf()))
+            listOfFilterPropertyRequest.add(FilterPropertyRequest(it.propertyId, mutableListOf()))
         }
 
-        viewModel.liveDataFilter.value =
-            ApplyFilterRequest(id, Language.getLanguage(), Prices(0,0), listOfProperty)
+        viewModel.liveDataFilterItem.value =
+            ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,1), listOfFilterPropertyRequest)
     }
 
 }

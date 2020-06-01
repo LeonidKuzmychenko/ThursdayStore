@@ -1,6 +1,7 @@
 package com.example.thursdaystore.fragments.person_change
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import com.example.thursdaystore.R
 import com.example.thursdaystore.repository.WebRepositoryActions
 import com.example.thursdaystore.retrofit.dto.user.UserData
 import com.example.thursdaystore.utils.SharedPreferencesManager
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_person_change.*
 
 
@@ -65,6 +68,13 @@ class PersonChangeFragment : Fragment() {
                 personEditAddressContent.text.toString(),
                 personEditEmailContent.text.toString()
             )
+
+            val moshi: Moshi = Moshi.Builder().build()
+            val adapter: JsonAdapter<UserData> = moshi.adapter(UserData::class.java)
+            val movie = adapter.toJson(userData)
+
+            Log.d("TEST_PERSON_DATA", movie)
+
             WebRepositoryActions.INSTANCE.setUserData(userData)
         }
         return super.onOptionsItemSelected(item)

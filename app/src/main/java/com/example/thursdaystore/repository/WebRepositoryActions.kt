@@ -1,6 +1,7 @@
 package com.example.thursdaystore.repository
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
@@ -19,7 +20,7 @@ import com.example.thursdaystore.repository.request_action.user.get.GetUserDataA
 import com.example.thursdaystore.repository.request_action.user.set.SetUserDataActionError
 import com.example.thursdaystore.repository.request_action.user.set.SetUserDataActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
-import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
+import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
@@ -92,8 +93,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun applyFilter(filter: ApplyFilterRequest, liveData: MutableLiveData<List<ProductResponse>>) {
-        WebRepositoryRequests.INSTANCE.applyFilter(filter).subscribe(
+    fun applyFilter(filterItem: ApplyFilterItemRequest, liveData: MutableLiveData<List<ProductResponse>>) {
+        Log.d("USELESS_FILTER", "$filterItem")
+        WebRepositoryRequests.INSTANCE.applyFilter(filterItem).subscribe(
             ApplyFilterActionSuccess(liveData),
             ApplyFilterActionError()
         )
