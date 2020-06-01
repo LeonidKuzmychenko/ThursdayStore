@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.thursdaystore.R
+import com.example.thursdaystore.repository.WebRepositoryActions
 import com.example.thursdaystore.utils.SharedPreferencesManager
 import kotlinx.android.synthetic.main.fragment_person.*
 
@@ -21,15 +22,19 @@ class PersonalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        personNameContent.text = SharedPreferencesManager.INSTANCE.getPersonName()
-        personLastNameContent.text = SharedPreferencesManager.INSTANCE.getPersonLastName()
-        personPatronymicContent.text = SharedPreferencesManager.INSTANCE.getPersonPatronymic()
-        personGenderContent.text = SharedPreferencesManager.INSTANCE.getPersonGender()
-        personBirthDayContent.text = SharedPreferencesManager.INSTANCE.getPersonBirthDay()
-        personPhoneContent.text = SharedPreferencesManager.INSTANCE.getPersonPhone()
-        personCityContent.text = SharedPreferencesManager.INSTANCE.getPersonCity()
-        personAddressContent.text = SharedPreferencesManager.INSTANCE.getPersonAddress()
-        personEmailContent.text = SharedPreferencesManager.INSTANCE.getPersonEmail()
+
+        WebRepositoryActions.INSTANCE.getUserData()
+
+        val sp = SharedPreferencesManager.INSTANCE
+        personNameContent.text = sp.getPersonName()
+        personLastNameContent.text = sp.getPersonLastName()
+        personPatronymicContent.text = sp.getPersonPatronymic()
+        personGenderContent.text = sp.getPersonGender()
+        personBirthDayContent.text = sp.getPersonBirthDay()
+        personPhoneContent.text = sp.getPersonPhone()
+        personCityContent.text = sp.getPersonCity()
+        personAddressContent.text = sp.getPersonAddress()
+        personEmailContent.text = sp.getPersonEmail()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.fragment_person_toolbar, menu)

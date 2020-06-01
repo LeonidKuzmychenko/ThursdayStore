@@ -29,17 +29,17 @@ enum class SharedPreferencesManager {
         setMacAddress(MacAddress.INSTANCE.get(context))
     }
 
-    fun setMacAddress(value:String) = pref.edit().putString(APP_MAC_ARRDESS, value).apply()
+    fun setMacAddress(value:String) = pref.edit().putString(APP_MAC_ARRDESS, value).commit()
 
-    fun setPersonName(value:String) = pref.edit().putString(APP_PERSON_NAME, value).apply()
-    fun setPersonLastName(value:String) = pref.edit().putString(APP_PERSON_LAST_NAME, value).apply()
-    fun setPersonPatronymic(value:String) = pref.edit().putString(APP_PERSON_PATRONYMIC, value).apply()
-    fun setPersonGender(value:String) = pref.edit().putString(APP_PERSON_GENDER, value).apply()
-    fun setPersonBirthDay(value:String) = pref.edit().putString(APP_PERSON_BIRTH_DAY, value).apply()
-    fun setPersonPhone(value:String) = pref.edit().putString(APP_PERSON_PHONE, value).apply()
-    fun setPersonCity(value:String) = pref.edit().putString(APP_PERSON_CITY, value).apply()
-    fun setPersonAddress(value:String) = pref.edit().putString(APP_PERSON_ADDRESS, value).apply()
-    fun setPersonEmail(value:String) = pref.edit().putString(APP_PERSON_EMAIL, value).apply()
+    fun setPersonName(value:String) = pref.edit().putString(APP_PERSON_NAME, value).commit()
+    fun setPersonLastName(value:String) = pref.edit().putString(APP_PERSON_LAST_NAME, value).commit()
+    fun setPersonPatronymic(value:String) = pref.edit().putString(APP_PERSON_PATRONYMIC, value).commit()
+    fun setPersonGender(value:String) = pref.edit().putString(APP_PERSON_GENDER, value).commit()
+    fun setPersonBirthDay(value:String) = pref.edit().putString(APP_PERSON_BIRTH_DAY, value).commit()
+    fun setPersonPhone(value:String) = pref.edit().putString(APP_PERSON_PHONE, value).commit()
+    fun setPersonCity(value:String) = pref.edit().putString(APP_PERSON_CITY, value).commit()
+    fun setPersonAddress(value:String) = pref.edit().putString(APP_PERSON_ADDRESS, value).commit()
+    fun setPersonEmail(value:String) = pref.edit().putString(APP_PERSON_EMAIL, value).commit()
 
 //-------------------------------------------
 

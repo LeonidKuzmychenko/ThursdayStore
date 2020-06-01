@@ -10,7 +10,6 @@ import com.example.thursdaystore.R
 import com.example.thursdaystore.repository.WebRepositoryActions
 import com.example.thursdaystore.retrofit.dto.user.UserData
 import com.example.thursdaystore.utils.SharedPreferencesManager
-import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_person_change.*
 
@@ -31,16 +30,19 @@ class PersonChangeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        personEditNameContent.setText(SharedPreferencesManager.INSTANCE.getPersonName())
-        personEditLastNameContent.setText(SharedPreferencesManager.INSTANCE.getPersonLastName())
-        personEditPatronymicContent.setText(SharedPreferencesManager.INSTANCE.getPersonPatronymic())
-        personEditGenderContent.setText(SharedPreferencesManager.INSTANCE.getPersonGender())
-        personEditBirthDayContent.setText(SharedPreferencesManager.INSTANCE.getPersonBirthDay())
-        personEditPhoneContent.setText(SharedPreferencesManager.INSTANCE.getPersonPhone())
-        personEditCityContent.setText(SharedPreferencesManager.INSTANCE.getPersonCity())
-        personEditAddressContent.setText(SharedPreferencesManager.INSTANCE.getPersonAddress())
-        personEditEmailContent.setText(SharedPreferencesManager.INSTANCE.getPersonEmail())
+        val sp = SharedPreferencesManager.INSTANCE
+        personEditNameContent.setText(getNullFormatText(sp.getPersonName()))
+        personEditLastNameContent.setText(getNullFormatText(sp.getPersonLastName()))
+        personEditPatronymicContent.setText(getNullFormatText(sp.getPersonPatronymic()))
+        personEditGenderContent.setText(getNullFormatText(sp.getPersonGender()))
+        personEditBirthDayContent.setText(getNullFormatText(sp.getPersonBirthDay()))
+        personEditPhoneContent.setText(getNullFormatText(sp.getPersonPhone()))
+        personEditCityContent.setText(getNullFormatText(sp.getPersonCity()))
+        personEditAddressContent.setText(getNullFormatText(sp.getPersonAddress()))
+        personEditEmailContent.setText(getNullFormatText(sp.getPersonEmail()))
     }
+
+    private fun getNullFormatText(v: String) = if (v == "unknown") null else v
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -61,19 +63,16 @@ class PersonChangeFragment : Fragment() {
                 personEditNameContent.text.toString(),
                 personEditLastNameContent.text.toString(),
                 personEditPatronymicContent.text.toString(),
+                personEditEmailContent.text.toString(),
                 personEditGenderContent.text.toString(),
                 personEditBirthDayContent.text.toString(),
                 personEditPhoneContent.text.toString(),
                 personEditCityContent.text.toString(),
-                personEditAddressContent.text.toString(),
-                personEditEmailContent.text.toString()
+                personEditAddressContent.text.toString()
             )
 
-            val moshi: Moshi = Moshi.Builder().build()
-            val adapter: JsonAdapter<UserData> = moshi.adapter(UserData::class.java)
-            val movie = adapter.toJson(userData)
-
-            Log.d("TEST_PERSON_DATA", movie)
+            val user = Moshi.Builder().build().adapter(UserData::class.java).toJson(userData)
+            Log.d("TEST_PERSON_DATA", "Sent Content =  $user")
 
             WebRepositoryActions.INSTANCE.setUserData(userData)
         }
