@@ -74,7 +74,7 @@ class PersonChangeFragment : Fragment() {
             val user = Moshi.Builder().build().adapter(UserData::class.java).toJson(userData)
             Log.d("TEST_PERSON_DATA", "Sent Content =  $user")
 
-            WebRepositoryActions.INSTANCE.setUserData(userData)
+            WebRepositoryActions.INSTANCE.setUserData(activity,userData)
         }
         return super.onOptionsItemSelected(item)
     }

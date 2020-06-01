@@ -45,6 +45,15 @@ class MainActivity : AppCompatActivity() {
 
         navView.getHeaderView(0).macAddress.text = SharedPreferencesManager.INSTANCE.getMacAddress()
 
+        setNavViewUserName()
+    }
+
+    fun setNavViewUserName(){
+        val userName =  SharedPreferencesManager.INSTANCE.getPersonName()
+        val userLastName =  SharedPreferencesManager.INSTANCE.getPersonLastName()
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView.getHeaderView(0).navUserName.text = "$userLastName $userName"
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -2,6 +2,7 @@ package com.example.thursdaystore.repository
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import com.example.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
@@ -110,9 +111,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun setUserData(userData: UserData){
+    fun setUserData(activity:FragmentActivity?, userData: UserData){
         WebRepositoryRequests.INSTANCE.setUserData(userData).subscribe(
-            SetUserDataActionSuccess(),
+            SetUserDataActionSuccess(activity),
             SetUserDataActionError()
         )
     }

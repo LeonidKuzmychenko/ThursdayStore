@@ -1,12 +1,14 @@
 package com.example.thursdaystore.repository.request_action.user.set
 
+import android.app.Activity
 import android.util.Log
+import com.example.thursdaystore.MainActivity
 import com.example.thursdaystore.retrofit.dto.user.UserData
 import com.example.thursdaystore.utils.SharedPreferencesManager
 import io.reactivex.functions.Consumer
 import retrofit2.Response
 
-class SetUserDataActionSuccess(): Consumer<Response<UserData>>{
+class SetUserDataActionSuccess(private val activity:Activity?): Consumer<Response<UserData>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -25,6 +27,9 @@ class SetUserDataActionSuccess(): Consumer<Response<UserData>>{
             SharedPreferencesManager.INSTANCE.setPersonAddress(user.address ?: "unknown")
             SharedPreferencesManager.INSTANCE.setPersonEmail(user.email ?: "unknown")
         }
+
+        if (activity is MainActivity) activity.setNavViewUserName()
+
     }
 
 }

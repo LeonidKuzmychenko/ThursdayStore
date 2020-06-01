@@ -45,15 +45,15 @@ enum class SharedPreferencesManager {
 
     fun getMacAddress() = pref.getString(APP_MAC_ARRDESS, "02:00:00:00:00:00")!!
 
-    fun getPersonName() = pref.getString(APP_PERSON_NAME, "unknown")!!
-    fun getPersonLastName() = pref.getString(APP_PERSON_LAST_NAME, "unknown")!!
-    fun getPersonPatronymic() = pref.getString(APP_PERSON_PATRONYMIC, "unknown")!!
-    fun getPersonGender() = pref.getString(APP_PERSON_GENDER, "unknown")!!
-    fun getPersonBirthDay() = pref.getString(APP_PERSON_BIRTH_DAY, "unknown")!!
-    fun getPersonPhone() = pref.getString(APP_PERSON_PHONE, "unknown")!!
-    fun getPersonCity() = pref.getString(APP_PERSON_CITY, "unknown")!!
-    fun getPersonAddress() = pref.getString(APP_PERSON_ADDRESS, "unknown")!!
-    fun getPersonEmail() = pref.getString(APP_PERSON_EMAIL, "unknown")!!
+    fun getPersonName() = pref.getString(APP_PERSON_NAME, "")!!
+    fun getPersonLastName() = pref.getString(APP_PERSON_LAST_NAME, "")!!
+    fun getPersonPatronymic() = pref.getString(APP_PERSON_PATRONYMIC, "")!!
+    fun getPersonGender() = pref.getString(APP_PERSON_GENDER, "")!!
+    fun getPersonBirthDay() = pref.getString(APP_PERSON_BIRTH_DAY, "")!!
+    fun getPersonPhone() = pref.getString(APP_PERSON_PHONE, "")!!
+    fun getPersonCity() = pref.getString(APP_PERSON_CITY, "")!!
+    fun getPersonAddress() = pref.getString(APP_PERSON_ADDRESS, "")!!
+    fun getPersonEmail() = pref.getString(APP_PERSON_EMAIL, "")!!
 
 
 
