@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/filter_ok"
-        android:icon="@drawable/hand_okay"
+        android:icon="@drawable/checkbox_marked_circle_outline"
         android:title="filter_ok"
         app:showAsAction="always|withText" />
 </menu>
