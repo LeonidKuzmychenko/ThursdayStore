@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navView.getHeaderView(0).macAddress.text = SharedPreferencesManager.INSTANCE.get()
+        navView.getHeaderView(0).macAddress.text = SharedPreferencesManager.INSTANCE.getMacAddress()
 
     }
 

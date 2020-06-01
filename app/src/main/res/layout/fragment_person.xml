@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/personNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="@+id/personNameContent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/personNameContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personNameTitle" />
+
+        <TextView
+            android:id="@+id/personLastNameTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Last name"
+            app:layout_constraintStart_toStartOf="@+id/personLastNameContent"
+            app:layout_constraintTop_toBottomOf="@+id/personNameContent" />
+
+        <TextView
+            android:id="@+id/personLastNameContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personLastNameTitle" />
+
+        <TextView
+            android:id="@+id/personPatronymicTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Patronymic"
+            app:layout_constraintStart_toStartOf="@+id/personPatronymicContent"
+            app:layout_constraintTop_toBottomOf="@+id/personLastNameContent" />
+
+        <TextView
+            android:id="@+id/personPatronymicContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personPatronymicTitle" />
+
+        <TextView
+            android:id="@+id/personGenderTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Gender"
+            app:layout_constraintStart_toStartOf="@+id/personGenderContent"
+            app:layout_constraintTop_toBottomOf="@+id/personPatronymicContent" />
+
+        <TextView
+            android:id="@+id/personGenderContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personGenderTitle" />
+
+        <TextView
+            android:id="@+id/personBirthDayTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="BirthDay"
+            app:layout_constraintStart_toStartOf="@+id/personBirthDayContent"
+            app:layout_constraintTop_toBottomOf="@+id/personGenderContent" />
+
+        <TextView
+            android:id="@+id/personBirthDayContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personBirthDayTitle" />
+
+        <TextView
+            android:id="@+id/personPhoneTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Phone"
+            app:layout_constraintStart_toStartOf="@+id/personPhoneContent"
+            app:layout_constraintTop_toBottomOf="@+id/personBirthDayContent" />
+
+        <TextView
+            android:id="@+id/personPhoneContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personPhoneTitle" />
+
+        <TextView
+            android:id="@+id/personCityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="City"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/personCityContent"
+            app:layout_constraintTop_toBottomOf="@+id/personPhoneContent" />
+
+        <TextView
+            android:id="@+id/personCityContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personCityTitle" />
+
+        <TextView
+            android:id="@+id/personAddressTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Adress"
+            app:layout_constraintStart_toStartOf="@+id/personAddressContent"
+            app:layout_constraintTop_toBottomOf="@+id/personCityContent" />
+
+        <TextView
+            android:id="@+id/personAddressContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personAddressTitle" />
+
+        <TextView
+            android:id="@+id/personEmailTitle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Email"
+            app:layout_constraintStart_toStartOf="@+id/personEmailContent"
+            app:layout_constraintTop_toBottomOf="@+id/personAddressContent" />
+
+        <TextView
+            android:id="@+id/personEmailContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Text Text Text Text Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personEmailTitle" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

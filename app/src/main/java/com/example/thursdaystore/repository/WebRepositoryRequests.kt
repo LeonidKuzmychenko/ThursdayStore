@@ -8,7 +8,9 @@ import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.user.UserData
 import com.example.thursdaystore.utils.Language
+import com.example.thursdaystore.utils.SharedPreferencesManager
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -24,7 +26,7 @@ enum class WebRepositoryRequests {
             .subscribeOn(Schedulers.io())
 
     fun getCategories(): Single<Response<List<CategoryResponse>>> =
-        RetrofitApi.server().getCategories(Language.getLanguage())
+        RetrofitApi.server().getCategories(SharedPreferencesManager.INSTANCE.getMacAddress(), Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
@@ -63,6 +65,16 @@ enum class WebRepositoryRequests {
 
     fun applyFilter(filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>> =
         RetrofitApi.server().applyFilter(filter)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun getUserData(): Single<Response<UserData>> =
+        RetrofitApi.server().getUserData(SharedPreferencesManager.INSTANCE.getMacAddress())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun setUserData(userData: UserData): Single<Response<UserData>> =
+        RetrofitApi.server().setUserData(SharedPreferencesManager.INSTANCE.getMacAddress(), userData)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 }

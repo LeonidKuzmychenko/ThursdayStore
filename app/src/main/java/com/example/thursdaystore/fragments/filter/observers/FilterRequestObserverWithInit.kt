@@ -12,11 +12,11 @@ import com.example.thursdaystore.utils.Language
 
 class FilterRequestObserverWithInit(
     rc: RecyclerView,
-    private val seekBar: AppCompatSeekBar,
-    private val priceMax: TextView,
+    seekBar: AppCompatSeekBar,
+    priceMax: TextView,
     private val viewModel: FilterViewModel,
     private val id: Long
-) : FilterRequestObserver(rc, viewModel) {
+) : FilterRequestObserver(rc,seekBar, priceMax, viewModel) {
 
     override fun onChanged(it: FilterItem) {
         super.onChanged(it)
@@ -27,31 +27,8 @@ class FilterRequestObserverWithInit(
             listOfProperty.add(Property(it.propertyId, mutableListOf()))
         }
 
-//        seekBar.max = it.filterPrices.max.toInt()
-        seekBar.max = 100000
-
         viewModel.liveDataFilter.value =
             ApplyFilterRequest(id, Language.getLanguage(), Prices(0,0), listOfProperty)
-
-//        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-//            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-//                priceMax.text = progress.toString()
-//                val filter = viewModel.liveDataFilter.value
-//                if (filter != null){
-//                    filter.prices.max = progress.toLong()
-//                    viewModel.liveDataFilter.value = filter
-//                }
-//            }
-//
-//            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-//
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-//
-//            }
-//
-//        })
     }
 
 }

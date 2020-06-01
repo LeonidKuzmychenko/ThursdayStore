@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.thursdaystore.repository.WebRepositoryActions
 import com.example.thursdaystore.utils.PermissionManager
 import com.example.thursdaystore.utils.SharedPreferencesManager
 import kotlinx.coroutines.GlobalScope
@@ -52,6 +53,8 @@ class StartActivity : AppCompatActivity() {
         SharedPreferencesManager.INSTANCE.init(this)
 
         GlobalScope.launch {
+            WebRepositoryActions.INSTANCE.getUserData()
+
             Thread.sleep(5500)
             startActivity(Intent(this@StartActivity, MainActivity::class.java))
             finish()

@@ -7,12 +7,10 @@ import com.example.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.user.UserData
 import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ServerRequest {
     /*-------------------------------------------languages----------------------------------------*/
@@ -30,7 +28,7 @@ interface ServerRequest {
 
     /*-------------------------------------------categories---------------------------------------*/
     @GET("/categories")
-    fun getCategories(@Query("lang") lang: String): Single<Response<List<CategoryResponse>>>
+    fun getCategories(@Header("mac") mac:String, @Query("lang") lang: String): Single<Response<List<CategoryResponse>>>
 
 //    @POST("/categories")
 //    fun categoriesPOST(): Single<Response<String>>
@@ -129,5 +127,12 @@ interface ServerRequest {
 
     @POST("products/filter")
     fun applyFilter(@Body filter: ApplyFilterRequest): Single<Response<List<ProductResponse>>>
+
+
+    @GET("/user")
+    fun getUserData(@Header("mac") mac:String): Single<Response<UserData>>
+
+    @PUT("/user")
+    fun setUserData(@Header("mac") mac:String, @Body user: UserData): Single<Response<UserData>>
 
 }

@@ -14,11 +14,16 @@ import com.example.thursdaystore.repository.request_action.properties.GetPropert
 import com.example.thursdaystore.repository.request_action.properties.GetPropertiesActionSuccess
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import com.example.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
+import com.example.thursdaystore.repository.request_action.user.get.GetUserDataActionError
+import com.example.thursdaystore.repository.request_action.user.get.GetUserDataActionSuccess
+import com.example.thursdaystore.repository.request_action.user.set.SetUserDataActionError
+import com.example.thursdaystore.repository.request_action.user.set.SetUserDataActionSuccess
 import com.example.thursdaystore.retrofit.dto.category.CategoryResponse
 import com.example.thursdaystore.retrofit.dto.filter.request.ApplyFilterRequest
 import com.example.thursdaystore.retrofit.dto.filter.response.FilterItem
 import com.example.thursdaystore.retrofit.dto.product.ProductResponse
 import com.example.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
+import com.example.thursdaystore.retrofit.dto.user.UserData
 
 enum class WebRepositoryActions {
 
@@ -93,4 +98,21 @@ enum class WebRepositoryActions {
             ApplyFilterActionError()
         )
     }
+
+    @SuppressLint("CheckResult")
+    fun getUserData(){
+        WebRepositoryRequests.INSTANCE.getUserData().subscribe(
+            GetUserDataActionSuccess(),
+            GetUserDataActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun setUserData(userData: UserData){
+        WebRepositoryRequests.INSTANCE.setUserData(userData).subscribe(
+            SetUserDataActionSuccess(),
+            SetUserDataActionError()
+        )
+    }
 }
+

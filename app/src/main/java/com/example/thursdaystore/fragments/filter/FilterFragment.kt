@@ -22,11 +22,7 @@ class FilterFragment : Fragment() {
     private lateinit var viewModel: FilterViewModel
     private lateinit var action: FilterFragmentDirections.ActionFilterFragmentToProductsFragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
         return inflater.inflate(R.layout.fragment_filter, container, false)
@@ -43,13 +39,12 @@ class FilterFragment : Fragment() {
             filter = ProductsFragmentArgs.fromBundle(bundle).filterRequest
         }
 
-        filterRecyclerView.isNestedScrollingEnabled = false
+        filterRecyclerView.isNestedScrollingEnabled = false //скрол рейсайклера вместе с ценой
 
-        Log.d("FILTER_TEST", "$filter")
+        Log.d("FILTER_TEST", "Полученный фильтр с окна продуктов = $filter")
 
-        viewModel.liveDataFilter.observe(viewLifecycleOwner, Observer {
+        viewModel.liveDataFilter.observe(viewLifecycleOwner, Observer {//когда меняется этот фильтр, меняется экшн на запуск окна продуктов
             action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id, it)
-            Log.d("FILTER_TEST", "Action changed")
         })
 
         if (filter == null)
@@ -63,9 +58,12 @@ class FilterFragment : Fragment() {
         )
         else {
             viewModel.liveDataFilter.value = filter
-            viewModel.liveDataFilterUi.observe(
-                viewLifecycleOwner,
-                FilterRequestObserver(filterRecyclerView, viewModel)
+            viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
+                FilterRequestObserver(
+                    filterRecyclerView,
+                    filterPriceSeekBar,
+                    filterPriceMax,
+                    viewModel)
             )
         }
 
