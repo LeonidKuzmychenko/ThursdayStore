@@ -3,7 +3,7 @@ package my.diploma.thursdaystore.repository.request_action.user.set
 import android.app.Activity
 import android.util.Log
 import io.reactivex.functions.Consumer
-import my.diploma.thursdaystore.MainActivity
+import my.diploma.thursdaystore.activities.MainActivity
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 import retrofit2.Response

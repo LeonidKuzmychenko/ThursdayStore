@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_products.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.products.dialogs.ChoiceSortDialog
 import my.diploma.thursdaystore.fragments.products.listers.FilterButtonClickListener
 import my.diploma.thursdaystore.fragments.products.observers.ProductsLiveDataObserver
 import my.diploma.thursdaystore.repository.WebRepositoryActions
@@ -51,6 +52,16 @@ class ProductsFragment : Fragment() {
         else {
             Log.d("FILTER_TEST", "Show without filter")
             WebRepositoryActions.INSTANCE.getProducts(id, productsViewModel.listLiveData)
+        }
+
+        productsSort.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(ChoiceSortDialog.DIALOG_SORT_TITLE_KEY,"Сортировка")
+            bundle.putStringArray(ChoiceSortDialog.DIALOG_SORT_ITEMS_KEY, arrayOf("по рейтингу","по убыванию","по возрастанию"))
+
+            val dialog = ChoiceSortDialog()
+            dialog.arguments = bundle
+            dialog.show(childFragmentManager,"DIALOG SORT")
         }
 
     }

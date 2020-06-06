@@ -1,4 +1,4 @@
-package my.diploma.thursdaystore
+package my.diploma.thursdaystore.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
 class MainActivity : AppCompatActivity() {

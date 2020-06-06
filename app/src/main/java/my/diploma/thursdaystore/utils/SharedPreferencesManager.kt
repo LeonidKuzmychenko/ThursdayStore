@@ -55,6 +55,4 @@ enum class SharedPreferencesManager {
     fun getPersonAddress() = pref.getString(APP_PERSON_ADDRESS, "")!!
     fun getPersonEmail() = pref.getString(APP_PERSON_EMAIL, "")!!
 
-
-
 }

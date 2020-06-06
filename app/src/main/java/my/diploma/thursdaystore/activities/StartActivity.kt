@@ -1,4 +1,4 @@
-package my.diploma.thursdaystore
+package my.diploma.thursdaystore.activities
 
 import android.Manifest
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.utils.PermissionManager
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 

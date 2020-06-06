@@ -26,14 +26,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            tools:text="TextView"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:maxLines="3"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemImage" />
+            app:layout_constraintTop_toBottomOf="@+id/productItemImage"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/productItemPrice"
@@ -43,10 +44,10 @@
             android:layout_marginEnd="8dp"
             android:text="TextView"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintEnd_toStartOf="@+id/imageView6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemTitle" />
+            app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
         <ImageView
             android:id="@+id/productItemImageStar"
@@ -62,10 +63,12 @@
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productItemTitle"
             app:srcCompat="@drawable/cart_outline" />
 
 
