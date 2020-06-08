@@ -11,9 +11,7 @@ import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.utils.PermissionManager
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
-
 class StartActivity : AppCompatActivity() {
-
 
     val TAG = this.javaClass.canonicalName
 
@@ -23,11 +21,6 @@ class StartActivity : AppCompatActivity() {
         start()
     }
 
-    private fun start(){
-        if (checkPermissions()){
-            startActivity()
-        }
-    }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             PermissionManager.INSTANCE.REQUEST_PERMISSION_MANAGER -> {
@@ -56,6 +49,12 @@ class StartActivity : AppCompatActivity() {
             Thread.sleep(5500)
             startActivity(Intent(this@StartActivity, MainActivity::class.java))
             finish()
+        }
+    }
+
+    private fun start(){
+        if (checkPermissions()){
+            startActivity()
         }
     }
 }

@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.products.observers.ProductsLiveDataObserver
+import my.diploma.thursdaystore.repository.WebRepositoryActions
 
 class FavoritesFragment : Fragment() {
 
@@ -19,10 +20,11 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoritesRecyclerView.layoutManager = GridLayoutManager(context ,2)
 
-        favoritesViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
-            favoritesRecyclerView.adapter = FavoritesAdapter(it)
-        })
-        favoritesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+        favoritesViewModel.liveData.observe(viewLifecycleOwner, ProductsLiveDataObserver(favoritesRecyclerView))
+
+//        favoritesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+
+        WebRepositoryActions.INSTANCE.getFavorites(favoritesViewModel.liveData)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

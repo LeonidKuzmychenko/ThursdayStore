@@ -50,4 +50,13 @@ interface ServerRequest {
     @PUT("/user")
     fun setUserData(@Header("mac") mac:String, @Body user: UserData): Single<Response<UserData>>
 
+    @GET("/favorite")
+    fun getFavorites(@Header("mac") mac:String,
+                     @Query("lang") lang: String,
+                     @Query("currency") currency :String?): Single<Response<List<ProductResponse>>>
+
+    @GET("/cart")
+    fun getCart(@Header("mac") mac:String,
+                     @Query("lang") lang: String,
+                     @Query("currency") currency :String?): Single<Response<List<ProductResponse>>>
 }

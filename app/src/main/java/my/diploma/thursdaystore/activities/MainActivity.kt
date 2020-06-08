@@ -16,12 +16,12 @@ import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
         setNavViewUserName()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
     fun setNavViewUserName(){
         val userName =  SharedPreferencesManager.INSTANCE.getPersonName()
         val userLastName =  SharedPreferencesManager.INSTANCE.getPersonLastName()
@@ -56,9 +60,4 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         navView.getHeaderView(0).navUserName.text = "$userLastName $userName"
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
 }

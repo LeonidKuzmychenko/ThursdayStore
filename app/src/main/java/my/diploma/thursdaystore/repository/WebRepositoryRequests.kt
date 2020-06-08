@@ -77,4 +77,24 @@ enum class WebRepositoryRequests {
         RetrofitApi.server().setUserData(SharedPreferencesManager.INSTANCE.getMacAddress(), userData)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+
+    fun getFavorites(): Single<Response<List<ProductResponse>>> =
+        RetrofitApi.server()
+            .getFavorites(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                Language.getLanguage(),
+                null
+            )
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun getCart(): Single<Response<List<ProductResponse>>> =
+        RetrofitApi.server()
+            .getCart(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                Language.getLanguage(),
+                null
+            )
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
 }

@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_basket.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.products.observers.ProductsLiveDataObserver
+import my.diploma.thursdaystore.repository.WebRepositoryActions
 
 class BasketFragment : Fragment() {
 
@@ -19,10 +20,9 @@ class BasketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         basketRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        basketViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
-            basketRecyclerView.adapter = BasketAdapter(it)
-        })
-        basketViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+        basketViewModel.listLiveData.observe(viewLifecycleOwner, ProductsLiveDataObserver(basketRecyclerView))
+
+        WebRepositoryActions.INSTANCE.getCart(basketViewModel.listLiveData)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

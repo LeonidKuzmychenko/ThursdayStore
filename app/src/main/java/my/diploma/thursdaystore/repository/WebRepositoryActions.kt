@@ -4,8 +4,12 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
+import my.diploma.thursdaystore.repository.request_action.cart.GetCartActionError
+import my.diploma.thursdaystore.repository.request_action.cart.GetCartActionSuccess
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
+import my.diploma.thursdaystore.repository.request_action.favorites.GetFavoritesActionError
+import my.diploma.thursdaystore.repository.request_action.favorites.GetFavoritesActionSuccess
 import my.diploma.thursdaystore.repository.request_action.filters.apply.ApplyFilterActionError
 import my.diploma.thursdaystore.repository.request_action.filters.apply.ApplyFilterActionSuccess
 import my.diploma.thursdaystore.repository.request_action.filters.get.GetFiltersActionError
@@ -115,6 +119,22 @@ enum class WebRepositoryActions {
         WebRepositoryRequests.INSTANCE.setUserData(userData).subscribe(
             SetUserDataActionSuccess(activity),
             SetUserDataActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getFavorites(liveData: MutableLiveData<List<ProductResponse>>){
+        WebRepositoryRequests.INSTANCE.getFavorites().subscribe(
+            GetFavoritesActionSuccess(liveData),
+            GetFavoritesActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getCart(liveData: MutableLiveData<List<ProductResponse>>){
+        WebRepositoryRequests.INSTANCE.getCart().subscribe(
+            GetCartActionSuccess(liveData),
+            GetCartActionError()
         )
     }
 }

@@ -12,7 +12,7 @@ abstract class OkHttpHelper {
     }
 
     fun getUrl(request: String, query: List<Pair<String, String>>): String {
-        val mainUrl = "https://thursday.ml/"
+        val mainUrl = "http://ancient-bayou-56228.herokuapp.com"
         val urlBuilder = HttpUrl.parse("$mainUrl$request")!!.newBuilder()
         if (!query.isNullOrEmpty())
             query.forEach { urlBuilder.addQueryParameter(it.first, it.second) }

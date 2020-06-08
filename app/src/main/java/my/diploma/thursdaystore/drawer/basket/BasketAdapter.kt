@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 
-class BasketAdapter(private val list: MutableList<Int>) :
+class BasketAdapter(private val list: List<ProductResponse>) :
     RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
     class BasketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
