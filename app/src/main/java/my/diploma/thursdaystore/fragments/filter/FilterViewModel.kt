@@ -7,6 +7,6 @@ import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 
 class FilterViewModel : ViewModel(){
     val liveDataFilterUi: MutableLiveData<FilterItem> = MutableLiveData()
-    val liveDataFilterItem: MutableLiveData<ApplyFilterItemRequest?> = MutableLiveData()
+    val savedFilterState: MutableLiveData<ApplyFilterItemRequest?> = MutableLiveData()
 
 }

@@ -10,12 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_filter.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.filter.adapters.FilterParagraphAdapter
 import my.diploma.thursdaystore.fragments.filter.listeners.PriceSeekBarChangeListener
-import my.diploma.thursdaystore.fragments.filter.observers.FilterRequestObserver
-import my.diploma.thursdaystore.fragments.filter.observers.FilterRequestObserverWithInit
 import my.diploma.thursdaystore.fragments.products.ProductsFragmentArgs
 import my.diploma.thursdaystore.repository.WebRepositoryActions
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
+import my.diploma.thursdaystore.retrofit.dto.filter.request.FilterPricesRequest
+import my.diploma.thursdaystore.retrofit.dto.filter.request.FilterPropertyRequest
+import my.diploma.thursdaystore.utils.Language
 
 
 class FilterFragment : Fragment() {
@@ -44,23 +46,43 @@ class FilterFragment : Fragment() {
 
         Log.d("FILTER_TEST", "Полученный фильтр с окна продуктов = $filterItem")
 
-        viewModel.liveDataFilterItem.observe(viewLifecycleOwner, Observer {//когда меняется этот фильтр, меняется экшн на запуск окна продуктов
+        viewModel.savedFilterState.observe(viewLifecycleOwner, Observer {//когда меняется этот фильтр, меняется экшн на запуск окна продуктов
             action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id, it)
         })
+        viewModel.savedFilterState.value = filterItem
 
-        filterPriceSeekBar.setOnSeekBarChangeListener(PriceSeekBarChangeListener(filterPriceMax, viewModel))
-        viewModel.liveDataFilterItem.value = filterItem
+        viewModel.liveDataFilterUi.observe(viewLifecycleOwner, Observer {
+            Log.d("FILTER_TEST", "viewModel.savedFilterState.value = " + viewModel.savedFilterState.value)
+            Log.d("FILTER_TEST", "filterPriceSeekBar.max1 = " + filterPriceSeekBar.max)
 
-        if (filterItem == null){
-            viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-                FilterRequestObserverWithInit(filterRecyclerView, filterPriceSeekBar, filterPriceMax, viewModel, id)
-            )
-        }
-        else {
-            viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-                FilterRequestObserver(filterRecyclerView, filterPriceSeekBar, filterPriceMax, viewModel)
-            )
-        }
+            try {
+                filterPriceSeekBar.max = it.filterPrices.max.toInt()
+            }catch (e:Exception){
+                filterPriceSeekBar.max = 10000
+            }
+
+            Log.d("FILTER_TEST", "filterPriceSeekBar.max2 = " + filterPriceSeekBar.max)
+
+            if (viewModel.savedFilterState.value == null) {
+                Log.d("FILTER_TEST", "viewModel.savedFilterState.value = null")
+                val listOfFilterPropertyRequest: MutableList<FilterPropertyRequest> = mutableListOf()
+                it.properties.forEach { listOfFilterPropertyRequest.add(FilterPropertyRequest(it.propertyId, mutableListOf())) }
+                viewModel.savedFilterState.value = ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,it.filterPrices.max.toLong()), listOfFilterPropertyRequest)
+            }
+
+            Log.d("FILTER_TEST", "viewModel.savedFilterState.value = " + viewModel.savedFilterState.value)
+            Log.d("FILTER_TEST", "viewModel.savedFilterState.value.filterPricesRequest.max = " +  viewModel.savedFilterState.value!!.filterPricesRequest.max)
+            Log.d("FILTER_TEST", "filterPriceMax.text1 = " +  filterPriceMax.text)
+            Log.d("FILTER_TEST", "filterPriceSeekBar.progress1 = " +  filterPriceSeekBar.progress)
+            filterPriceMax.text = viewModel.savedFilterState.value!!.filterPricesRequest.max.toString()
+            filterPriceSeekBar.progress = viewModel.savedFilterState.value!!.filterPricesRequest.max.toInt()
+            Log.d("FILTER_TEST", "filterPriceMax.text2 = " +  filterPriceMax.text)
+            Log.d("FILTER_TEST", "filterPriceSeekBar.progress2 = " +  filterPriceSeekBar.progress)
+
+            filterPriceSeekBar.setOnSeekBarChangeListener(PriceSeekBarChangeListener(filterPriceMax, viewModel))
+
+            filterRecyclerView.adapter = FilterParagraphAdapter(it.properties,viewModel)
+        })
 
         WebRepositoryActions.INSTANCE.getFilter(id, viewModel.liveDataFilterUi)
     }

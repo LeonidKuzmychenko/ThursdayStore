@@ -12,10 +12,9 @@ class PriceSeekBarChangeListener(
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         val value = if (progress.toLong() == 0L) 1 else progress.toLong()
         priceMax.text = value.toString()
-        val filter = viewModel.liveDataFilterItem.value
-        if (filter != null) {
-            filter.filterPricesRequest.max = value
-            viewModel.liveDataFilterItem.value = filter
+        viewModel.savedFilterState.value?.let {
+            it.filterPricesRequest.max = value
+            viewModel.savedFilterState.value = it
         }
     }
 
