@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_filter.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.filter.listeners.PriceSeekBarChangeListener
 import my.diploma.thursdaystore.fragments.filter.observers.FilterRequestObserver
 import my.diploma.thursdaystore.fragments.filter.observers.FilterRequestObserverWithInit
 import my.diploma.thursdaystore.fragments.products.ProductsFragmentArgs
@@ -47,23 +48,17 @@ class FilterFragment : Fragment() {
             action = FilterFragmentDirections.actionFilterFragmentToProductsFragment(title, id, it)
         })
 
-        if (filterItem == null)
+        filterPriceSeekBar.setOnSeekBarChangeListener(PriceSeekBarChangeListener(filterPriceMax, viewModel))
+        viewModel.liveDataFilterItem.value = filterItem
+
+        if (filterItem == null){
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-            FilterRequestObserverWithInit(
-                filterRecyclerView,
-                filterPriceSeekBar,
-                filterPriceMax,
-                viewModel,
-                id)
-        )
+                FilterRequestObserverWithInit(filterRecyclerView, filterPriceSeekBar, filterPriceMax, viewModel, id)
+            )
+        }
         else {
-            viewModel.liveDataFilterItem.value = filterItem
             viewModel.liveDataFilterUi.observe(viewLifecycleOwner,
-                FilterRequestObserver(
-                    filterRecyclerView,
-                    filterPriceSeekBar,
-                    filterPriceMax,
-                    viewModel)
+                FilterRequestObserver(filterRecyclerView, filterPriceSeekBar, filterPriceMax, viewModel)
             )
         }
 

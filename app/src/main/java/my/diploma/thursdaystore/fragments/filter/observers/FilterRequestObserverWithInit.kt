@@ -12,7 +12,7 @@ import my.diploma.thursdaystore.utils.Language
 
 class FilterRequestObserverWithInit(
     rc: RecyclerView,
-    seekBar: AppCompatSeekBar,
+    private val seekBar: AppCompatSeekBar,
     priceMax: TextView,
     private val viewModel: FilterViewModel,
     private val id: Long
@@ -21,14 +21,15 @@ class FilterRequestObserverWithInit(
     override fun onChanged(it: FilterItem) {
         super.onChanged(it)
 
+//        seekBar.progress = it.filterPrices.max.toInt()
+
         val listOfFilterPropertyRequest: MutableList<FilterPropertyRequest> = mutableListOf()
 
         it.properties.forEach {
             listOfFilterPropertyRequest.add(FilterPropertyRequest(it.propertyId, mutableListOf()))
         }
 
-        viewModel.liveDataFilterItem.value =
-            ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,1), listOfFilterPropertyRequest)
+        viewModel.liveDataFilterItem.value = ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,it.filterPrices.max.toLong()), listOfFilterPropertyRequest)
     }
 
 }

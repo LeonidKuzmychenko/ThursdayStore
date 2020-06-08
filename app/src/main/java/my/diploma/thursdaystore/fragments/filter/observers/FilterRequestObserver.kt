@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import my.diploma.thursdaystore.fragments.filter.FilterViewModel
 import my.diploma.thursdaystore.fragments.filter.adapters.FilterParagraphAdapter
-import my.diploma.thursdaystore.fragments.filter.listeners.PriceSeekBarChangeListener
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 
 open class FilterRequestObserver(private val rc: RecyclerView,
@@ -20,7 +19,16 @@ open class FilterRequestObserver(private val rc: RecyclerView,
         }catch (e:Exception){
             seekBar.max = 10000
         }
-        seekBar.setOnSeekBarChangeListener(PriceSeekBarChangeListener(priceMax, viewModel))
+
+        priceMax.text = it.filterPrices.max
+        seekBar.progress = it.filterPrices.max.toInt()
+
+        val filter = viewModel.liveDataFilterItem.value
+        if (filter != null) {
+            priceMax.text = filter.filterPricesRequest.max.toString()
+            seekBar.progress = filter.filterPricesRequest.max.toInt()
+        }
+
         rc.adapter = FilterParagraphAdapter(it.properties,viewModel)
     }
 }
