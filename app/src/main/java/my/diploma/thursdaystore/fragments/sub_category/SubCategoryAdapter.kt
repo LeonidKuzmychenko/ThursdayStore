@@ -36,7 +36,7 @@ class SubCategoryAdapter(private val list: List<SubcategoryResponse>) :
         holder.container.setOnClickListener(SubCategoryItemListener(element.name ?: "null", element.id, holder.itemView, null))
         Glide.with(holder.itemView)
             .load(element.image)
-            .error(R.drawable.category_back_2)
+            .error(R.drawable.item_empty_product)
             .into(holder.image)
     }
 }

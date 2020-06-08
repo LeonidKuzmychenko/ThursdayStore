@@ -35,7 +35,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView17"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView16"
-                app:srcCompat="@drawable/sort_ascending" />
+                app:srcCompat="@drawable/fragment_products_sort" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -92,7 +92,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView177"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView167"
-                app:srcCompat="@drawable/filter_outline" />
+                app:srcCompat="@drawable/fragment_products_filter" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline27"

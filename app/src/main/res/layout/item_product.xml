@@ -44,32 +44,32 @@
             android:layout_marginEnd="8dp"
             android:text="TextView"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintBottom_toBottomOf="@+id/productItemCart"
+            app:layout_constraintEnd_toStartOf="@+id/productItemCart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView6" />
+            app:layout_constraintTop_toTopOf="@+id/productItemCart" />
 
-        <ImageView
-            android:id="@+id/productItemImageStar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <my.diploma.thursdaystore.custom_view.FavoriteImageView
+            android:id="@+id/productItemFavorite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/star_outline" />
+            app:srcCompat="@drawable/item_product_favorite_o" />
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <my.diploma.thursdaystore.custom_view.CartImageView
+            android:id="@+id/productItemCart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productItemTitle"
-            app:srcCompat="@drawable/cart_outline" />
+            app:srcCompat="@drawable/item_product_cart_o" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

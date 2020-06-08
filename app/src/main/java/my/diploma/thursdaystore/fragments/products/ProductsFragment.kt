@@ -37,8 +37,7 @@ class ProductsFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.let { it.title = title }
 
-        productsViewModel.listLiveData.observe(
-            viewLifecycleOwner,
+        productsViewModel.listLiveData.observe(viewLifecycleOwner,
             ProductsLiveDataObserver(productsRecyclerView)
         )
 

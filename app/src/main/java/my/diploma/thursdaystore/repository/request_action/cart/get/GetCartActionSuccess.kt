@@ -1,4 +1,4 @@
-package my.diploma.thursdaystore.repository.request_action.cart
+package my.diploma.thursdaystore.repository.request_action.cart.get
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

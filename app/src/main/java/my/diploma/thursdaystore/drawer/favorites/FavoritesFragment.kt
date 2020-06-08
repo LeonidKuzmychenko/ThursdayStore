@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import my.diploma.thursdaystore.R
-import my.diploma.thursdaystore.fragments.products.observers.ProductsLiveDataObserver
+import my.diploma.thursdaystore.fragments.products.observers.FavoritesLiveDataObserver
 import my.diploma.thursdaystore.repository.WebRepositoryActions
 
 class FavoritesFragment : Fragment() {
@@ -20,9 +20,7 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoritesRecyclerView.layoutManager = GridLayoutManager(context ,2)
 
-        favoritesViewModel.liveData.observe(viewLifecycleOwner, ProductsLiveDataObserver(favoritesRecyclerView))
-
-//        favoritesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+        favoritesViewModel.liveData.observe(viewLifecycleOwner, FavoritesLiveDataObserver(favoritesRecyclerView))
 
         WebRepositoryActions.INSTANCE.getFavorites(favoritesViewModel.liveData)
     }

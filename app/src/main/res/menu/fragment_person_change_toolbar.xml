@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/person_change_ok"
-        android:icon="@drawable/checkbox_marked_circle_outline"
+        android:icon="@drawable/ic_okey"
         android:title="person_change_ok"
         app:showAsAction="always|withText" />
 </menu>

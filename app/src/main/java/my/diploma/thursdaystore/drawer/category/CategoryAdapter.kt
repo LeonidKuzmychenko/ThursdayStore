@@ -42,7 +42,7 @@ class CategoryAdapter(private val list: List<CategoryResponse>) :
         holder.container.setOnClickListener(CategoryItemListener(element.name ?: "null", element.id, holder.itemView))
         Glide.with(holder.itemView)
             .load(element.image)
-            .error(R.drawable.category_back_2)
+            .error(R.drawable.item_empty_product)
             .centerCrop()
             .into(holder.image)
     }

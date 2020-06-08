@@ -12,5 +12,9 @@ data class ProductResponse(
     @Json(name = "images")
     val images: List<String>,
     @Json(name = "price")
-    val price: String
+    val price: String,
+    @Json(name = "inFavorites")
+    val inFavorites: Boolean?,
+    @Json(name = "inCart")
+    val inCart: Boolean?
 )

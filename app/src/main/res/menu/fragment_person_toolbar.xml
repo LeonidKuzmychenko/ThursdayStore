@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/person_ok"
-        android:icon="@drawable/account_edit_outline"
+        android:icon="@drawable/fragment_person_edit"
         android:title="person_ok"
         app:showAsAction="always|withText" />
 </menu>

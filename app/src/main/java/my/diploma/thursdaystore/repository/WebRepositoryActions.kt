@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
-import my.diploma.thursdaystore.repository.request_action.cart.GetCartActionError
-import my.diploma.thursdaystore.repository.request_action.cart.GetCartActionSuccess
+import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionError
+import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionSuccess
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionError
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionSuccess
 import my.diploma.thursdaystore.repository.request_action.favorites.GetFavoritesActionError
@@ -130,12 +130,30 @@ enum class WebRepositoryActions {
         )
     }
 
+    fun addFavorites(productId:Long){
+        WebRepositoryRequests.INSTANCE.addFavorites(productId).subscribe()
+    }
+
+    fun deleteFavorites(productId:Long){
+        WebRepositoryRequests.INSTANCE.deleteFavorites(productId).subscribe()
+    }
+
     @SuppressLint("CheckResult")
     fun getCart(liveData: MutableLiveData<List<ProductResponse>>){
         WebRepositoryRequests.INSTANCE.getCart().subscribe(
-            GetCartActionSuccess(liveData),
+            GetCartActionSuccess(
+                liveData
+            ),
             GetCartActionError()
         )
+    }
+
+    fun addCart(productId:Long){
+        WebRepositoryRequests.INSTANCE.addCart(productId).subscribe()
+    }
+
+    fun deleteCart(productId:Long){
+        WebRepositoryRequests.INSTANCE.deleteCart(productId).subscribe()
     }
 }
 
