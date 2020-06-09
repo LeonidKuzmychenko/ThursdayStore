@@ -2,12 +2,14 @@ package my.diploma.thursdaystore.drawer.personal
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_person.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.utils.Lines
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
 class PersonalFragment : Fragment() {
@@ -22,6 +24,10 @@ class PersonalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = Lines.get(R.string.fragment_settings_title)
+        }
 
         WebRepositoryActions.INSTANCE.getUserData()
 

@@ -8,8 +8,29 @@
     <string name="menu_company">Company</string>
     <string name="menu_feedback">Feedback</string>
 
-    <string name="fragment_subcategory">Subcategory</string>
-    <string name="fragment_products">Products</string>
-    <string name="fragment_product">About Product</string>
+    <string name="fragment_category_title">fragment_category_title</string>
+    <string name="fragment_subcategory_title">fragment_subcategory_title</string>
+    <string name="fragment_products_title">fragment_products_title</string>
+    <string name="fragment_filter_title">fragment_filter_title</string>
+    <string name="fragment_product_title">fragment_product_title</string>
+    <string name="fragment_favorites_title">fragment_favorites_title</string>
+    <string name="fragment_cart_title">fragment_cart_title</string>
+    <string name="fragment_purchases_title">fragment_purchases_title</string>
+    <string name="fragment_settings_title">fragment_settings_title</string>
+    <string name="fragment_settings_change_title">fragment_settings_change_title</string>
+    <string name="fragment_company_title">fragment_company_title</string>
+    <string name="fragment_feedback_title">fragment_feedback_title</string>
+    <string name="fragment_filter_price">fragment_filter_price</string>
+    <string name="fragment_feedback_text">fragment_feedback_text</string>
+    <string name="fragment_company_text">fragment_company_text</string>
+    <string name="fragment_settings_name">fragment_settings_name</string>
+    <string name="fragment_settings_last_name">fragment_settings_last_name</string>
+    <string name="fragment_settings_patronymic">fragment_settings_patronymic</string>
+    <string name="fragment_settings_gender">fragment_settings_gender</string>
+    <string name="fragment_settings_bitrh_day">fragment_settings_bitrh_day</string>
+    <string name="fragment_settings_phone">fragment_settings_phone</string>
+    <string name="fragment_settings_city">fragment_settings_city</string>
+    <string name="fragment_settings_address">fragment_settings_address</string>
+    <string name="fragment_settings_email">fragment_settings_email</string>
 
 </resources>

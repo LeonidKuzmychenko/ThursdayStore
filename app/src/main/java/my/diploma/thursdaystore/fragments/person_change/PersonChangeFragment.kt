@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.moshi.Moshi
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_person_change.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.repository.WebRepositoryActions
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
+import my.diploma.thursdaystore.utils.Lines
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
 
@@ -29,6 +31,10 @@ class PersonChangeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = Lines.get(R.string.fragment_settings_change_title)
+        }
 
         val sp = SharedPreferencesManager.INSTANCE
         personEditNameContent.setText(getNullFormatText(sp.getPersonName()))

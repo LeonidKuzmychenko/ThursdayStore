@@ -34,7 +34,7 @@ enum class MacAddress {
 
     @SuppressLint("HardwareIds")
     fun get1(context: Context): String {
-        val manager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val manager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val info = manager.connectionInfo
         return info.macAddress.toUpperCase()
     }

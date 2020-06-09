@@ -10,6 +10,7 @@ import my.diploma.thursdaystore.retrofit.dto.favorites.FavoritesRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.languages.LanguagesResponse
+import my.diploma.thursdaystore.retrofit.dto.locale.Locale
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
@@ -36,14 +37,17 @@ enum class WebRepositoryRequests {
         RetrofitApi.server()
             .getSubcategories(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
-                id,
-                Language.getLanguage())
+                id, Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun getLocale(): Single<Response<String>> {
-        TODO("Not yet implemented")
-    }
+    fun getLocale(): Single<Response<List<Locale>>> =
+        RetrofitApi.server()
+            .getLocale(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                Language.getLanguage())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
 
     fun getColors(): Single<Response<String>> {
         TODO("Not yet implemented")

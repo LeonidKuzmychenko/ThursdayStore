@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.utils.Lines
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navView.getHeaderView(0).macAddress.text = SharedPreferencesManager.INSTANCE.getMacAddress()
+
+        navView.menu.findItem(R.id.nav_category).title = Lines.get(R.string.fragment_category_title)
+        navView.menu.findItem(R.id.nav_favorites).title = Lines.get(R.string.fragment_favorites_title)
+        navView.menu.findItem(R.id.nav_basket).title = Lines.get(R.string.fragment_cart_title)
+        navView.menu.findItem(R.id.nav_purchases).title = Lines.get(R.string.fragment_purchases_title)
+        navView.menu.findItem(R.id.nav_personal).title = Lines.get(R.string.fragment_settings_title)
+        navView.menu.findItem(R.id.nav_company).title = Lines.get(R.string.fragment_company_title)
+        navView.menu.findItem(R.id.nav_feedback).title = Lines.get(R.string.fragment_feedback_title)
 
         setNavViewUserName()
     }

@@ -7,6 +7,7 @@ import my.diploma.thursdaystore.retrofit.dto.favorites.FavoritesRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.languages.LanguagesResponse
+import my.diploma.thursdaystore.retrofit.dto.locale.Locale
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
@@ -29,7 +30,7 @@ interface ServerRequest {
                          @Query("lang") lang: String): Single<Response<List<SubcategoryResponse>>>
 
     @GET("/locale")
-    fun getLocale(@Header("mac") mac:String): Single<Response<String>>
+    fun getLocale(@Header("mac") mac:String, @Query("lang") lang: String): Single<Response<List<Locale>>>
 
     @GET("/colors")
     fun getColors(@Header("mac") mac:String): Single<Response<String>>

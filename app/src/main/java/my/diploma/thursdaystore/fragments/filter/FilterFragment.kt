@@ -2,6 +2,7 @@ package my.diploma.thursdaystore.fragments.filter
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -11,6 +12,7 @@ import my.diploma.thursdaystore.fragments.filter.observers.FilterUiObserver
 import my.diploma.thursdaystore.fragments.filter.observers.SavedFilterObserver
 import my.diploma.thursdaystore.fragments.products.ProductsFragmentArgs
 import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.utils.Lines
 
 class FilterFragment : Fragment() {
 
@@ -24,6 +26,13 @@ class FilterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = Lines.get(R.string.fragment_filter_title)
+        }
+
+        filterPriceText.text = Lines.get(R.string.fragment_filter_price)
+
         filterRecyclerView.isNestedScrollingEnabled = false //скрол рейсайклера вместе с ценой
         vm.savedFilter.observe(viewLifecycleOwner, SavedFilterObserver(this))
 

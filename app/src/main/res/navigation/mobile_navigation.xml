@@ -58,7 +58,6 @@
     <fragment
         android:id="@+id/subCategoryFragment"
         android:name="my.diploma.thursdaystore.fragments.sub_category.SubCategoryFragment"
-        android:label="@string/fragment_subcategory"
         tools:layout="@layout/fragment_sub_category">
         <argument
             android:name="title"
@@ -74,7 +73,6 @@
     <fragment
         android:id="@+id/productsFragment"
         android:name="my.diploma.thursdaystore.fragments.products.ProductsFragment"
-        android:label="@string/fragment_products"
         tools:layout="@layout/fragment_products">
         <action
             android:id="@+id/action_productsFragment_to_productTreeFragment"
@@ -99,7 +97,6 @@
     <fragment
         android:id="@+id/productTreeFragment"
         android:name="my.diploma.thursdaystore.fragments.product_tree.ProductTreeFragment"
-        android:label="@string/fragment_product"
         tools:layout="@layout/fragment_product_tree" >
         <argument
             android:name="productId"

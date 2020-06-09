@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_basket.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.fragments.products.observers.BasketLiveDataObserver
 import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.utils.Lines
 
 class BasketFragment : Fragment() {
 
@@ -18,6 +20,11 @@ class BasketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = Lines.get(R.string.fragment_cart_title)
+        }
+
         basketRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
         basketViewModel.listLiveData.observe(viewLifecycleOwner, BasketLiveDataObserver(basketRecyclerView))

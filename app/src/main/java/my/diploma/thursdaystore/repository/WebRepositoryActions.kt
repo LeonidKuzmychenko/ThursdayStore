@@ -14,6 +14,8 @@ import my.diploma.thursdaystore.repository.request_action.filters.apply.ApplyFil
 import my.diploma.thursdaystore.repository.request_action.filters.apply.ApplyFilterActionSuccess
 import my.diploma.thursdaystore.repository.request_action.filters.get.GetFiltersActionError
 import my.diploma.thursdaystore.repository.request_action.filters.get.GetFiltersActionSuccess
+import my.diploma.thursdaystore.repository.request_action.locale.GetLocaleActionError
+import my.diploma.thursdaystore.repository.request_action.locale.GetLocaleActionSuccess
 import my.diploma.thursdaystore.repository.request_action.products.GetProductsActionError
 import my.diploma.thursdaystore.repository.request_action.products.GetProductsActionSuccess
 import my.diploma.thursdaystore.repository.request_action.properties.GetPropertiesActionError
@@ -58,7 +60,10 @@ enum class WebRepositoryActions {
 
     @SuppressLint("CheckResult")
     fun getLocale() {
-        WebRepositoryRequests.INSTANCE.getLocale().subscribe()
+        WebRepositoryRequests.INSTANCE.getLocale().subscribe(
+            GetLocaleActionSuccess(),
+            GetLocaleActionError()
+        )
     }
 
     @SuppressLint("CheckResult")

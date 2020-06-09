@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_company.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.utils.Lines
 
 class AboutCompanyFragment : Fragment() {
 
@@ -16,9 +17,16 @@ class AboutCompanyFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         aboutCompanyViewModel = ViewModelProvider(this).get(AboutCompanyViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_company, container, false)
-        val textView: TextView = root.findViewById(R.id.text_company)
-        aboutCompanyViewModel.text.observe(this, Observer { textView.text = it })
-        return root
+        return inflater.inflate(R.layout.fragment_company, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = Lines.get(R.string.fragment_company_title)
+        }
+
+        text_company.text = Lines.get(R.string.fragment_company_text)
     }
 }

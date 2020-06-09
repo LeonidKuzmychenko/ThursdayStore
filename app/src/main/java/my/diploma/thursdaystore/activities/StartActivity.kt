@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.utils.Lines
 import my.diploma.thursdaystore.utils.PermissionManager
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 
@@ -46,6 +48,8 @@ class StartActivity : AppCompatActivity() {
         SharedPreferencesManager.INSTANCE.init(this)
 
         GlobalScope.launch {
+            Lines.context = this@StartActivity.applicationContext
+            WebRepositoryActions.INSTANCE.getLocale()
             Thread.sleep(5500)
             startActivity(Intent(this@StartActivity, MainActivity::class.java))
             finish()
