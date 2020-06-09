@@ -21,8 +21,8 @@
         android:label="@string/menu_favorites"
         tools:layout="@layout/fragment_favorites" >
         <action
-            android:id="@+id/action_nav_favorites_to_productTreeFragment2"
-            app:destination="@id/productTreeFragment2" />
+            android:id="@+id/action_nav_favorites_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
     </fragment>
 
     <fragment
@@ -31,8 +31,8 @@
         android:label="@string/menu_basket"
         tools:layout="@layout/fragment_basket" >
         <action
-            android:id="@+id/action_nav_basket_to_productTreeFragment2"
-            app:destination="@id/productTreeFragment2" />
+            android:id="@+id/action_nav_basket_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
     </fragment>
 
     <fragment
@@ -98,8 +98,8 @@
             app:argType="my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest"
             app:nullable="true"/>
         <action
-            android:id="@+id/action_productsFragment_to_productTreeFragment2"
-            app:destination="@id/productTreeFragment2" />
+            android:id="@+id/action_productsFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
     </fragment>
 
     <fragment
@@ -129,10 +129,9 @@
         android:name="my.diploma.thursdaystore.fragments.person_change.PersonChangeFragment"
         android:label="PersonChangeFragment" />
     <fragment
-        android:id="@+id/productTreeFragment2"
-        android:name="my.diploma.thursdaystore.fragments.product_tree.ProductTreeFragment"
-        android:label="fragment_product_info"
-        tools:layout="@layout/fragment_product_info" >
+        android:id="@+id/productInfoFragment"
+        android:name="my.diploma.thursdaystore.fragments.product_tree.ProductInfoFragment"
+        android:label="ProductInfoFragment" >
         <argument
             android:name="productId"
             app:argType="long" />

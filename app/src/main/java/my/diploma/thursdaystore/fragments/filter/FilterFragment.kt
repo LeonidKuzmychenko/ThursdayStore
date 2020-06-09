@@ -55,18 +55,6 @@ class FilterFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun setSeekBarMax(value: Int) {
-        filterPriceSeekBar.max = value
-    }
-
-    fun setSeekBarProgress(value: Int) {
-        filterPriceSeekBar.progress = value
-    }
-
-    fun setSeekBarText(value: String) {
-        filterPriceMax.text = value
-    }
-
     private fun getAction(bundle:Bundle) : FilterFragmentDirections.ActionFilterFragmentToProductsFragment {
         val id = getBundleId(bundle)
         val title = getBundleTitle(bundle)
@@ -80,4 +68,15 @@ class FilterFragment : Fragment() {
 
     private fun getBundleId(bundle:Bundle) = ProductsFragmentArgs.fromBundle(bundle).subcategoryId
 
+    fun setSeekBarMax(value: Int) {
+        filterPriceSeekBar.max = value
+    }
+
+    fun setSeekBarProgress(value: Int) {
+        filterPriceSeekBar.progress = value
+    }
+
+    fun setSeekBarText(value: String) {
+        filterPriceMax.text = value
+    }
 }

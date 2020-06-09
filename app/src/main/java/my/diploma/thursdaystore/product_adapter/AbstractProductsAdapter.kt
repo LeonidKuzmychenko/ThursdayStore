@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.custom_view.CartImageView
 import my.diploma.thursdaystore.custom_view.FavoriteImageView
+import my.diploma.thursdaystore.product_adapter.listeners.ProductItemClick
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 
 abstract class AbstractProductsAdapter(private val list: List<ProductResponse>) :
@@ -52,7 +53,7 @@ abstract class AbstractProductsAdapter(private val list: List<ProductResponse>) 
         holder.favorite.setState(element.inFavorites!!)
 
         holder.container.setOnClickListener(
-            getProductClickListener(position.toLong(), holder.itemView)
+            getProductClickListener(element.id)
         )
 
         holder.favorite.setOnClickListener(
@@ -65,7 +66,7 @@ abstract class AbstractProductsAdapter(private val list: List<ProductResponse>) 
 
     }
 
-    abstract fun getProductClickListener(position:Long, view:View): View.OnClickListener
+    abstract fun getProductClickListener(productId: Long): ProductItemClick
 
     abstract fun getFavoriteClickListener(productId: Long): View.OnClickListener
 

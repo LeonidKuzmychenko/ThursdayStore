@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import my.diploma.thursdaystore.R
 
 
-class ProductTreeFragment : Fragment() {
+class ProductInfoFragment : Fragment() {
 
-    private lateinit var productTreeViewModel: ProductTreeViewModel
+    private lateinit var productTreeViewModel: ProductInfoViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,7 +24,7 @@ class ProductTreeFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        productTreeViewModel = ViewModelProvider(this).get(ProductTreeViewModel::class.java)
+        productTreeViewModel = ViewModelProvider(this).get(ProductInfoViewModel::class.java)
         return inflater.inflate(R.layout.fragment_product_info, container, false)
     }
 
