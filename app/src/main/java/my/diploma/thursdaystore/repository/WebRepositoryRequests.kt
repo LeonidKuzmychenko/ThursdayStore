@@ -66,7 +66,8 @@ enum class WebRepositoryRequests {
         RetrofitApi.server()
             .getProduct(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
-                productId)
+                productId,
+                Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 

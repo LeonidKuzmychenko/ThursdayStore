@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_product_info.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.product_info.adapter.ProductInfoPropertyAdapter
 import my.diploma.thursdaystore.product_adapter.listeners.ProductCartClickListener
 import my.diploma.thursdaystore.product_adapter.listeners.ProductFavoriteClickListener
 import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.retrofit.dto.product.Property
 
 
 class ProductInfoFragment : Fragment() {
@@ -23,13 +26,7 @@ class ProductInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {bundle ->
-            val id = ProductInfoFragmentArgs.fromBundle(bundle).productId
-
-            (activity as AppCompatActivity).supportActionBar?.let {
-                it.title = "${it.title}: $id"
-            }
-
-            WebRepositoryActions.INSTANCE.getProduct(this, id)
+            WebRepositoryActions.INSTANCE.getProduct(this, ProductInfoFragmentArgs.fromBundle(bundle).productId)
         }
     }
 
@@ -54,6 +51,9 @@ class ProductInfoFragment : Fragment() {
     }
 
     fun setTitle(name: String){
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = name
+        }
         product_info_name_text.text = name
     }
 
@@ -66,8 +66,10 @@ class ProductInfoFragment : Fragment() {
         product_info_description_text.text = description
     }
 
-    fun setCharacteristics(){
-        product_info_rv
+    fun setCharacteristics(properties: List<Property>){
+        product_info_rv.isNestedScrollingEnabled = false
+        product_info_rv.layoutManager = LinearLayoutManager(context)
+        product_info_rv.adapter = ProductInfoPropertyAdapter(properties)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

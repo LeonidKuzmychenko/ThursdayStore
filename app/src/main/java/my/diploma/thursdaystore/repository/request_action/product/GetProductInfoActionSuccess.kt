@@ -27,6 +27,8 @@ class GetProductInfoActionSuccess(private val f:ProductInfoFragment): Consumer<R
             f.setPrice(item.price)
 
             f.setDescription(item.description)
+
+            f.setCharacteristics(item.properties)
         }
     }
 }

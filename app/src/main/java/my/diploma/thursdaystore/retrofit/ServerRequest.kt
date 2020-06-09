@@ -42,7 +42,8 @@ interface ServerRequest {
 
     @GET("/products/{id}")
     fun getProduct(@Header("mac") mac:String,
-                    @Path("id") productId: Long): Single<Response<ProductInfoResponse>>
+                   @Path("id") productId: Long,
+                   @Query("lang") lang: String): Single<Response<ProductInfoResponse>>
 
     @GET("/properties")
     fun getProperties(@Header("mac") mac:String,
