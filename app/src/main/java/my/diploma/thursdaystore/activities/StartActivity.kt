@@ -45,12 +45,14 @@ class StartActivity : AppCompatActivity() {
 
 
     private fun startActivity(){
+        Lines.context = applicationContext
         SharedPreferencesManager.INSTANCE.init(this)
+        WebRepositoryActions.INSTANCE.getLocale(this)
+    }
 
+    fun startMainActivity(){
         GlobalScope.launch {
-            Lines.context = this@StartActivity.applicationContext
-            WebRepositoryActions.INSTANCE.getLocale()
-            Thread.sleep(5500)
+            Thread.sleep(3500)
             startActivity(Intent(this@StartActivity, MainActivity::class.java))
             finish()
         }

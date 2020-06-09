@@ -11,6 +11,7 @@ import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemReque
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import my.diploma.thursdaystore.retrofit.dto.locale.Locale
+import my.diploma.thursdaystore.retrofit.dto.product.ProductInfoResponse
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
@@ -58,6 +59,14 @@ enum class WebRepositoryRequests {
             .getProducts(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
                 id)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun getProduct(productId: Long): Single<Response<ProductInfoResponse>> =
+        RetrofitApi.server()
+            .getProduct(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                productId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 

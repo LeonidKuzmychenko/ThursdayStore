@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
+import my.diploma.thursdaystore.activities.StartActivity
+import my.diploma.thursdaystore.fragments.product_tree.ProductInfoFragment
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionError
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionSuccess
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionError
@@ -16,6 +18,8 @@ import my.diploma.thursdaystore.repository.request_action.filters.get.GetFilters
 import my.diploma.thursdaystore.repository.request_action.filters.get.GetFiltersActionSuccess
 import my.diploma.thursdaystore.repository.request_action.locale.GetLocaleActionError
 import my.diploma.thursdaystore.repository.request_action.locale.GetLocaleActionSuccess
+import my.diploma.thursdaystore.repository.request_action.product.GetProductInfoActionError
+import my.diploma.thursdaystore.repository.request_action.product.GetProductInfoActionSuccess
 import my.diploma.thursdaystore.repository.request_action.products.GetProductsActionError
 import my.diploma.thursdaystore.repository.request_action.products.GetProductsActionSuccess
 import my.diploma.thursdaystore.repository.request_action.properties.GetPropertiesActionError
@@ -59,9 +63,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getLocale() {
+    fun getLocale(activity: StartActivity?) {
         WebRepositoryRequests.INSTANCE.getLocale().subscribe(
-            GetLocaleActionSuccess(),
+            GetLocaleActionSuccess(activity),
             GetLocaleActionError()
         )
     }
@@ -76,6 +80,14 @@ enum class WebRepositoryActions {
         WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
             GetProductsActionSuccess(liveData),
             GetProductsActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getProduct(f:ProductInfoFragment, productId: Long) {
+        WebRepositoryRequests.INSTANCE.getProduct(productId).subscribe(
+            GetProductInfoActionSuccess(f),
+            GetProductInfoActionError()
         )
     }
 

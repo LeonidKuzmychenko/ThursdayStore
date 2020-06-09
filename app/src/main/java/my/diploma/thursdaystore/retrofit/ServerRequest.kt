@@ -8,6 +8,7 @@ import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemReque
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import my.diploma.thursdaystore.retrofit.dto.locale.Locale
+import my.diploma.thursdaystore.retrofit.dto.product.ProductInfoResponse
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
@@ -38,6 +39,10 @@ interface ServerRequest {
     @GET("/products")
     fun getProducts(@Header("mac") mac:String,
                     @Query("catId") id: Long): Single<Response<List<ProductResponse>>>
+
+    @GET("/products/{id}")
+    fun getProduct(@Header("mac") mac:String,
+                    @Path("id") productId: Long): Single<Response<ProductInfoResponse>>
 
     @GET("/properties")
     fun getProperties(@Header("mac") mac:String,
