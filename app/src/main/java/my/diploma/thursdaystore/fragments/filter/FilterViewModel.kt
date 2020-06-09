@@ -15,6 +15,7 @@ class FilterViewModel : ViewModel(){
     fun setSavedFilter(filter: FilterItem, id: Long){
         val listOfFilterPropertyRequest: MutableList<FilterPropertyRequest> = mutableListOf()
         filter.properties.forEach { listOfFilterPropertyRequest.add(FilterPropertyRequest(it.propertyId, mutableListOf())) }
-        savedFilter.value = ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,filter.price.max.toLong()), listOfFilterPropertyRequest)
+        val max = if (filter.price.max == null) 10000 else filter.price.max.toLong()
+        savedFilter.value = ApplyFilterItemRequest(id, Language.getLanguage(), FilterPricesRequest(1,max), listOfFilterPropertyRequest)
     }
 }

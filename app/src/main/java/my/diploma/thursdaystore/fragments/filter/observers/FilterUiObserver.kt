@@ -11,7 +11,7 @@ class FilterUiObserver(private val f:FilterFragment, private val  id: Long): Obs
 
     override fun onChanged(filter: FilterItem) {
         try {
-            f.setSeekBarMax(filter.price.max.toInt())
+            f.setSeekBarMax(filter.price.max!!.toInt())
         } catch (e:Exception){
             f.setSeekBarMax(10000)
         }

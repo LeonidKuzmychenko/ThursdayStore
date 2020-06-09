@@ -4,5 +4,5 @@ import com.squareup.moshi.Json
 
 data class FilterPrices(
     @Json(name = "max")
-    val max: String
+    val max: Long?
 )

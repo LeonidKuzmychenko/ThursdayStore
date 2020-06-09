@@ -16,7 +16,9 @@ class GetFiltersActionSuccess(private val liveData:MutableLiveData<FilterItem>):
             Log.d(TAG, "getFilter Content = $response")
         }
 
-        liveData.value = t.body()
+        t.body()?.let {
+            liveData.value = it
+        }
     }
 
 }
