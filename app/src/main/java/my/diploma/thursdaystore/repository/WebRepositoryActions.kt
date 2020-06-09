@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import my.diploma.thursdaystore.activities.StartActivity
+import my.diploma.thursdaystore.drawer.purchases.PurchasesFragment
 import my.diploma.thursdaystore.fragments.product_tree.ProductInfoFragment
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionError
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionSuccess
@@ -175,9 +176,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getPurchases(){
+    fun getPurchases(f: PurchasesFragment){
         WebRepositoryRequests.INSTANCE.getPurchases().subscribe(
-            GetPurchasesActionSuccess(),
+            GetPurchasesActionSuccess(f),
             GetPurchasesActionError()
         )
     }

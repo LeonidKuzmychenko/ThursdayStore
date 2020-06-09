@@ -2,10 +2,10 @@ package my.diploma.thursdaystore.drawer.basket
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_basket.*
 import my.diploma.thursdaystore.R
@@ -44,7 +44,8 @@ class BasketFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.make_purchases) {
-            Toast.makeText(context,"MAKE", Toast.LENGTH_SHORT).show()
+            val action = BasketFragmentDirections.actionNavBasketToMakePurchaseFragment()
+            Navigation.findNavController(requireView()).navigate(action)
         }
         return super.onOptionsItemSelected(item)
     }

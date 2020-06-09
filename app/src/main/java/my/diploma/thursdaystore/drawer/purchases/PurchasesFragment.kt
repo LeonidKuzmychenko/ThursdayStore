@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_purchases.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.repository.WebRepositoryActions
+import my.diploma.thursdaystore.retrofit.dto.purchases.get.GetPurchasesResponse
 import my.diploma.thursdaystore.utils.Lines
 
 class PurchasesFragment : Fragment() {
@@ -27,9 +29,14 @@ class PurchasesFragment : Fragment() {
         purchasesRecyclerView.layoutManager = LinearLayoutManager(context)
 
         purchasesViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
-            purchasesRecyclerView.adapter = PurchasesAdapter(it)
+            purchasesRecyclerView.adapter = PurchasesAdapter(it, this)
         })
-//        purchasesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+
+        WebRepositoryActions.INSTANCE.getPurchases(this)
+    }
+
+    fun setData(list: List<GetPurchasesResponse>){
+        purchasesViewModel.listLiveData.value = list
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
