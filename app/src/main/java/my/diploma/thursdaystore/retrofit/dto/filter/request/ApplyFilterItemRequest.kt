@@ -9,7 +9,7 @@ data class ApplyFilterItemRequest(
     @Json(name = "lang")
     val lang: String,
     @Json(name = "prices")
-    val filterPricesRequest:FilterPricesRequest,
+    val price:FilterPricesRequest,
     @Json(name = "filters")
     val filters: List<FilterPropertyRequest> = listOf()
 ) : Serializable

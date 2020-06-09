@@ -6,5 +6,5 @@ data class FilterItem(
     @Json(name = "properties")
     val properties: List<FilterProperties>,
     @Json(name = "prices")
-    val filterPrices: FilterPrices
+    val price: FilterPrices
 )
