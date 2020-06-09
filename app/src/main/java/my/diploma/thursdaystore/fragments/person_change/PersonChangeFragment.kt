@@ -1,13 +1,10 @@
 package my.diploma.thursdaystore.fragments.person_change
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_person_change.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.repository.WebRepositoryActions
@@ -62,7 +59,6 @@ class PersonChangeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.person_change_ok) {
-            Toast.makeText(context, "SAVE", Toast.LENGTH_SHORT).show()
             val userData = UserData(
                 null,
                 null,
@@ -76,9 +72,6 @@ class PersonChangeFragment : Fragment() {
                 personEditCityContent.text.toString(),
                 personEditAddressContent.text.toString()
             )
-
-            val user = Moshi.Builder().build().adapter(UserData::class.java).toJson(userData)
-            Log.d("TEST_PERSON_DATA", "Sent Content =  $user")
 
             WebRepositoryActions.INSTANCE.setUserData(activity,userData)
         }

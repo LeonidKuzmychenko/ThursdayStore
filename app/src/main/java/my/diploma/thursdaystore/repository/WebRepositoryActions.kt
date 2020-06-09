@@ -24,6 +24,10 @@ import my.diploma.thursdaystore.repository.request_action.products.GetProductsAc
 import my.diploma.thursdaystore.repository.request_action.products.GetProductsActionSuccess
 import my.diploma.thursdaystore.repository.request_action.properties.GetPropertiesActionError
 import my.diploma.thursdaystore.repository.request_action.properties.GetPropertiesActionSuccess
+import my.diploma.thursdaystore.repository.request_action.purchase.get.GetPurchasesActionError
+import my.diploma.thursdaystore.repository.request_action.purchase.get.GetPurchasesActionSuccess
+import my.diploma.thursdaystore.repository.request_action.purchase.post.MakePurchaseActionError
+import my.diploma.thursdaystore.repository.request_action.purchase.post.MakePurchaseActionSuccess
 import my.diploma.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionError
 import my.diploma.thursdaystore.repository.request_action.subcategories.GetSubcategoriesActionSuccess
 import my.diploma.thursdaystore.repository.request_action.user.get.GetUserDataActionError
@@ -34,6 +38,7 @@ import my.diploma.thursdaystore.retrofit.dto.category.CategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
+import my.diploma.thursdaystore.retrofit.dto.purchases.post.MakePurchaseRequest
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 
@@ -107,9 +112,7 @@ enum class WebRepositoryActions {
     @SuppressLint("CheckResult")
     fun getFilter(id: Long, liveData: MutableLiveData<FilterItem>) {
         WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
-            GetFiltersActionSuccess(
-                liveData
-            ),
+            GetFiltersActionSuccess(liveData),
             GetFiltersActionError()
         )
     }
@@ -158,9 +161,7 @@ enum class WebRepositoryActions {
     @SuppressLint("CheckResult")
     fun getCart(liveData: MutableLiveData<List<ProductResponse>>){
         WebRepositoryRequests.INSTANCE.getCart().subscribe(
-            GetCartActionSuccess(
-                liveData
-            ),
+            GetCartActionSuccess(liveData),
             GetCartActionError()
         )
     }
@@ -172,5 +173,22 @@ enum class WebRepositoryActions {
     fun deleteCart(productId:Long){
         WebRepositoryRequests.INSTANCE.deleteCart(productId).subscribe()
     }
+
+    @SuppressLint("CheckResult")
+    fun getPurchases(){
+        WebRepositoryRequests.INSTANCE.getPurchases().subscribe(
+            GetPurchasesActionSuccess(),
+            GetPurchasesActionError()
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun makePurchase(purchase: MakePurchaseRequest){
+        WebRepositoryRequests.INSTANCE.makePurchase(purchase).subscribe(
+            MakePurchaseActionSuccess(),
+            MakePurchaseActionError()
+        )
+    }
+
 }
 

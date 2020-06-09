@@ -29,7 +29,7 @@ class PurchasesFragment : Fragment() {
         purchasesViewModel.listLiveData.observe(viewLifecycleOwner, Observer {
             purchasesRecyclerView.adapter = PurchasesAdapter(it)
         })
-        purchasesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+//        purchasesViewModel.listLiveData.value = mutableListOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

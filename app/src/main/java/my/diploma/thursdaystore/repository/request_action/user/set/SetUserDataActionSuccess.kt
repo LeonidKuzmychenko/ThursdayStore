@@ -30,6 +30,8 @@ class SetUserDataActionSuccess(private val activity:Activity?): Consumer<Respons
 
         if (activity is MainActivity) activity.setNavViewUserName()
 
+        activity?.onBackPressed()
+
     }
 
 }

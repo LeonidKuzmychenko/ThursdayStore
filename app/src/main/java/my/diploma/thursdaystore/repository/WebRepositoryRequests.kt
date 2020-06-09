@@ -8,12 +8,12 @@ import my.diploma.thursdaystore.retrofit.dto.category.CategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.favorites.CartRequest
 import my.diploma.thursdaystore.retrofit.dto.favorites.FavoritesRequest
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
-import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import my.diploma.thursdaystore.retrofit.dto.languages.LanguagesResponse
 import my.diploma.thursdaystore.retrofit.dto.locale.Locale
 import my.diploma.thursdaystore.retrofit.dto.product.ProductInfoResponse
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
+import my.diploma.thursdaystore.retrofit.dto.purchases.post.MakePurchaseRequest
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 import my.diploma.thursdaystore.utils.Language
@@ -84,7 +84,7 @@ enum class WebRepositoryRequests {
         TODO("Not yet implemented")
     }
 
-    fun getFilter(id: Long): Single<Response<FilterItem>> =
+    fun getFilter(id: Long) =
         RetrofitApi.server()
             .getFilter(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -93,7 +93,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun applyFilter(filterItem: ApplyFilterItemRequest): Single<Response<List<ProductResponse>>> =
+    fun applyFilter(filterItem: ApplyFilterItemRequest) =
         RetrofitApi.server()
             .applyFilter(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -101,17 +101,17 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun getUserData(): Single<Response<UserData>> =
+    fun getUserData() =
         RetrofitApi.server().getUserData(SharedPreferencesManager.INSTANCE.getMacAddress())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun setUserData(userData: UserData): Single<Response<UserData>> =
+    fun setUserData(userData: UserData) =
         RetrofitApi.server().setUserData(SharedPreferencesManager.INSTANCE.getMacAddress(), userData)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun getFavorites(): Single<Response<List<ProductResponse>>> =
+    fun getFavorites() =
         RetrofitApi.server()
             .getFavorites(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -121,7 +121,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun addFavorites(productId:Long): Single<Response<Any>> =
+    fun addFavorites(productId:Long) =
         RetrofitApi.server()
             .addFavorites(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -130,7 +130,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun deleteFavorites(productId:Long): Single<Response<Any>> =
+    fun deleteFavorites(productId:Long) =
         RetrofitApi.server()
             .deleteFavorites(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -139,7 +139,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun getCart(): Single<Response<List<ProductResponse>>> =
+    fun getCart() =
         RetrofitApi.server()
             .getCart(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -149,7 +149,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun addCart(productId:Long): Single<Response<Any>> =
+    fun addCart(productId:Long) =
         RetrofitApi.server()
             .addCart(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -158,7 +158,7 @@ enum class WebRepositoryRequests {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
-    fun deleteCart(productId:Long): Single<Response<Any>> =
+    fun deleteCart(productId:Long) =
         RetrofitApi.server()
             .deleteCart(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
@@ -166,4 +166,22 @@ enum class WebRepositoryRequests {
             )
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+
+    fun getPurchases() =
+        RetrofitApi.server()
+            .getPurchases(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                Language.getLanguage(),
+                null)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+    fun makePurchase(purchase: MakePurchaseRequest) =
+        RetrofitApi.server()
+            .makePurchase(
+                SharedPreferencesManager.INSTANCE.getMacAddress(),
+                purchase)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
 }

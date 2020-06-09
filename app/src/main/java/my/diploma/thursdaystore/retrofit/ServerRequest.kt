@@ -11,6 +11,9 @@ import my.diploma.thursdaystore.retrofit.dto.locale.Locale
 import my.diploma.thursdaystore.retrofit.dto.product.ProductInfoResponse
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.properties.PropertiesResponse
+import my.diploma.thursdaystore.retrofit.dto.purchases.get.GetPurchasesResponse
+import my.diploma.thursdaystore.retrofit.dto.purchases.post.MakePurchaseRequest
+import my.diploma.thursdaystore.retrofit.dto.purchases.post.MakePurchasesResponse
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 import retrofit2.Response
@@ -93,4 +96,13 @@ interface ServerRequest {
     @HTTP(method = "DELETE", path = "/cart", hasBody = true)
     fun deleteCart(@Header("mac") mac:String,
                    @Body fav:CartRequest): Single<Response<Any>>
+
+    @GET("/purchase")
+    fun getPurchases(@Header("mac") mac:String,
+                @Query("lang") lang: String,
+                @Query("currency") currency :String?): Single<Response<List<GetPurchasesResponse>>>
+
+    @POST("/purchase")
+    fun makePurchase(@Header("mac") mac:String,
+                     @Body item: MakePurchaseRequest): Single<Response<MakePurchasesResponse>>
 }
