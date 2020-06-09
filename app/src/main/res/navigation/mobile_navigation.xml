@@ -19,13 +19,21 @@
         android:id="@+id/nav_favorites"
         android:name="my.diploma.thursdaystore.drawer.favorites.FavoritesFragment"
         android:label="@string/menu_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_nav_favorites_to_productTreeFragment2"
+            app:destination="@id/productTreeFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_basket"
         android:name="my.diploma.thursdaystore.drawer.basket.BasketFragment"
         android:label="@string/menu_basket"
-        tools:layout="@layout/fragment_basket" />
+        tools:layout="@layout/fragment_basket" >
+        <action
+            android:id="@+id/action_nav_basket_to_productTreeFragment2"
+            app:destination="@id/productTreeFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_purchases"
@@ -74,9 +82,6 @@
         android:id="@+id/productsFragment"
         android:name="my.diploma.thursdaystore.fragments.products.ProductsFragment"
         tools:layout="@layout/fragment_products">
-        <action
-            android:id="@+id/action_productsFragment_to_productTreeFragment"
-            app:destination="@id/productTreeFragment" />
         <argument
             android:name="title"
             app:argType="string" />
@@ -92,17 +97,11 @@
             android:name="filterRequest"
             app:argType="my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest"
             app:nullable="true"/>
+        <action
+            android:id="@+id/action_productsFragment_to_productTreeFragment2"
+            app:destination="@id/productTreeFragment2" />
     </fragment>
 
-    <fragment
-        android:id="@+id/productTreeFragment"
-        android:name="my.diploma.thursdaystore.fragments.product_tree.ProductTreeFragment"
-        tools:layout="@layout/fragment_product_tree" >
-        <argument
-            android:name="productId"
-            app:argType="long"
-            android:defaultValue="-1L" />
-    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="my.diploma.thursdaystore.fragments.filter.FilterFragment"
@@ -129,5 +128,14 @@
         android:id="@+id/personChangeFragment"
         android:name="my.diploma.thursdaystore.fragments.person_change.PersonChangeFragment"
         android:label="PersonChangeFragment" />
+    <fragment
+        android:id="@+id/productTreeFragment2"
+        android:name="my.diploma.thursdaystore.fragments.product_tree.ProductTreeFragment"
+        android:label="fragment_product_info"
+        tools:layout="@layout/fragment_product_info" >
+        <argument
+            android:name="productId"
+            app:argType="long" />
+    </fragment>
 
 </navigation>
