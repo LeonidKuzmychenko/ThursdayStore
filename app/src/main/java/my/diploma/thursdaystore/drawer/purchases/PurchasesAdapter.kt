@@ -14,10 +14,10 @@ class PurchasesAdapter(private val list: List<GetPurchasesResponse>, private val
     RecyclerView.Adapter<PurchasesAdapter.PurchasesViewHolder>() {
 
     class PurchasesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val text1: TextView = itemView.findViewById(R.id.item_purchase_text_1)
+        val text1: TextView = itemView.findViewById(R.id.item_purchase_id)
         val text2: TextView = itemView.findViewById(R.id.item_purchase_text_2)
         val text3: TextView = itemView.findViewById(R.id.item_purchase_text_3)
-        val image: ImageView = itemView.findViewById(R.id.item_purchase_image)
+        val image: ImageView = itemView.findViewById(R.id.item_purchase_image_1)
         val container: View = itemView.findViewById(R.id.item_purchase_container)
     }
 

@@ -25,12 +25,14 @@ enum class WebRepositoryRequests {
     INSTANCE;
 
     fun getLanguages(): Single<Response<List<LanguagesResponse>>> =
-        RetrofitApi.server().getLanguages(SharedPreferencesManager.INSTANCE.getMacAddress())
+        RetrofitApi.server().getLanguages(
+            SharedPreferencesManager.INSTANCE.getMacAddress())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
     fun getCategories(): Single<Response<List<CategoryResponse>>> =
-        RetrofitApi.server().getCategories(SharedPreferencesManager.INSTANCE.getMacAddress(), Language.getLanguage())
+        RetrofitApi.server().getCategories(
+            SharedPreferencesManager.INSTANCE.getMacAddress(), Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 
@@ -38,7 +40,8 @@ enum class WebRepositoryRequests {
         RetrofitApi.server()
             .getSubcategories(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
-                id, Language.getLanguage())
+                id,
+                Language.getLanguage())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
 

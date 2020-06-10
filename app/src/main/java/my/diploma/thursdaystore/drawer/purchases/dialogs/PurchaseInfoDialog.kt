@@ -10,7 +10,7 @@ class PurchaseInfoDialog: AppCompatDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
             .setTitle("Purchase Info")
-            .setItems(arrayOf("info 1","info 2","info 3","info 4","info 5")){ dialog, which ->
+            .setItems(arrayOf("info 1","info 2","info 3","info 4","info 5")){ _, _ ->
 
             }
             .create()
