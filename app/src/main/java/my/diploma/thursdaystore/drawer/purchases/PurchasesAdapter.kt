@@ -14,10 +14,14 @@ class PurchasesAdapter(private val list: List<GetPurchasesResponse>, private val
     RecyclerView.Adapter<PurchasesAdapter.PurchasesViewHolder>() {
 
     class PurchasesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val text1: TextView = itemView.findViewById(R.id.item_purchase_id)
-        val text2: TextView = itemView.findViewById(R.id.item_purchase_text_2)
-        val text3: TextView = itemView.findViewById(R.id.item_purchase_text_3)
-        val image: ImageView = itemView.findViewById(R.id.item_purchase_image_1)
+        val id: TextView = itemView.findViewById(R.id.item_purchase_id)
+        val price: TextView = itemView.findViewById(R.id.item_purchase_price)
+        val status: TextView = itemView.findViewById(R.id.item_purchase_status)
+        val statusDate: TextView = itemView.findViewById(R.id.item_purchase_status_date)
+        val statusPrice: TextView = itemView.findViewById(R.id.item_purchase_status_price)
+        val image1: ImageView = itemView.findViewById(R.id.item_purchase_image_1)
+        val image2: ImageView = itemView.findViewById(R.id.item_purchase_image_2)
+        val image3: ImageView = itemView.findViewById(R.id.item_purchase_image_3)
         val container: View = itemView.findViewById(R.id.item_purchase_container)
     }
 
@@ -28,9 +32,9 @@ class PurchasesAdapter(private val list: List<GetPurchasesResponse>, private val
 
     override fun onBindViewHolder(holder: PurchasesViewHolder, position: Int) {
         val element = list[position]
-        holder.text1.text = element.id.toString()
-        holder.text2.text = element.status
-        holder.text3.text = element.date
+        holder.id.text = element.id.toString()
+        holder.status.text = element.status
+        holder.statusDate.text = element.date
 
         holder.container.setOnClickListener {
             PurchaseInfoDialog().show(f.childFragmentManager, "PurchaseInfoDialog")
