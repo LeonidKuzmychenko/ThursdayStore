@@ -5,5 +5,5 @@ import androidx.lifecycle.ViewModel
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 
 class ProductsViewModel : ViewModel(){
-    val listLiveData: MutableLiveData<List<ProductResponse>> = MutableLiveData()
+    val listLiveData: MutableLiveData<MutableList<ProductResponse>> = MutableLiveData()
 }

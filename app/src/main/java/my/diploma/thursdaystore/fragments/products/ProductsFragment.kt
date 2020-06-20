@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ class ProductsFragment : Fragment() {
 
     private lateinit var productsViewModel: ProductsViewModel
     private var filterItem: ApplyFilterItemRequest? = null
+    private var stateSort = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,15 +56,38 @@ class ProductsFragment : Fragment() {
         }
 
         productsSort.setOnClickListener {
+            val arraySort = arrayOf("по убыванию","по возрастанию")
+            val btPositive = "Ok"
             val bundle = Bundle()
+
             bundle.putString(ChoiceSortDialog.DIALOG_SORT_TITLE_KEY,"Сортировка")
-            bundle.putStringArray(ChoiceSortDialog.DIALOG_SORT_ITEMS_KEY, arrayOf("по рейтингу","по убыванию","по возрастанию"))
+            bundle.putStringArray(ChoiceSortDialog.DIALOG_SORT_ITEMS_KEY, arrayOf(arraySort[0],arraySort[1]))
+            bundle.putString(ChoiceSortDialog.DIALOG_SORT_BT_POSITIVE, btPositive)
+            bundle.putInt(ChoiceSortDialog.DIALOG_SORT_STATE, this.stateSort)
 
             val dialog = ChoiceSortDialog()
             dialog.arguments = bundle
             dialog.show(childFragmentManager,"DIALOG SORT")
         }
+    }
 
+    fun activateSort(typeSort: Int){
+        stateSort = typeSort
+        val arraySort = arrayOf("по убыванию","по возрастанию")
+        when(typeSort){
+            0 ->{
+                val list = productsViewModel.listLiveData.value
+                list?.sortByDescending { it.price }
+                productsViewModel.listLiveData.value = list
+            }
+            1 ->{
+                val list = productsViewModel.listLiveData.value
+                list?.sortBy { it.price }
+                productsViewModel.listLiveData.value = list
+            }
+            else -> { }
+        }
+        Toast.makeText(requireContext(), "$typeSort = ${arraySort[typeSort]}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateView(

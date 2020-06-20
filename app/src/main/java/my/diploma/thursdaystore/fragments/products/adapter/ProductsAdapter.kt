@@ -15,4 +15,5 @@ class ProductsAdapter(list: List<ProductResponse>) : AbstractProductsAdapter(lis
     override fun getCartClickListener(productId: Long): View.OnClickListener = ProductCartClickListener(productId)
 
 
+
 }

@@ -82,7 +82,7 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getProducts(id: Long, liveData: MutableLiveData<List<ProductResponse>>) {
+    fun getProducts(id: Long, liveData: MutableLiveData<MutableList<ProductResponse>>) {
         WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
             GetProductsActionSuccess(liveData),
             GetProductsActionError()
@@ -119,7 +119,7 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun applyFilter(filterItem: ApplyFilterItemRequest, liveData: MutableLiveData<List<ProductResponse>>) {
+    fun applyFilter(filterItem: ApplyFilterItemRequest, liveData: MutableLiveData<MutableList<ProductResponse>>) {
         Log.d("USELESS_FILTER", "$filterItem")
         WebRepositoryRequests.INSTANCE.applyFilter(filterItem).subscribe(
             ApplyFilterActionSuccess(liveData),

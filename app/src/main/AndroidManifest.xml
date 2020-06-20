@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="my.diploma.thursdaystore">
 
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/><!--мак до 6.0-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/><!--мак до 6.0-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!--мак после 6.0-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/><!--мак после 6.0-->
     <uses-permission android:name="android.permission.INTERNET"/>

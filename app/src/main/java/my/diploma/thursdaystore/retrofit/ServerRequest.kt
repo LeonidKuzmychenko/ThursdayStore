@@ -41,7 +41,7 @@ interface ServerRequest {
 
     @GET("/products")
     fun getProducts(@Header("mac") mac:String,
-                    @Query("catId") id: Long): Single<Response<List<ProductResponse>>>
+                    @Query("catId") id: Long): Single<Response<MutableList<ProductResponse>>>
 
     @GET("/products/{id}")
     fun getProduct(@Header("mac") mac:String,
@@ -62,7 +62,7 @@ interface ServerRequest {
 
     @POST("products/filter")
     fun applyFilter(@Header("mac") mac:String,
-                    @Body filterItem: ApplyFilterItemRequest): Single<Response<List<ProductResponse>>>
+                    @Body filterItem: ApplyFilterItemRequest): Single<Response<MutableList<ProductResponse>>>
 
     @GET("/user")
     fun getUserData(@Header("mac") mac:String): Single<Response<UserData>>

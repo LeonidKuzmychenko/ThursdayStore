@@ -57,7 +57,7 @@ enum class WebRepositoryRequests {
         TODO("Not yet implemented")
     }
 
-    fun getProducts(id: Long): Single<Response<List<ProductResponse>>> =
+    fun getProducts(id: Long): Single<Response<MutableList<ProductResponse>>> =
         RetrofitApi.server()
             .getProducts(
                 SharedPreferencesManager.INSTANCE.getMacAddress(),
