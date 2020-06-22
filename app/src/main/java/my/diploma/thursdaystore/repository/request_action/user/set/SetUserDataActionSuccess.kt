@@ -1,14 +1,14 @@
 package my.diploma.thursdaystore.repository.request_action.user.set
 
-import android.app.Activity
 import android.util.Log
+import androidx.fragment.app.Fragment
 import io.reactivex.functions.Consumer
 import my.diploma.thursdaystore.activities.MainActivity
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 import my.diploma.thursdaystore.utils.SharedPreferencesManager
 import retrofit2.Response
 
-class SetUserDataActionSuccess(private val activity:Activity?): Consumer<Response<UserData>>{
+class SetUserDataActionSuccess(private val f: Fragment): Consumer<Response<UserData>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -28,10 +28,8 @@ class SetUserDataActionSuccess(private val activity:Activity?): Consumer<Respons
             SharedPreferencesManager.INSTANCE.setPersonEmail(user.email ?: "unknown")
         }
 
-        if (activity is MainActivity) activity.setNavViewUserName()
-
-        activity?.onBackPressed()
-
+        (f.activity as MainActivity).setNavViewUserName()
+        (f.activity as MainActivity).onBackPressed()
     }
 
 }

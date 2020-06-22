@@ -32,13 +32,13 @@ class BasketFragment : Fragment() {
 
         basketRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
-        basketViewModel.listLiveData.observe(viewLifecycleOwner, BasketLiveDataObserver(basketRecyclerView))
+        basketViewModel.listLiveData.observe(viewLifecycleOwner, BasketLiveDataObserver(this, basketRecyclerView, basketEmptyBasket))
 
         WebRepositoryActions.INSTANCE.getCart(this)
     }
 
     fun startSkeleton(){
-        skeleton = Skeleton.bind(basketRecyclerView).adapter(BasketAdapter(listOf())).load(R.layout.fragment_products_list_skeleton).show()
+        skeleton = Skeleton.bind(basketRecyclerView).adapter(BasketAdapter(this, listOf())).load(R.layout.fragment_products_list_skeleton).show()
     }
 
     fun stopSkeleton(){
@@ -46,7 +46,6 @@ class BasketFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        setHasOptionsMenu(true)
         basketViewModel = ViewModelProvider(this).get(BasketViewModel::class.java)
         return inflater.inflate(R.layout.fragment_basket, container, false)
     }
@@ -62,5 +61,9 @@ class BasketFragment : Fragment() {
             Navigation.findNavController(requireView()).navigate(action)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun listReview(){
+//        (basketRecyclerView.adapter as BasketAdapter).list.filter { it. }
     }
 }

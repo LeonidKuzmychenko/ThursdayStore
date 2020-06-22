@@ -2,13 +2,14 @@ package my.diploma.thursdaystore.repository
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
 import my.diploma.thursdaystore.activities.StartActivity
 import my.diploma.thursdaystore.drawer.basket.BasketFragment
 import my.diploma.thursdaystore.drawer.category.CategoryFragment
 import my.diploma.thursdaystore.drawer.favorites.FavoritesFragment
 import my.diploma.thursdaystore.drawer.purchases.PurchasesFragment
 import my.diploma.thursdaystore.fragments.filter.FilterFragment
+import my.diploma.thursdaystore.fragments.make_purchase.MakePurchaseFragment
 import my.diploma.thursdaystore.fragments.product_tree.ProductInfoFragment
 import my.diploma.thursdaystore.fragments.products.ProductsFragment
 import my.diploma.thursdaystore.fragments.sub_category.SubCategoryFragment
@@ -137,9 +138,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun setUserData(activity:FragmentActivity?, userData: UserData){
+    fun setUserData(f:Fragment, userData: UserData){
         WebRepositoryRequests.INSTANCE.setUserData(userData).subscribe(
-            SetUserDataActionSuccess(activity),
+            SetUserDataActionSuccess(f),
             SetUserDataActionError()
         )
     }
@@ -185,9 +186,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun makePurchase(purchase: MakePurchaseRequest){
+    fun makePurchase(f: MakePurchaseFragment, purchase: MakePurchaseRequest){
         WebRepositoryRequests.INSTANCE.makePurchase(purchase).subscribe(
-            MakePurchaseActionSuccess(),
+            MakePurchaseActionSuccess(f),
             MakePurchaseActionError()
         )
     }

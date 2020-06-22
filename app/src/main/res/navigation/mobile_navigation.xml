@@ -143,6 +143,6 @@
         android:id="@+id/makePurchaseFragment"
         android:name="my.diploma.thursdaystore.fragments.make_purchase.MakePurchaseFragment"
         android:label="make_purchase_fragment"
-        tools:layout="@layout/make_purchase_fragment" />
+        tools:layout="@layout/fragment_purchase_make" />
 
 </navigation>

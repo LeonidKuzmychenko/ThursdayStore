@@ -21,11 +21,7 @@ class MakePurchaseFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(this).get(MakePurchaseViewModel::class.java)
-        return inflater.inflate(R.layout.make_purchase_fragment, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_purchase_make, container, false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -37,7 +33,7 @@ class MakePurchaseFragment : Fragment() {
         if (item.itemId == R.id.make_purchase_ok) {
             Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
             val purchase = MakePurchaseRequest(null, Language.getLanguage(), "address test", "type test")
-            WebRepositoryActions.INSTANCE.makePurchase(purchase)
+            WebRepositoryActions.INSTANCE.makePurchase(this, purchase)
         }
         return super.onOptionsItemSelected(item)
     }

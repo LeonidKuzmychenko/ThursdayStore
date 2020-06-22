@@ -73,7 +73,7 @@ class PersonChangeFragment : Fragment() {
                 personEditAddressContent.text.toString()
             )
 
-            WebRepositoryActions.INSTANCE.setUserData(activity,userData)
+            WebRepositoryActions.INSTANCE.setUserData(this,userData)
         }
         return super.onOptionsItemSelected(item)
     }
