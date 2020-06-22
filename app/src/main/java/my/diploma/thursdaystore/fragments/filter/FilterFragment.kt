@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.ethanhua.skeleton.Skeleton
+import com.ethanhua.skeleton.ViewSkeletonScreen
 import kotlinx.android.synthetic.main.fragment_filter.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.fragments.filter.observers.FilterUiObserver
@@ -18,6 +20,8 @@ class FilterFragment : Fragment() {
 
     lateinit var vm: FilterViewModel
 
+    private lateinit var skeleton: ViewSkeletonScreen
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
         vm = ViewModelProvider(this).get(FilterViewModel::class.java)
@@ -27,20 +31,37 @@ class FilterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        startSkeleton()
+
         (activity as AppCompatActivity).supportActionBar?.let {
             it.title = Lines.get(R.string.fragment_filter_title)
         }
 
-        filterPriceText.text = Lines.get(R.string.fragment_filter_price)
-
-        filterRecyclerView.isNestedScrollingEnabled = false //скрол рейсайклера вместе с ценой
-        vm.savedFilter.observe(viewLifecycleOwner, SavedFilterObserver(this))
-
         arguments?.let {
             vm.savedFilter.value = getBundleFilter(it)
             vm.filterUi.observe(viewLifecycleOwner, FilterUiObserver(this, getBundleId(it)))
-            WebRepositoryActions.INSTANCE.getFilter(getBundleId(it), vm.filterUi)
+            WebRepositoryActions.INSTANCE.getFilter(this, getBundleId(it))
         }
+    }
+
+    fun startSkeleton(){
+        skeleton = Skeleton.bind(filterContainer).load(R.layout.fragment_filter_skeleton).show()
+    }
+
+    fun stopSkeleton(){
+        skeleton.hide()
+    }
+
+    fun setFilterObserver(){
+        vm.savedFilter.observe(viewLifecycleOwner, SavedFilterObserver(this))
+    }
+
+    fun setFilterPriceText(){
+        filterPriceText.text = Lines.get(R.string.fragment_filter_price)
+    }
+
+    fun setNestedScrollingEnabled(){
+        filterRecyclerView.isNestedScrollingEnabled = false //скрол рейсайклера вместе с ценой
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

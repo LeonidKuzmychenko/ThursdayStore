@@ -1,12 +1,12 @@
 package my.diploma.thursdaystore.repository.request_action.filters.get
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
+import my.diploma.thursdaystore.fragments.filter.FilterFragment
 import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
 import retrofit2.Response
 
-class GetFiltersActionSuccess(private val liveData:MutableLiveData<FilterItem>): Consumer<Response<FilterItem>>{
+class GetFiltersActionSuccess(private val f: FilterFragment): Consumer<Response<FilterItem>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -17,7 +17,11 @@ class GetFiltersActionSuccess(private val liveData:MutableLiveData<FilterItem>):
         }
 
         t.body()?.let {
-            liveData.value = it
+            f.stopSkeleton()
+            f.setFilterObserver()
+            f.setFilterPriceText()
+            f.setNestedScrollingEnabled()
+            f.vm.filterUi.value = it
         }
     }
 

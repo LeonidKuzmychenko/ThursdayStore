@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.ethanhua.skeleton.Skeleton
+import com.ethanhua.skeleton.ViewSkeletonScreen
 import kotlinx.android.synthetic.main.fragment_product_info.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.fragments.product_info.adapter.ProductInfoPropertyAdapter
@@ -22,12 +24,24 @@ import my.diploma.thursdaystore.retrofit.dto.product.Property
 class ProductInfoFragment : Fragment() {
 
     private lateinit var productTreeViewModel: ProductInfoViewModel
+    private lateinit var skeleton: ViewSkeletonScreen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        startSkeleton()
+
         arguments?.let {bundle ->
             WebRepositoryActions.INSTANCE.getProduct(this, ProductInfoFragmentArgs.fromBundle(bundle).productId)
         }
+    }
+
+    fun startSkeleton(){
+        skeleton = Skeleton.bind(product_info_container).load(R.layout.fragment_product_info_skeleton).show()
+    }
+
+    fun stopSkeleton(){
+        skeleton.hide()
     }
 
     fun setImage(url:String){
@@ -69,6 +83,9 @@ class ProductInfoFragment : Fragment() {
     fun setCharacteristics(properties: List<Property>){
         product_info_rv.isNestedScrollingEnabled = false
         product_info_rv.layoutManager = LinearLayoutManager(context)
+//        skeletonScreen.hide()
+
+
         product_info_rv.adapter = ProductInfoPropertyAdapter(properties)
     }
 

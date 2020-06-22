@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/product_info_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,7 +22,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/item_empty_product" />
+            tools:srcCompat="@drawable/item_empty_product" />
 
         <my.diploma.thursdaystore.custom_view.FavoriteImageView
             android:id="@+id/product_info_favorite"
@@ -30,8 +32,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/product_info_image"
-            app:srcCompat="@drawable/item_product_favorite_o"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/item_product_favorite_o" />
 
         <my.diploma.thursdaystore.custom_view.CartImageView
             android:id="@+id/product_info_cart"
@@ -41,8 +42,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/product_info_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/item_product_cart_o"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/item_product_cart_o" />
 
         <TextView
             android:id="@+id/product_info_name_text"
@@ -51,7 +51,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            tools:text="Summary"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Price"
+            tools:text="Price"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -85,7 +85,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_vertical|end"
-            android:text="TextView"
+            tools:text="value"
             app:layout_constraintBottom_toBottomOf="@+id/product_info_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/product_info_price"
@@ -108,7 +108,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="Descriprion"
+            tools:text="Description"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -122,7 +122,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            tools:text="description value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_info_description" />
@@ -144,7 +144,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="Characteristics"
+            tools:text="Characteristics"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -1,12 +1,12 @@
 package my.diploma.thursdaystore.repository.request_action.favorites
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
+import my.diploma.thursdaystore.drawer.favorites.FavoritesFragment
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import retrofit2.Response
 
-class GetFavoritesActionSuccess(private val liveData: MutableLiveData<List<ProductResponse>>): Consumer<Response<List<ProductResponse>>>{
+class GetFavoritesActionSuccess(private val f: FavoritesFragment): Consumer<Response<List<ProductResponse>>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -15,7 +15,9 @@ class GetFavoritesActionSuccess(private val liveData: MutableLiveData<List<Produ
         t.body()?.forEach { response ->
             Log.d(TAG, "GetFavorites Content = $response")
         }
-        liveData.value = t.body()
+
+        f.stopSkeleton()
+        f.favoritesViewModel.liveData.value = t.body()
     }
 
 }

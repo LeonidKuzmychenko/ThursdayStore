@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
+import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_sub_category.*
 import my.diploma.thursdaystore.R
 import my.diploma.thursdaystore.repository.WebRepositoryActions
@@ -17,11 +19,15 @@ import kotlin.properties.Delegates
 
 class SubCategoryFragment : Fragment() {
 
-    private lateinit var subCategoryViewModel: SubCategoryViewModel
+    lateinit var subCategoryViewModel: SubCategoryViewModel
     private var id by Delegates.notNull<Long>()
+    private lateinit var skeleton: RecyclerViewSkeletonScreen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        startSkeleton()
+
         arguments?.let { init(it) } ?: run {
             Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
         }
@@ -32,7 +38,7 @@ class SubCategoryFragment : Fragment() {
             viewLifecycleOwner,
             Observer { subCategoryRecyclerView.adapter = SubCategoryAdapter(it) })
 
-        WebRepositoryActions.INSTANCE.getSubcategories(id, subCategoryViewModel.listLiveData)
+        WebRepositoryActions.INSTANCE.getSubcategories(this, id)
 
     }
 
@@ -51,6 +57,14 @@ class SubCategoryFragment : Fragment() {
         }
 
         id = SubCategoryFragmentArgs.fromBundle(bundle).categoryId
+    }
+
+    fun startSkeleton(){
+        skeleton = Skeleton.bind(subCategoryRecyclerView).adapter(SubCategoryAdapter(listOf())).load(R.layout.fragment_category_list_skeleton).show()
+    }
+
+    fun stopSkeleton(){
+        skeleton.hide()
     }
 
 }

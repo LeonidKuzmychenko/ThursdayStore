@@ -3,10 +3,15 @@ package my.diploma.thursdaystore.repository
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.MutableLiveData
 import my.diploma.thursdaystore.activities.StartActivity
+import my.diploma.thursdaystore.drawer.basket.BasketFragment
+import my.diploma.thursdaystore.drawer.category.CategoryFragment
+import my.diploma.thursdaystore.drawer.favorites.FavoritesFragment
 import my.diploma.thursdaystore.drawer.purchases.PurchasesFragment
+import my.diploma.thursdaystore.fragments.filter.FilterFragment
 import my.diploma.thursdaystore.fragments.product_tree.ProductInfoFragment
+import my.diploma.thursdaystore.fragments.products.ProductsFragment
+import my.diploma.thursdaystore.fragments.sub_category.SubCategoryFragment
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionError
 import my.diploma.thursdaystore.repository.request_action.cart.get.GetCartActionSuccess
 import my.diploma.thursdaystore.repository.request_action.categories.GetCategoriesActionError
@@ -35,12 +40,8 @@ import my.diploma.thursdaystore.repository.request_action.user.get.GetUserDataAc
 import my.diploma.thursdaystore.repository.request_action.user.get.GetUserDataActionSuccess
 import my.diploma.thursdaystore.repository.request_action.user.set.SetUserDataActionError
 import my.diploma.thursdaystore.repository.request_action.user.set.SetUserDataActionSuccess
-import my.diploma.thursdaystore.retrofit.dto.category.CategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemRequest
-import my.diploma.thursdaystore.retrofit.dto.filter.response.FilterItem
-import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import my.diploma.thursdaystore.retrofit.dto.purchases.post.MakePurchaseRequest
-import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import my.diploma.thursdaystore.retrofit.dto.user.UserData
 
 enum class WebRepositoryActions {
@@ -53,17 +54,17 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getCategories(liveData: MutableLiveData<List<CategoryResponse>>) {
+    fun getCategories(f:CategoryFragment) {
         WebRepositoryRequests.INSTANCE.getCategories().subscribe(
-            GetCategoriesActionSuccess(liveData),
+            GetCategoriesActionSuccess(f),
             GetCategoriesActionError()
         )
     }
 
     @SuppressLint("CheckResult")
-    fun getSubcategories(id: Long, liveData: MutableLiveData<List<SubcategoryResponse>>) {
+    fun getSubcategories(f:SubCategoryFragment, id: Long) {
         WebRepositoryRequests.INSTANCE.getSubcategories(id).subscribe(
-            GetSubcategoriesActionSuccess(liveData),
+            GetSubcategoriesActionSuccess(f),
             GetSubcategoriesActionError()
         )
     }
@@ -82,9 +83,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getProducts(id: Long, liveData: MutableLiveData<MutableList<ProductResponse>>) {
+    fun getProducts(f:ProductsFragment, id: Long) {
         WebRepositoryRequests.INSTANCE.getProducts(id).subscribe(
-            GetProductsActionSuccess(liveData),
+            GetProductsActionSuccess(f),
             GetProductsActionError()
         )
     }
@@ -111,18 +112,18 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getFilter(id: Long, liveData: MutableLiveData<FilterItem>) {
+    fun getFilter(f:FilterFragment, id: Long) {
         WebRepositoryRequests.INSTANCE.getFilter(id).subscribe(
-            GetFiltersActionSuccess(liveData),
+            GetFiltersActionSuccess(f),
             GetFiltersActionError()
         )
     }
 
     @SuppressLint("CheckResult")
-    fun applyFilter(filterItem: ApplyFilterItemRequest, liveData: MutableLiveData<MutableList<ProductResponse>>) {
+    fun applyFilter(f:ProductsFragment,filterItem: ApplyFilterItemRequest) {
         Log.d("USELESS_FILTER", "$filterItem")
         WebRepositoryRequests.INSTANCE.applyFilter(filterItem).subscribe(
-            ApplyFilterActionSuccess(liveData),
+            ApplyFilterActionSuccess(f),
             ApplyFilterActionError()
         )
     }
@@ -144,9 +145,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getFavorites(liveData: MutableLiveData<List<ProductResponse>>){
+    fun getFavorites(f:FavoritesFragment){
         WebRepositoryRequests.INSTANCE.getFavorites().subscribe(
-            GetFavoritesActionSuccess(liveData),
+            GetFavoritesActionSuccess(f),
             GetFavoritesActionError()
         )
     }
@@ -160,9 +161,9 @@ enum class WebRepositoryActions {
     }
 
     @SuppressLint("CheckResult")
-    fun getCart(liveData: MutableLiveData<List<ProductResponse>>){
+    fun getCart(f:BasketFragment){
         WebRepositoryRequests.INSTANCE.getCart().subscribe(
-            GetCartActionSuccess(liveData),
+            GetCartActionSuccess(f),
             GetCartActionError()
         )
     }

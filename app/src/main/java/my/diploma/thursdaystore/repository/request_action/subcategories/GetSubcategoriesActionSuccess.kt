@@ -1,12 +1,12 @@
 package my.diploma.thursdaystore.repository.request_action.subcategories
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
+import my.diploma.thursdaystore.fragments.sub_category.SubCategoryFragment
 import my.diploma.thursdaystore.retrofit.dto.subcategory.SubcategoryResponse
 import retrofit2.Response
 
-class GetSubcategoriesActionSuccess(val liveData: MutableLiveData<List<SubcategoryResponse>>): Consumer<Response<List<SubcategoryResponse>>>{
+class GetSubcategoriesActionSuccess(private val f: SubCategoryFragment): Consumer<Response<List<SubcategoryResponse>>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -16,7 +16,8 @@ class GetSubcategoriesActionSuccess(val liveData: MutableLiveData<List<Subcatego
             Log.d(TAG, "getSubcategories Content = $response")
         }
 
-        liveData.value = t.body()
+        f.stopSkeleton()
+        f.subCategoryViewModel.listLiveData.value = t.body()
     }
 
 }

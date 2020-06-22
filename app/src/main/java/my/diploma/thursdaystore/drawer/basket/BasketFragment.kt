@@ -7,18 +7,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
+import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_basket.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.drawer.favorites.adapter.BasketAdapter
 import my.diploma.thursdaystore.fragments.products.observers.BasketLiveDataObserver
 import my.diploma.thursdaystore.repository.WebRepositoryActions
 import my.diploma.thursdaystore.utils.Lines
 
 class BasketFragment : Fragment() {
 
-    private lateinit var basketViewModel: BasketViewModel
+    lateinit var basketViewModel: BasketViewModel
+    private lateinit var skeleton: RecyclerViewSkeletonScreen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        startSkeleton()
 
         (activity as AppCompatActivity).supportActionBar?.let {
             it.title = Lines.get(R.string.fragment_cart_title)
@@ -28,7 +34,15 @@ class BasketFragment : Fragment() {
 
         basketViewModel.listLiveData.observe(viewLifecycleOwner, BasketLiveDataObserver(basketRecyclerView))
 
-        WebRepositoryActions.INSTANCE.getCart(basketViewModel.listLiveData)
+        WebRepositoryActions.INSTANCE.getCart(this)
+    }
+
+    fun startSkeleton(){
+        skeleton = Skeleton.bind(basketRecyclerView).adapter(BasketAdapter(listOf())).load(R.layout.fragment_products_list_skeleton).show()
+    }
+
+    fun stopSkeleton(){
+        skeleton.hide()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -15,6 +15,7 @@ class GetProductInfoActionSuccess(private val f:ProductInfoFragment): Consumer<R
         t.body()?.let{ item ->
             Log.d(TAG, "getProductInfo Content = $item")
 
+            f.stopSkeleton()
             f.setImage(item.images[0])
             item.inFavorites?.let { f.setFavoriteState(it) }
             item.inCart?.let { f.setCartState(it) }
@@ -29,6 +30,8 @@ class GetProductInfoActionSuccess(private val f:ProductInfoFragment): Consumer<R
             f.setDescription(item.description)
 
             f.setCharacteristics(item.properties)
+
+//            f.stopSkeleton()
         }
     }
 }

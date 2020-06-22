@@ -1,12 +1,12 @@
 package my.diploma.thursdaystore.repository.request_action.products
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
+import my.diploma.thursdaystore.fragments.products.ProductsFragment
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import retrofit2.Response
 
-class GetProductsActionSuccess(private val liveData: MutableLiveData<MutableList<ProductResponse>>): Consumer<Response<MutableList<ProductResponse>>>{
+class GetProductsActionSuccess(private val f: ProductsFragment): Consumer<Response<MutableList<ProductResponse>>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -15,7 +15,8 @@ class GetProductsActionSuccess(private val liveData: MutableLiveData<MutableList
         t.body()?.forEach { response ->
             Log.d(TAG, "getProducts Content = $response")
         }
-        liveData.value = t.body()
+        f.stopSkeleton()
+        f.productsViewModel.listLiveData.value = t.body()
     }
 
 }

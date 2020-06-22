@@ -1,12 +1,12 @@
 package my.diploma.thursdaystore.repository.request_action.cart.get
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
+import my.diploma.thursdaystore.drawer.basket.BasketFragment
 import my.diploma.thursdaystore.retrofit.dto.product.ProductResponse
 import retrofit2.Response
 
-class GetCartActionSuccess(private val liveData: MutableLiveData<List<ProductResponse>>): Consumer<Response<List<ProductResponse>>>{
+class GetCartActionSuccess(private val f: BasketFragment): Consumer<Response<List<ProductResponse>>>{
 
     val TAG = this.javaClass.simpleName
 
@@ -15,7 +15,9 @@ class GetCartActionSuccess(private val liveData: MutableLiveData<List<ProductRes
         t.body()?.forEach { response ->
             Log.d(TAG, "getCart Content = $response")
         }
-        liveData.value = t.body()
+
+        f.stopSkeleton()
+        f.basketViewModel.listLiveData.value = t.body()
     }
 
 }

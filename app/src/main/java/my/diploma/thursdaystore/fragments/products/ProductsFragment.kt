@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
+import com.ethanhua.skeleton.Skeleton
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_products.*
 import my.diploma.thursdaystore.R
+import my.diploma.thursdaystore.fragments.products.adapter.ProductsAdapter
 import my.diploma.thursdaystore.fragments.products.dialogs.ChoiceSortDialog
 import my.diploma.thursdaystore.fragments.products.listers.FilterButtonClickListener
 import my.diploma.thursdaystore.fragments.products.observers.ProductsLiveDataObserver
@@ -20,38 +23,37 @@ import my.diploma.thursdaystore.retrofit.dto.filter.request.ApplyFilterItemReque
 
 class ProductsFragment : Fragment() {
 
-    private lateinit var productsViewModel: ProductsViewModel
+    lateinit var productsViewModel: ProductsViewModel
     private var filterItem: ApplyFilterItemRequest? = null
     private var stateSort = 0
 
+    private lateinit var skeleton:RecyclerViewSkeletonScreen
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id: Long
-        val title: String
-        arguments.let {
-            id = ProductsFragmentArgs.fromBundle(it!!).subcategoryId
-            title = ProductsFragmentArgs.fromBundle(it).title
-            filterItem = ProductsFragmentArgs.fromBundle(it).filterRequest
-        }
+
+        startSkeleton()
+
+        filterItem = getBundleFilterItem()
 
         Log.d("FILTER_TEST", "Filter product = ${filterItem.toString()}")
 
-        (activity as AppCompatActivity).supportActionBar?.let { it.title = title }
+        (activity as AppCompatActivity).supportActionBar?.let { it.title = getBundleTitle() }
 
         productsViewModel.listLiveData.observe(viewLifecycleOwner,
-            ProductsLiveDataObserver(productsRecyclerView)
+            ProductsLiveDataObserver(this, productsRecyclerView, productsEmptyBasket, productsActionsContainer)
         )
 
-        productsFilter.setOnClickListener(FilterButtonClickListener(title, id, filterItem))
+        productsFilter.setOnClickListener(FilterButtonClickListener(getBundleTitle(), getBundleId(), filterItem))
 
         if (filterItem != null) {
             Log.d("FILTER_TEST", "Show with filter")
             Log.d("FILTER_TEST", "Body = ${Moshi.Builder().build().adapter(ApplyFilterItemRequest::class.java).toJson(filterItem)}")
-            WebRepositoryActions.INSTANCE.applyFilter(filterItem!!, productsViewModel.listLiveData)
+            WebRepositoryActions.INSTANCE.applyFilter(this, filterItem!!)
         }
         else {
             Log.d("FILTER_TEST", "Show without filter")
-            WebRepositoryActions.INSTANCE.getProducts(id, productsViewModel.listLiveData)
+            WebRepositoryActions.INSTANCE.getProducts(this, getBundleId())
         }
 
         productsSort.setOnClickListener {
@@ -68,6 +70,26 @@ class ProductsFragment : Fragment() {
             dialog.arguments = bundle
             dialog.show(childFragmentManager,"DIALOG SORT")
         }
+    }
+
+    fun getBundleId():Long {
+        return ProductsFragmentArgs.fromBundle(requireArguments()).subcategoryId
+    }
+
+    fun getBundleTitle():String {
+        return ProductsFragmentArgs.fromBundle(requireArguments()).title
+    }
+
+    fun getBundleFilterItem():ApplyFilterItemRequest? {
+        return arguments?.let{ return ProductsFragmentArgs.fromBundle(it).filterRequest }
+    }
+
+    fun startSkeleton(){
+        skeleton = Skeleton.bind(productsRecyclerView).adapter(ProductsAdapter(listOf())).load(R.layout.fragment_products_list_skeleton).show()
+    }
+
+    fun stopSkeleton(){
+        skeleton.hide()
     }
 
     fun activateSort(typeSort: Int){
